@@ -3,12 +3,146 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Petr Šimek — UX/UI Designer</title>
-  <meta name="description" content="Portfolio of Petr Šimek, UX/UI Designer at Perforce Software. Selected work including AI Test Studio, BlazeMeter and P4 Plan." />
+  <title>Petr Šimek — Projects</title>
+  <meta name="description" content="Selected UX/UI work by Petr Šimek. Featured project: AI Test Studio — an AI-driven unified testing platform at Perforce." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;0,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- v2-only: horizontal project tabs + responsiveness fixes. Reuses Force DS tokens. -->
+  <style>
+    /* Backstop against any stray horizontal overflow */
+    html, body { max-width: 100%; overflow-x: hidden; }
+
+    /* ---- Hero video background ---- */
+    .hero { position: relative; overflow: hidden; background: #0b0a12; }
+    .hero-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      pointer-events: none;
+    }
+    /* Light scrim keeps dark hero text readable; lighter on the right so the video shows */
+    .hero-scrim {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: linear-gradient(90deg,
+        rgba(248,248,253,0.94) 0%,
+        rgba(248,248,253,0.78) 50%,
+        rgba(248,248,253,0.45) 100%);
+    }
+    .hero::before { z-index: 1; }      /* keep the decorative brand glow above the video */
+    .hero .wrap { position: relative; z-index: 2; }   /* content sits on top */
+    @media (max-width: 900px) {
+      /* On mobile the content stacks full-width, so use a uniform readable scrim */
+      .hero-scrim { background: rgba(248,248,253,0.86); }
+    }
+
+    /* ---- Horizontal project tabs (Force DS pattern) ---- */
+    .proj-tabs {
+      position: sticky;
+      top: 56px;                 /* sits under the topbar */
+      z-index: 20;
+      display: flex;
+      gap: var(--space-50);
+      border-bottom: 1px solid var(--border-1);
+      margin-bottom: var(--space-600);
+      overflow-x: auto;
+      background: var(--bg-2);   /* matches the work section bg */
+    }
+    .proj-tabs a {
+      display: inline-flex; align-items: center; gap: var(--space-100);
+      padding: var(--space-200) var(--space-200);
+      color: var(--fg-2); font-weight: var(--fw-semibold);
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color .15s ease, border-color .15s ease;
+    }
+    .proj-tabs a:hover { color: var(--fg-1); }
+    .proj-tabs a.active { color: var(--brand-bg-rest); border-bottom-color: var(--brand-bg-rest); }
+    .proj-tabs a .idx {
+      width: 22px; height: 22px; flex: none;
+      display: grid; place-items: center;
+      border-radius: 6px; font-size: var(--fs-200); font-weight: var(--fw-bold);
+      background: var(--border-2); color: var(--fg-2);
+    }
+    .proj-tabs a.active .idx { background: var(--brand-bg-rest); color: #fff; }
+    .proj-tabs a.disabled { color: var(--fg-3); cursor: default; pointer-events: none; }
+    .proj-tabs a.disabled .idx { background: transparent; border: 1px dashed var(--border-2); color: var(--fg-3); }
+
+    /* ---- Responsiveness: stop grid tracks from blowing out the viewport ---- */
+    .case { margin-bottom: 0; }
+    .step { grid-template-columns: 280px minmax(0, 1fr); }   /* minmax(0,..) prevents overflow */
+    .case-meta { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .gallery-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (max-width: 820px) { .step { grid-template-columns: 1fr; } }
+    @media (max-width: 720px) {
+      .case-hero, .case-body { padding: var(--space-400); }
+      .case-meta { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ---- Profile photo in hero card (same 56px circle as the old initials) ---- */
+    .hero-card img.avatar { object-fit: cover; }
+
+    /* ---- Small Perforce logo in the project header ---- */
+    .perforce-logo { display: block; height: 24px; width: auto; margin-bottom: var(--space-300); }
+
+    /* ---- Discipline tags on each section (Force DS Tag component) ---- */
+    .step-label { flex-direction: column; align-items: flex-start; gap: var(--space-150); }
+    .disc-tag {
+      display: inline-flex; align-items: center; height: 20px; padding: 0 6px;
+      border-radius: var(--radius-sm); border: 1px solid transparent;
+      font-size: var(--fs-200); line-height: 16px; font-weight: var(--fw-regular);
+      white-space: nowrap;
+    }
+    .disc-tag.research { background: #add8f7; color: #00508a; }          /* Status / blue */
+    .disc-tag.analysis { background: #ffd4ba; color: #c14f0a; }          /* Status / warning */
+    .disc-tag.ui-design { background: #f3fcf3; color: #117911; border-color: #cdeccd; } /* Status / success */
+
+    /* ---- Clickable case images ---- */
+    #ai-test-studio .figure img { cursor: zoom-in; transition: filter .15s ease; }
+    #ai-test-studio .figure img:hover { filter: brightness(1.03); }
+
+    /* ---- Lightbox dialog ---- */
+    .lightbox {
+      border: 0; padding: 0; margin: auto;
+      background: transparent;
+      max-width: 96vw; max-height: 96vh;
+      overflow: visible;
+    }
+    .lightbox::backdrop {
+      background: rgba(11, 10, 18, 0.88);
+      backdrop-filter: blur(3px);
+    }
+    .lightbox .lb-inner {
+      margin: 0;
+      display: flex; flex-direction: column; align-items: center; gap: var(--space-200);
+    }
+    .lightbox img {
+      max-width: 96vw; max-height: 84vh;
+      width: auto; height: auto;
+      object-fit: contain;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      background: #fff;
+    }
+    .lightbox .lb-cap {
+      color: rgba(255, 255, 255, 0.92);
+      font-size: var(--fs-300); text-align: center; max-width: 80ch;
+    }
+    .lightbox .lb-close {
+      position: fixed; top: 16px; right: 20px;
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.12); color: #fff;
+      font-size: 26px; line-height: 1; cursor: pointer;
+      display: grid; place-items: center;
+      transition: background .15s ease;
+    }
+    .lightbox .lb-close:hover { background: rgba(255, 255, 255, 0.25); }
+  </style>
 </head>
 <body>
 
@@ -20,7 +154,7 @@
         <span class="brand-name">Petr&nbsp;Šimek <span>· UX/UI Designer</span></span>
       </a>
       <nav class="nav">
-        <a class="nav-link" href="#work">Work</a>
+        <a class="nav-link" href="#projects">Projects</a>
         <a class="nav-link" href="#about">About</a>
         <a class="nav-link" href="#contact">Contact</a>
         <a class="btn btn-primary nav-cta" href="#contact">Get in touch</a>
@@ -30,8 +164,11 @@
 
   <main id="top">
 
-    <!-- ===================== Hero ===================== -->
+    <!-- ===================== Hero (about me) ===================== -->
     <section class="hero">
+      <video class="hero-video" autoplay muted loop playsinline preload="auto"
+             src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_145119_f4ec4d9f-3ecd-4116-baa3-26e8cf2df976.mp4"></video>
+      <div class="hero-scrim" aria-hidden="true"></div>
       <div class="wrap">
         <div class="hero-grid">
           <div>
@@ -43,9 +180,8 @@
               flows, wireframes and high‑fidelity prototypes — built on solid design systems.
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary btn-lg" href="#work">View selected work</a>
+              <a class="btn btn-primary btn-lg" href="#projects">View selected work</a>
               <a class="btn btn-secondary btn-lg" href="https://www.linkedin.com/in/simekp" target="_blank" rel="noopener">LinkedIn</a>
-              <a class="btn btn-ghost btn-lg" href="https://www.dobrastranka.cz" target="_blank" rel="noopener">dobrastranka.cz ↗</a>
             </div>
             <div class="hero-meta">
               <div class="stat"><div class="num">13+</div><div class="lbl">Years in product &amp; web</div></div>
@@ -56,7 +192,7 @@
 
           <aside class="hero-card">
             <div class="row">
-              <div class="avatar">PŠ</div>
+              <img class="avatar" src="images/profile.jpg" alt="Petr Šimek" />
               <div>
                 <div class="title-3">Petr Šimek</div>
                 <div class="muted">UX/UI Designer at Perforce Software</div>
@@ -78,266 +214,226 @@
       </div>
     </section>
 
-    <!-- ===================== Work ===================== -->
-    <section id="work" class="work section">
+    <!-- ===================== Projects (menu + content) ===================== -->
+    <section id="projects" class="work section" style="padding-block: var(--space-800);">
       <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow">Selected work · Perforce</p>
-          <h2 class="title-1">Case studies</h2>
-          <p class="lead">A look at products I’ve shaped across Perforce and BlazeMeter — from a flagship
-            AI testing platform to focused features and design‑system work.</p>
-        </div>
 
-        <!-- ---------- Featured: AI Test Studio ---------- -->
-        <article class="case">
-          <div class="case-hero">
-            <div class="tags">
-              <span class="badge badge-brand">Flagship</span>
-              <span class="badge">Perforce · Testing</span>
-              <span class="badge">End‑to‑end</span>
-            </div>
-            <h3 class="title-1">AI Test Studio</h3>
-            <p class="lead">
-              A new unified testing UI driving a fundamental shift in software testing — from
-              fragmented, skill‑dependent processes to an AI‑driven, autonomous testing fabric that
-              unifies functional, performance, UX, accessibility and API testing into a single workflow.
-              It embodies the next evolution of Perforce’s AI‑driven “shift‑left” testing vision.
-            </p>
-            <dl class="case-meta">
-              <div><dt>Role</dt><dd>UX researcher, UX/UI designer</dd></div>
-              <div><dt>Duration</dt><dd>One year</dd></div>
-              <div><dt>Team</dt><dd>PO, engineers &amp; designers — CZ · IN · USA</dd></div>
-              <div><dt>Method</dt><dd>Scrum, continuous testing</dd></div>
-            </dl>
-          </div>
+        <!-- ---------- Project tabs (add more projects here) ---------- -->
+        <nav class="proj-tabs" aria-label="Projects">
+          <a href="#ai-test-studio" class="active"><span class="idx">1</span>AI Test Studio</a>
+          <!-- Add the next project tab here as:
+          <a href="#project-slug"><span class="idx">2</span>Project name</a>
+          -->
+          <a class="disabled" aria-disabled="true"><span class="idx">+</span>More coming soon</a>
+        </nav>
 
-          <div class="case-body">
+        <!-- ---------- Project content ---------- -->
+        <div>
 
-            <!-- Context -->
-            <div class="step">
-              <div class="step-label">
-                <span class="step-num">CONTEXT</span>
-                <h4>The product &amp; my involvement</h4>
+            <!-- ===== Project 1: AI Test Studio ===== -->
+            <article class="case" id="ai-test-studio">
+              <div class="case-hero">
+                <img class="perforce-logo" src="images/perforce-logo.svg" alt="Perforce" />
+                <h3 class="title-1">AI Test Studio</h3>
+                <p class="lead">
+                  A new unified testing UI driving a fundamental shift in software testing — from
+                  fragmented, skill‑dependent processes to an AI‑driven, autonomous testing fabric that
+                  unifies functional, performance, UX, accessibility and API testing into a single workflow.
+                  It embodies the next evolution of Perforce’s AI‑driven “shift‑left” testing vision.
+                </p>
+                <dl class="case-meta">
+                  <div><dt>Role</dt><dd>UX researcher, UX/UI designer</dd></div>
+                  <div><dt>Duration</dt><dd>One year</dd></div>
+                  <div><dt>Team</dt><dd>PO, engineers &amp; designers — CZ · IN · USA</dd></div>
+                  <div><dt>Method</dt><dd>Scrum, continuous testing</dd></div>
+                </dl>
               </div>
-              <div>
-                <p class="step-text">The product belongs under the testing application unit in Perforce — a
-                  company founded in 1995 and headquartered in Minneapolis, Minnesota. I was part of the
-                  complete process of designing this product, from ideation to a real product.</p>
-                <p class="step-text">I spent a lot of time doing user research, designing, and having
-                  discussions with stakeholders and other team members. The team — product owner, engineers
-                  and product designers — was spread across the Czech Republic, India and the USA, working
-                  closely with many rounds of feedback and iteration under Scrum.</p>
-              </div>
-            </div>
 
-            <!-- Problem -->
-            <div class="step">
-              <div class="step-label">
-                <span class="step-num">PROBLEM</span>
-                <h4>Why it matters</h4>
-              </div>
-              <div>
-                <p class="step-text">Testing can be tough for beginners or for users who don’t know how to
-                  write tests. AI Test Studio helps by using AI to remove these obstacles.</p>
-                <p class="step-text">Another problem is having multiple variants of one test. In AI Test
-                  Studio a user can define a test just once as a single source of truth and then generate
-                  different types of tests from it — for example performance and functional tests.</p>
-              </div>
-            </div>
+              <div class="case-body">
 
-            <!-- Goals -->
-            <div class="step">
-              <div class="step-label">
-                <span class="step-num">01</span>
-                <h4>Business goals</h4>
-              </div>
-              <div>
-                <p class="step-text"><strong>Involve more junior testers</strong> — with the help of AI,
-                  let them define a test as a single source of truth in one place.</p>
-                <p class="step-text"><strong>Grow adoption</strong> — by connecting AI Test Studio with
-                  BlazeMeter and Perfecto, increasing licence sales of those products.</p>
-              </div>
-            </div>
-
-            <!-- Users & personas -->
-            <div class="step">
-              <div class="step-label">
-                <span class="step-num">02</span>
-                <h4>User needs &amp; personas</h4>
-              </div>
-              <div>
-                <p class="step-text">A junior tester should be able to write tests with the help of AI.</p>
-                <p class="step-text"><strong>Personas:</strong> a junior tester who can’t write tests but
-                  understands how testing works, and an engineer who needs to test their application.</p>
-              </div>
-            </div>
-
-            <!-- Information architecture -->
-            <div class="step">
-              <div class="step-label">
-                <span class="step-num">03</span>
-                <h4>Information architecture</h4>
-              </div>
-              <div>
-                <p class="step-text">There are many different entities in this project — suites, test
-                  scenarios, environments, policies. It was important to define a solid information
-                  architecture. The research method was interviews with internal stakeholders.</p>
-                <figure class="figure">
-                  <img src="images/ats-ideation.png" alt="Information architecture map for AI Test Studio" loading="lazy" />
-                  <figcaption>Information architecture — mapping suites, scenarios, environments &amp; policies</figcaption>
-                </figure>
-              </div>
-            </div>
-
-            <!-- User flows -->
-            <div class="step">
-              <div class="step-label">
-                <span class="step-num">04</span>
-                <h4>User flows</h4>
-              </div>
-              <div>
-                <p class="step-text">User flows capture the main paths through the application. We chose two
-                  primary flows: the new user and the existing user.</p>
-                <div class="gallery gallery-scroll">
-                  <figure class="figure"><img src="images/ats-flow-sketch.png" alt="Early flow sketch" loading="lazy" /><figcaption>Early sketch</figcaption></figure>
-                  <figure class="figure"><img src="images/ats-userflows-1.png" alt="User flow — new user" loading="lazy" /><figcaption>User flow · new user</figcaption></figure>
-                  <figure class="figure"><img src="images/ats-userflows-2.png" alt="User flow — existing user" loading="lazy" /><figcaption>User flow · existing user</figcaption></figure>
+                <!-- Context -->
+                <div class="step">
+                  <div class="step-label">
+                    <h4>Overview</h4>
+                  </div>
+                  <div>
+                    <p class="step-text">The product belongs under the testing application unit in Perforce — a
+                      company founded in 1995 and headquartered in Minneapolis, Minnesota. I was part of the
+                      complete process of designing this product, from ideation to a real product.</p>
+                    <p class="step-text">I spent a lot of time doing user research, designing, and having
+                      discussions with stakeholders and other team members. The team — product owner, engineers
+                      and product designers — was spread across the Czech Republic, India and the USA, working
+                      closely with many rounds of feedback and iteration under Scrum.</p>
+                  </div>
                 </div>
-              </div>
-            </div>
 
-            <!-- Wireframes -->
-            <div class="step">
-              <div class="step-label">
-                <span class="step-num">05</span>
-                <h4>Wireframes</h4>
-              </div>
-              <div>
-                <p class="step-text">Wireframes are quick sketches to understand what each screen should
-                  contain and how the flow looks. There were a lot of iterations before the team agreed on
-                  the basic flow.</p>
-                <div class="gallery gallery-scroll">
-                  <figure class="figure"><img src="images/ats-wf-signin.png" alt="Wireframe — sign in" loading="lazy" /><figcaption>Sign in</figcaption></figure>
-                  <figure class="figure"><img src="images/ats-wf-home.png" alt="Wireframe — home page" loading="lazy" /><figcaption>Home page</figcaption></figure>
-                  <figure class="figure"><img src="images/ats-wf-appdetail.png" alt="Wireframe — application detail" loading="lazy" /><figcaption>Application detail</figcaption></figure>
-                  <figure class="figure"><img src="images/ats-wf-suiteexec.png" alt="Wireframe — suite execution detail" loading="lazy" /><figcaption>Suite execution detail</figcaption></figure>
-                  <figure class="figure"><img src="images/ats-wf-suiteconfig.png" alt="Wireframe — suite configuration detail" loading="lazy" /><figcaption>Suite configuration detail</figcaption></figure>
+                <!-- Problem -->
+                <div class="step">
+                  <div class="step-label">
+                    <h4>The problem</h4>
+                    <span class="disc-tag research">Research</span>
+                  </div>
+                  <div>
+                    <p class="step-text">Testing can be tough for beginners or for users who don’t know how to
+                      write tests. AI Test Studio helps by using AI to remove these obstacles.</p>
+                    <p class="step-text">Another problem is having multiple variants of one test. In AI Test
+                      Studio a user can define a test just once as a single source of truth and then generate
+                      different types of tests from it — for example performance and functional tests.</p>
+                  </div>
                 </div>
-              </div>
-            </div>
 
-            <!-- Design system -->
-            <div class="step">
-              <div class="step-label">
-                <span class="step-num">06</span>
-                <h4>Design system</h4>
-              </div>
-              <div>
-                <p class="step-text">We chose the <strong>Force Design System</strong> — a well‑prepared
-                  system containing all the necessary elements: colour variables, typography, spacing and
-                  UI components. (This very portfolio is built with Force DS tokens.)</p>
-                <div class="tags">
-                  <span class="badge badge-brand">Colour variables</span>
-                  <span class="badge badge-brand">Typography</span>
-                  <span class="badge badge-brand">Spacing</span>
-                  <span class="badge badge-brand">UI components</span>
+                <!-- Goals -->
+                <div class="step">
+                  <div class="step-label">
+                    <h4>Business goals</h4>
+                    <span class="disc-tag research">Research</span>
+                  </div>
+                  <div>
+                    <p class="step-text"><strong>Involve more junior testers</strong> — with the help of AI,
+                      let them define a test as a single source of truth in one place.</p>
+                    <p class="step-text"><strong>Grow adoption</strong> — by connecting AI Test Studio with
+                      BlazeMeter and Perfecto, increasing licence sales of those products.</p>
+                  </div>
                 </div>
-              </div>
-            </div>
 
-            <!-- High fidelity -->
-            <div class="step">
-              <div class="step-label">
-                <span class="step-num">07</span>
-                <h4>High‑fidelity prototype</h4>
-              </div>
-              <div>
-                <p class="step-text">All screens were designed in Figma and presented as a clickable
-                  prototype, giving stakeholders the impression of a real application.</p>
-                <div class="gallery gallery-scroll">
-                  <figure class="figure"><img src="images/ats-hifi-login.png" alt="High fidelity — login" loading="lazy" /><figcaption>Login</figcaption></figure>
-                  <figure class="figure"><img src="images/ats-hifi-dashboard.png" alt="High fidelity — application dashboard" loading="lazy" /><figcaption>Application dashboard</figcaption></figure>
-                  <figure class="figure"><img src="images/ats-hifi-nav.png" alt="High fidelity — conversational UI" loading="lazy" /><figcaption>Conversational UI</figcaption></figure>
-                  <figure class="figure"><img src="images/ats-hifi-suiteconfig.png" alt="High fidelity — suite configuration" loading="lazy" /><figcaption>Suite configuration</figcaption></figure>
-                  <figure class="figure"><img src="images/ats-hifi-suitefailed.png" alt="High fidelity — suite execution failed" loading="lazy" /><figcaption>Suite execution · failed</figcaption></figure>
+                <!-- User needs -->
+                <div class="step">
+                  <div class="step-label">
+                    <h4>User needs</h4>
+                    <span class="disc-tag research">Research</span>
+                  </div>
+                  <div>
+                    <p class="step-text">After interviews with potential users, the main need across both
+                      personas was clear: the ability to create tests without knowing how to write them, and to
+                      maintain all tests in one place — with the help of AI.</p>
+                  </div>
                 </div>
+
+                <!-- Personas -->
+                <div class="step">
+                  <div class="step-label">
+                    <h4>Personas</h4>
+                    <span class="disc-tag research">Research</span>
+                  </div>
+                  <div>
+                    <p class="step-text">A junior tester who can’t write tests but understands how testing
+                      works, and an engineer who needs to test their application.</p>
+                  </div>
+                </div>
+
+                <!-- Information architecture -->
+                <div class="step">
+                  <div class="step-label">
+                    <h4>Information architecture</h4>
+                    <span class="disc-tag research">Research</span>
+                  </div>
+                  <div>
+                    <p class="step-text">There are many different entities in this project — suites, test
+                      scenarios, environments, policies. It was important to define a solid information
+                      architecture. The research method was interviews with internal stakeholders.</p>
+                    <figure class="figure">
+                      <img src="images/ats-ideation.png" alt="Information architecture map for AI Test Studio" loading="lazy" />
+                      <figcaption>Information architecture — mapping suites, scenarios, environments &amp; policies</figcaption>
+                    </figure>
+                  </div>
+                </div>
+
+                <!-- User flows -->
+                <div class="step">
+                  <div class="step-label">
+                    <h4>User flows</h4>
+                    <span class="disc-tag research">Research</span>
+                  </div>
+                  <div>
+                    <p class="step-text">User flows capture the main paths through the application. We chose two
+                      primary flows: the new user and the existing user.</p>
+                    <div class="gallery gallery-scroll">
+                      <figure class="figure"><img src="images/ats-flow-sketch.png" alt="Early flow sketch" loading="lazy" /><figcaption>Early sketch</figcaption></figure>
+                      <figure class="figure"><img src="images/ats-userflows-1.png" alt="User flow — new user" loading="lazy" /><figcaption>User flow · new user</figcaption></figure>
+                      <figure class="figure"><img src="images/ats-userflows-2.png" alt="User flow — existing user" loading="lazy" /><figcaption>User flow · existing user</figcaption></figure>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Wireframes -->
+                <div class="step">
+                  <div class="step-label">
+                    <h4>Wireframes</h4>
+                    <span class="disc-tag analysis">Analysis</span>
+                  </div>
+                  <div>
+                    <p class="step-text">Wireframes are quick sketches to understand what each screen should
+                      contain and how the flow looks. There were a lot of iterations before the team agreed on
+                      the basic flow.</p>
+                    <div class="gallery gallery-scroll">
+                      <figure class="figure"><img src="images/ats-wf-signin.png" alt="Wireframe — sign in" loading="lazy" /><figcaption>Sign in</figcaption></figure>
+                      <figure class="figure"><img src="images/ats-wf-home.png" alt="Wireframe — home page" loading="lazy" /><figcaption>Home page</figcaption></figure>
+                      <figure class="figure"><img src="images/ats-wf-appdetail.png" alt="Wireframe — application detail" loading="lazy" /><figcaption>Application detail</figcaption></figure>
+                      <figure class="figure"><img src="images/ats-wf-suiteexec.png" alt="Wireframe — suite execution detail" loading="lazy" /><figcaption>Suite execution detail</figcaption></figure>
+                      <figure class="figure"><img src="images/ats-wf-suiteconfig.png" alt="Wireframe — suite configuration detail" loading="lazy" /><figcaption>Suite configuration detail</figcaption></figure>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Design system -->
+                <div class="step">
+                  <div class="step-label">
+                    <h4>Design system</h4>
+                    <span class="disc-tag ui-design">UI design</span>
+                  </div>
+                  <div>
+                    <p class="step-text">We chose the <strong>Force Design System</strong> — a well‑prepared
+                      system containing all the necessary elements: colour variables, typography, spacing and
+                      UI components. (This very portfolio is built with Force DS tokens.)</p>
+                  </div>
+                </div>
+
+                <!-- High fidelity -->
+                <div class="step">
+                  <div class="step-label">
+                    <h4>High‑fidelity prototype</h4>
+                    <span class="disc-tag ui-design">UI design</span>
+                  </div>
+                  <div>
+                    <p class="step-text">All screens were designed in Figma and presented as a clickable
+                      prototype, giving stakeholders the impression of a real application.</p>
+                    <div class="gallery gallery-scroll">
+                      <figure class="figure"><img src="images/ats-hifi-login.png" alt="High fidelity — login" loading="lazy" /><figcaption>Login</figcaption></figure>
+                      <figure class="figure"><img src="images/ats-hifi-dashboard.png" alt="High fidelity — application dashboard" loading="lazy" /><figcaption>Application dashboard</figcaption></figure>
+                      <figure class="figure"><img src="images/ats-hifi-nav.png" alt="High fidelity — conversational UI" loading="lazy" /><figcaption>Conversational UI</figcaption></figure>
+                      <figure class="figure"><img src="images/ats-hifi-suiteconfig.png" alt="High fidelity — suite configuration" loading="lazy" /><figcaption>Suite configuration</figcaption></figure>
+                      <figure class="figure"><img src="images/ats-hifi-suitefailed.png" alt="High fidelity — suite execution failed" loading="lazy" /><figcaption>Suite execution · failed</figcaption></figure>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- AI in process -->
+                <div class="step">
+                  <div class="step-label">
+                    <h4>AI in the design process</h4>
+                    <span class="disc-tag ui-design">UI design</span>
+                  </div>
+                  <div>
+                    <p class="step-text">Figma Make is a great tool for ideation and quick prototyping. Figma
+                      Make — and later Claude — became an important part of the design process.</p>
+                  </div>
+                </div>
+
+                <!-- User testing -->
+                <div class="step">
+                  <div class="step-label">
+                    <h4>User testing</h4>
+                    <span class="disc-tag research">Research</span>
+                  </div>
+                  <div>
+                    <p class="step-text">The product is continuously tested with internal participants. We
+                      established a Slack channel for gathering internal feedback on the application.</p>
+                  </div>
+                </div>
+
               </div>
-            </div>
-
-            <!-- AI in process -->
-            <div class="step">
-              <div class="step-label">
-                <span class="step-num">08</span>
-                <h4>AI in the design process</h4>
-              </div>
-              <div>
-                <p class="step-text">Figma Make is a great tool for ideation and quick prototyping. Figma
-                  Make — and later Claude — became an important part of the design process.</p>
-              </div>
-            </div>
-
-            <!-- User testing -->
-            <div class="step">
-              <div class="step-label">
-                <span class="step-num">09</span>
-                <h4>User testing</h4>
-              </div>
-              <div>
-                <p class="step-text">The product is continuously tested with internal participants. We
-                  established a Slack channel for gathering internal feedback on the application.</p>
-              </div>
-            </div>
-
-          </div>
-        </article>
-
-        <!-- ---------- Other Perforce / BlazeMeter projects ---------- -->
-        <div class="section-head" style="margin-bottom:var(--space-400)">
-          <h3 class="title-2">More from Perforce &amp; BlazeMeter</h3>
-        </div>
-
-        <div class="proj-grid">
-
-          <article class="proj-card">
-            <div class="proj-shot"><img src="images/bm-vs-1.png" alt="BlazeMeter Virtual Services" loading="lazy" /></div>
-            <div class="proj-info">
-              <div class="tags"><span class="badge badge-blue">BlazeMeter</span><span class="badge">Service virtualization</span></div>
-              <h4>Virtual Services</h4>
-              <p>An application under test may need to connect to real services that can be paid — making
-                testing expensive — or sometimes unavailable. Service virtualization in BlazeMeter solves this.</p>
-            </div>
-          </article>
-
-          <article class="proj-card">
-            <div class="proj-shot"><img src="images/bm-tdp-1.png" alt="BlazeMeter Test Data Pro" loading="lazy" /></div>
-            <div class="proj-info">
-              <div class="tags"><span class="badge badge-blue">BlazeMeter</span><span class="badge">Test data</span></div>
-              <h4>Test Data Pro</h4>
-              <p>Testers need realistic data that can’t come from production due to sensitive information,
-                and generating it by hand is slow. Test Data Pro helps users generate and maintain
-                different testing data.</p>
-            </div>
-          </article>
-
-          <article class="proj-card">
-            <div class="proj-shot"><img src="images/p4-sprints.png" alt="P4 Plan" loading="lazy" /></div>
-            <div class="proj-info">
-              <div class="tags"><span class="badge badge-brand">Perforce</span><span class="badge">P4 Plan</span></div>
-              <h4>P4 Plan</h4>
-              <p>The motivation was to offer a lightweight solution to a very complex desktop client —
-                sprints, backlog and planning, rethought for the web.</p>
-            </div>
-          </article>
-
-          <article class="proj-card">
-            <div class="proj-shot"><img src="images/blaze-bootstrap.png" alt="Blaze Bootstrap" loading="lazy" /></div>
-            <div class="proj-info">
-              <div class="tags"><span class="badge badge-blue">BlazeMeter</span><span class="badge">Front‑end</span></div>
-              <h4>Blaze Bootstrap</h4>
-              <p>The service‑virtualization sections — one of the main parts of BlazeMeter — were coded from
-                scratch, backed by a living CSS style guide to keep new components consistent.</p>
-            </div>
-          </article>
+            </article>
+            <!-- ===== End project 1 ===== -->
 
         </div>
       </div>
@@ -451,7 +547,6 @@
             <a href="mailto:simekpetr@centrum.cz"><span><span class="k">Email</span><br>simekpetr@centrum.cz</span><span>→</span></a>
             <a href="tel:+420728660739"><span><span class="k">Mobile</span><br>+420 728 660 739</span><span>→</span></a>
             <a href="https://www.linkedin.com/in/simekp" target="_blank" rel="noopener"><span><span class="k">LinkedIn</span><br>in/simekp</span><span>↗</span></a>
-            <a href="https://www.dobrastranka.cz" target="_blank" rel="noopener"><span><span class="k">Portfolio</span><br>dobrastranka.cz</span><span>↗</span></a>
           </div>
         </div>
       </div>
@@ -459,12 +554,40 @@
 
   </main>
 
-  <footer class="foot">
-    <div class="wrap">
-      <span>© 2026 Petr Šimek · UX/UI Designer</span>
-      <span>Built with Force Design System tokens · Prague, CZ</span>
-    </div>
-  </footer>
+  <!-- ===================== Image lightbox ===================== -->
+  <dialog class="lightbox" id="lightbox">
+    <button class="lb-close" type="button" aria-label="Close" autofocus>&times;</button>
+    <figure class="lb-inner">
+      <img id="lb-img" src="" alt="" />
+      <figcaption class="lb-cap" id="lb-cap"></figcaption>
+    </figure>
+  </dialog>
+
+  <script>
+    (function () {
+      var dlg = document.getElementById('lightbox');
+      var lbImg = document.getElementById('lb-img');
+      var lbCap = document.getElementById('lb-cap');
+
+      // Make every image in the AI Test Studio case study open in the lightbox
+      document.querySelectorAll('#ai-test-studio .figure img').forEach(function (img) {
+        img.addEventListener('click', function () {
+          lbImg.src = img.currentSrc || img.src;
+          lbImg.alt = img.alt || '';
+          var fig = img.closest('figure');
+          var cap = fig && fig.querySelector('figcaption');
+          lbCap.textContent = cap ? cap.textContent.trim() : (img.alt || '');
+          if (typeof dlg.showModal === 'function') dlg.showModal();
+        });
+      });
+
+      // Close on the × button, on backdrop click, and on Esc (Esc is built in)
+      dlg.querySelector('.lb-close').addEventListener('click', function () { dlg.close(); });
+      dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+      // Free the video/memory after closing
+      dlg.addEventListener('close', function () { lbImg.removeAttribute('src'); });
+    })();
+  </script>
 
 </body>
 </html>
