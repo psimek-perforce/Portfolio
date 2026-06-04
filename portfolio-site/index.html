@@ -103,6 +103,42 @@
     .disc-tag.analysis { background: #ffd4ba; color: #c14f0a; }          /* Status / warning */
     .disc-tag.ui-design { background: #f3fcf3; color: #117911; border-color: #cdeccd; } /* Status / success */
 
+    /* ---- Case-study section dividers + process list + personas ---- */
+    .case-section {
+      font-size: var(--fs-700); font-weight: var(--fw-bold); letter-spacing: -.01em;
+      color: var(--fg-1); margin: 0 0 var(--space-200);
+      padding-bottom: var(--space-200); border-bottom: 1px solid var(--border-1);
+    }
+    .case-body + .case-body { padding-top: 0; }
+    .proc-list { margin: 0; padding-left: 1.25em; display: grid; gap: var(--space-100); color: var(--fg-1); }
+    .proc-list li { line-height: var(--lh-400); }
+    .proc-list li .disc-tag { margin-left: var(--space-100); vertical-align: middle; }
+    .persona-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--space-300); margin-top: var(--space-300); align-items: start; }
+    @media (max-width: 820px) { .persona-grid { grid-template-columns: 1fr; } }
+    .persona {
+      background: var(--bg-2); border: 1px solid var(--border-1); border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    /* Expandable card: header (summary) always visible; body toggles */
+    .persona-summary {
+      list-style: none; cursor: pointer;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-150);
+      padding: var(--space-300);
+    }
+    .persona-summary::-webkit-details-marker { display: none; }
+    .persona-summary:hover { background: var(--bg-3); }
+    .persona-summary:focus-visible { outline: 2px solid var(--brand-bg-rest); outline-offset: -2px; }
+    .persona-name { display: block; font-size: var(--fs-400); font-weight: var(--fw-bold); color: var(--fg-1); }
+    .persona-role { display: block; color: var(--fg-2); font-size: var(--fs-200); margin-top: 2px; }
+    .persona-chevron { flex: none; width: 20px; height: 20px; color: var(--fg-2); margin-top: 2px; transition: transform .2s ease; }
+    .persona[open] .persona-chevron { transform: rotate(180deg); }
+    .persona-body { padding: 0 var(--space-300) var(--space-300); }
+    .persona-h { font-weight: var(--fw-semibold); color: var(--brand-bg-rest); font-size: var(--fs-300); margin: var(--space-150) 0 var(--space-50); }
+    .persona-list { margin: 0 0 var(--space-100); padding-left: 1.15em; display: grid; gap: 3px; }
+    .persona-list li { font-size: var(--fs-300); line-height: var(--lh-300); color: var(--fg-2); }
+    .findings-list { margin: var(--space-100) 0 0; padding-left: 1.15em; display: grid; gap: 4px; }
+    .findings-list li { line-height: var(--lh-300); color: var(--fg-1); }
+
     /* ---- Password-protected region ---- */
     .protected-region { position: relative; }
     .protected-region .case-body > .case-meta { margin-top: 0; } /* meta now leads the body */
@@ -297,119 +333,299 @@
                 <img class="perforce-logo" src="images/perforce-logo.svg" alt="Perforce" />
                 <h3 class="title-1">AI Test Studio</h3>
                 <p class="lead">
-                  A new unified testing UI driving a fundamental shift in software testing — from
-                  fragmented, skill‑dependent processes to an AI‑driven, autonomous testing fabric that
-                  unifies functional, performance, UX, accessibility and API testing into a single workflow.
+                  AI Test Studio is a new unified testing UI driving a fundamental shift in software testing
+                  from fragmented, skill‑dependent processes to an AI‑driven, autonomous testing fabric that
+                  unifies functional, performance, UX, accessibility, and API testing into a single workflow.
                   It embodies the next evolution of Perforce’s AI‑driven “shift‑left” testing vision.
                 </p>
               </div>
 
-              <!-- OPEN preview (public): meta + Overview -->
               <div class="case-body">
-                <dl class="case-meta">
-                  <div><dt>Role</dt><dd>UX researcher, UX/UI designer</dd></div>
-                  <div><dt>Duration</dt><dd>One year</dd></div>
-                  <div><dt>Team</dt><dd>PO, engineers &amp; designers — CZ · IN · USA</dd></div>
-                  <div><dt>Method</dt><dd>Scrum, continuous testing</dd></div>
-                </dl>
+                <h3 class="case-section">Project overview</h3>
                 <div class="step">
                   <div class="step-label">
-                    <h4>Overview</h4>
+                    <h4>Background</h4>
                   </div>
                   <div>
-                    <p class="step-text">The product belongs under the testing application unit in Perforce — a
-                      company founded in 1995 and headquartered in Minneapolis, Minnesota. I was part of the
-                      complete process of designing this product, from ideation to a real product.</p>
-                    <p class="step-text">I spent a lot of time doing user research, designing, and having
-                      discussions with stakeholders and other team members. The team — product owner, engineers
-                      and product designers — was spread across the Czech Republic, India and the USA, working
-                      closely with many rounds of feedback and iteration under Scrum.</p>
+                    <p class="step-text">The product belongs under testing application unit in Perforce. The Perforce company started in 1995 and headquartered in Minneapolis, Minnesota. I was at the complete process of designing this product. From ideation to real product. I spent a lot of time by doing user research, designing and having discussions with stakeholders and other team members.</p>
                   </div>
                 </div>
+                <div class="step">
+                  <div class="step-label">
+                    <h4>My role</h4>
+                  </div>
+                  <div>
+                    <p class="step-text">My roles in this project were UX researcher and UX/UI designer.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-label">
+                    <h4>Time frame</h4>
+                  </div>
+                  <div>
+                    <p class="step-text">I worked about one year on this project.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-label">
+                    <h4>Team and collaboration</h4>
+                  </div>
+                  <div>
+                    <p class="step-text">Team members were product owner, engineers, UX designers and UX researcher. The team was from different countries world wide. There was close collaboration between all team members. I was part of design team who followed Scrum methodology.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-label">
+                    <h4>AI tools for designing</h4>
+                  </div>
+                  <div>
+                    <p class="step-text">I started use during this project AI tools like Figma make and Claude code. AI rapidly improved my design delivery time and quality.</p>
+                  </div>
+                </div>
+                    <figure class="figure"><img src="images/ats-hifi-dashboard.png" alt="AI Test Studio dashboard" loading="lazy" /><figcaption>AI Test Studio — application dashboard</figcaption></figure>
               </div>
 
-              <!-- Case study content (open) -->
               <div class="case-body">
-                <!-- Problem -->
+                <h3 class="case-section">Design process</h3>
+                <ol class="proc-list">
+                  <li>Define problem <span class="disc-tag research">Research</span></li>
+                  <li>Initial research (workshops, interviews with participants and observations) <span class="disc-tag research">Research</span></li>
+                  <li>Understand business goals <span class="disc-tag research">Research</span></li>
+                  <li>Understand user needs <span class="disc-tag research">Research</span></li>
+                  <li>Define personas <span class="disc-tag research">Research</span></li>
+                  <li>Ideation <span class="disc-tag research">Research</span></li>
+                  <li>Sketch user flows <span class="disc-tag research">Research</span></li>
+                  <li>Define information architecture <span class="disc-tag research">Research</span></li>
+                  <li>Sketch wireframes <span class="disc-tag analysis">Analysis</span></li>
+                  <li>Choose design system <span class="disc-tag ui-design">UI design</span></li>
+                  <li>Design high fidelity clickable prototype <span class="disc-tag ui-design">UI design</span></li>
+                  <li>Validate solution <span class="disc-tag research">Research</span></li>
+                </ol>
+                <figure class="figure" style="margin-top:var(--space-400)"><img src="images/ats-process.png" alt="Design process" loading="lazy" /></figure>
+              </div>
+
+              <div class="case-body">
+                <h3 class="case-section">Research</h3>
                 <div class="step">
                   <div class="step-label">
                     <h4>The problem</h4>
                     <span class="disc-tag research">Research</span>
                   </div>
                   <div>
-                    <p class="step-text">Testing can be tough for beginners or for users who don’t know how to
-                      write tests. AI Test Studio helps by using AI to remove these obstacles.</p>
-                    <p class="step-text">Another problem is having multiple variants of one test. In AI Test
-                      Studio a user can define a test just once as a single source of truth and then generate
-                      different types of tests from it — for example performance and functional tests.</p>
+                    <p class="step-text">There are different products for quality assurance which Perforce offers. The problem is that these products are complex and it can be difficult to use these testing applications for junior testers or even for people who don’t know how to write tests. Also there can be multiple variants of one test in these applications. This cause losing of potential customers.</p>
                   </div>
                 </div>
-
-                <!-- Goals -->
+                <div class="step">
+                  <div class="step-label">
+                    <h4>Workshops, interviews with participants and observations</h4>
+                    <span class="disc-tag research">Research</span>
+                  </div>
+                  <div>
+                    <p class="step-text">We had several meetings with stakeholders where we discussed the problem, ideas and our visions. It was also important to start with initial UX research. We asked participants from DPP program initial questions like what type of testing they do, what are theirs problems, what are theirs workflows, what are paint points of product which they use etc. We also sent several surveys to these participants to get quantitative data. We wanted to know which environments participants use for testing, how many participants automate their testing etc. We also introduced all participants our vision and we wanted to know what they think about this idea and if they want to start using product which we were thinking about.</p>
+                  </div>
+                </div>
                 <div class="step">
                   <div class="step-label">
                     <h4>Business goals</h4>
                     <span class="disc-tag research">Research</span>
                   </div>
                   <div>
-                    <p class="step-text"><strong>Involve more junior testers</strong> — with the help of AI,
-                      let them define a test as a single source of truth in one place.</p>
-                    <p class="step-text"><strong>Grow adoption</strong> — by connecting AI Test Studio with
-                      BlazeMeter and Perfecto, increasing licence sales of those products.</p>
+                    <p class="step-text">Main business goal was to remove technical barrier of writing testing scripts and involve users in testing of theirs applications. AI test studio connects together existing Perforce applications like BlazeMeter and Perfecto. It’s expected that customers of BlazeMeter will start using Perfecto and vice versa.</p>
                   </div>
                 </div>
-
-                <!-- User needs -->
                 <div class="step">
                   <div class="step-label">
                     <h4>User needs</h4>
                     <span class="disc-tag research">Research</span>
                   </div>
                   <div>
-                    <p class="step-text">After interviews with potential users, the main need across both
-                      personas was clear: the ability to create tests without knowing how to write them, and to
-                      maintain all tests in one place — with the help of AI.</p>
+                    <p class="step-text">After interviews with potential users of the application I defined that main user needs. User needs are ability to create tests without knowledge how to write tests, maintain tests in one place and possibly to run functional and performance test from one test definition.</p>
                   </div>
                 </div>
-
-                <!-- Personas -->
                 <div class="step">
                   <div class="step-label">
                     <h4>Personas</h4>
                     <span class="disc-tag research">Research</span>
                   </div>
                   <div>
-                    <p class="step-text">A junior tester who can’t write tests but understands how testing
-                      works, and an engineer who needs to test their application.</p>
+                    <p class="step-text">I defined after interviews with potential users following personas:</p>
+                    <div class="persona-grid">
+                      <details class="persona">
+                        <summary class="persona-summary">
+                          <span><span class="persona-name">Persona 1: The Quality Engineering Leader</span><span class="persona-role">(Head of QA, Director of QE, Test Manager)</span></span>
+                          <svg class="persona-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+                        </summary>
+                        <div class="persona-body">
+                          <p class="persona-h">Who they are</p>
+                          <ul class="persona-list">
+                            <li>Own quality strategy and tooling across web, mobile, APIs, and performance</li>
+                            <li>Often existing Perfecto and/or BlazeMeter customers, or using similar tools</li>
+                            <li>Manage teams of automation engineers + manual testers; report into VP Eng / CTO</li>
+                          </ul>
+                          <p class="persona-h">Key Goals</p>
+                          <ul class="persona-list">
+                            <li>Standardize tooling and reduce test fragmentation (UI, API, mobile, performance)</li>
+                            <li>Shorten regression cycles and stabilize releases across teams</li>
+                            <li>Increase test automation coverage without ballooning headcount</li>
+                            <li>Demonstrate quality impact to execs with clear metrics and reports</li>
+                          </ul>
+                          <p class="persona-h">Core Pain Points</p>
+                          <ul class="persona-list">
+                            <li>Multiple, siloed tools (separate for mobile, web, API, performance)</li>
+                            <li>High maintenance of test suites; flaky tests and brittle scripts</li>
+                            <li>Difficulty getting non-technical testers/product folks to contribute to automation</li>
+                            <li>Lots of time spent collating reports from different systems into one view</li>
+                          </ul>
+                          <p class="persona-h">Why Simo / AI Test Studio resonates</p>
+                          <ul class="persona-list">
+                            <li>Unified dashboard for all testing activities → aggregate mobile (Perfecto), web, API, performance (BlazeMeter)</li>
+                            <li>No‑code test creation wizards → enable manual testers and BAs to contribute</li>
+                            <li>Integrated reporting system + comprehensive analytics and insights → single, shareable view for leadership</li>
+                            <li>Real-time test execution monitoring → quicker detection of issues during runs</li>
+                          </ul>
+                          <p class="persona-h">Buying Triggers</p>
+                          <ul class="persona-list">
+                            <li>Tool consolidation or standardization initiative</li>
+                            <li>Pressure to increase coverage and speed without adding headcount</li>
+                            <li>Recent production issues tied to gaps or fragmentation in testing</li>
+                          </ul>
+                        </div>
+                      </details>
+                      <details class="persona">
+                        <summary class="persona-summary">
+                          <span><span class="persona-name">Persona 2: The Senior Test Automation Engineer</span></span>
+                          <svg class="persona-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+                        </summary>
+                        <div class="persona-body">
+                          <ul class="persona-list">
+                            <li>Hands-on technical owner of test frameworks and automation strategy</li>
+                            <li>Power users of Perfecto and/or BlazeMeter (or competitors)</li>
+                            <li>Strong influence on tool selection even if they don’t own the budget</li>
+                            <li>Build reliable, maintainable test suites across UI/mobile/API/performance</li>
+                            <li>Integrate tests tightly into CI/CD for continuous testing</li>
+                            <li>Reduce flakiness and technical debt in automation</li>
+                            <li>Improve debugging and root-cause analysis through better data</li>
+                            <li>{`Maintaining multiple frameworks &amp; infrastructure stacks`}</li>
+                            <li>Time spent on boilerplate and maintenance instead of higher-value work</li>
+                            <li>Fragmented logs/results from different tools slow down debugging</li>
+                            <li>Limited early visibility into performance and API issues</li>
+                            <li>Real device testing + cross‑platform (iOS, Android, Web) via Perfecto set of capabilities</li>
+                            <li>{`Load &amp; performance + API testing capabilities via BlazeMeter set of capabilities`}</li>
+                            <li>CI/CD integration capabilities for end-to-end, automated pipelines</li>
+                            <li>Project management with team collaboration to coordinate defects, tasks, and ownership</li>
+                            <li>Comprehensive analytics and insights to speed up root-cause analysis</li>
+                            <li>Frustration with brittle, homegrown frameworks and tool sprawl</li>
+                            <li>Being tasked to add mobile or performance testing without adding new tools</li>
+                            <li>Organizational push to “shift left” on performance and reliability</li>
+                          </ul>
+                        </div>
+                      </details>
+                      <details class="persona">
+                        <summary class="persona-summary">
+                          <span><span class="persona-name">Persona 3: The DevOps / Platform Owner</span></span>
+                          <svg class="persona-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+                        </summary>
+                        <div class="persona-body">
+                          <ul class="persona-list">
+                            <li>Own CI/CD pipelines, environments, and shared platform tooling</li>
+                            <li>Integrate and maintain testing tools in the delivery pipeline</li>
+                            <li>Care about stability, scalability, governance, and cost</li>
+                            <li>Keep pipelines fast and reliable while enforcing quality gates</li>
+                            <li>Standardize testing tooling across teams and services</li>
+                            <li>Provide testing as a self-service platform capability</li>
+                            <li>Control tool proliferation and licensing costs</li>
+                            <li>Many point tools, each with its own integration, maintenance, and failure modes</li>
+                            <li>Difficulty scaling test infrastructure across multiple teams and regions</li>
+                            <li>Fragmented visibility into where and why pipelines break due to tests</li>
+                            <li>Rising spend on overlapping licenses and infrastructure</li>
+                            <li>Scalable cloud testing infrastructure + multi-location testing simulation from BlazeMeter capabilities</li>
+                            <li>Unified dashboard + integrated reporting system → fewer integrations to build and maintain</li>
+                            <li>Real-time performance monitoring and test execution monitoring → clearer pipeline feedback</li>
+                            <li>Project management with team collaboration → more consistent workflows across teams</li>
+                            <li>CI/CD modernization / platformization initiative</li>
+                            <li>Mandate to consolidate and rationalize engineering tools</li>
+                            <li>Performance or reliability incidents linked to gaps in automated testing</li>
+                          </ul>
+                        </div>
+                      </details>
+                      <details class="persona">
+                        <summary class="persona-summary">
+                          <span><span class="persona-name">Persona 4: The Product / Release Owner</span></span>
+                          <svg class="persona-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+                        </summary>
+                        <div class="persona-body">
+                          <ul class="persona-list">
+                            <li>Accountable for release readiness and product quality outcomes</li>
+                            <li>Consumers of test reports and dashboards rather than test creators</li>
+                            <li>Bridge between engineering, QA, and business stakeholders</li>
+                            <li>Confident, predictable releases with minimal surprise defects</li>
+                            <li>Clear view of release health, risk areas, and test coverage</li>
+                            <li>Faster feedback and decision-making when issues appear</li>
+                            <li>Test data and reports scattered across tools and teams</li>
+                            <li>Difficulty understanding technical test metrics in terms of business risk</li>
+                            <li>Time-consuming, manual status reporting before every release</li>
+                            <li>Integrated reporting system with high-level summaries plus drill-downs</li>
+                            <li>Unified dashboard for all testing activities across platforms and services</li>
+                            <li>Comprehensive analytics and insights that can be translated into risk indicators</li>
+                            <li>Project management with team collaboration to track quality-related work items</li>
+                            <li>Painful release cycles with lots of manual coordination and reporting</li>
+                            <li>Expanding portfolio (web + mobile + APIs) making risk visibility harder</li>
+                            <li>Senior leadership demanding better release health metrics</li>
+                          </ul>
+                        </div>
+                      </details>
+                      <details class="persona">
+                        <summary class="persona-summary">
+                          <span><span class="persona-name">Persona 5: The Business Stakeholder / Customer-Side Champion</span></span>
+                          <svg class="persona-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+                        </summary>
+                        <div class="persona-body">
+                          <ul class="persona-list">
+                            <li>Feel the downstream impact of quality (escalations, SLAs, churn)</li>
+                            <li>Often involved in evaluations for strategic or enterprise-wide tools</li>
+                            <li>Need a clear link between testing, reliability, and customer outcomes</li>
+                            <li>Reduce production incidents and customer-facing issues</li>
+                            <li>Demonstrate control over performance, reliability, and SLAs</li>
+                            <li>Support business growth (more traffic, more platforms) without degrading UX</li>
+                            <li>Limited visibility into how testing actually prevents incidents</li>
+                            <li>Hard to quantify the value of existing testing tools to justify spend</li>
+                            <li>Gaps between performance/device coverage and real-world customer experience</li>
+                            <li>Performance analytics and reporting + real-time performance monitoring from BlazeMeter features</li>
+                            <li>Visual testing and screenshot comparison from Perfecto features, protecting UX quality</li>
+                            <li>Comprehensive analytics and insights tying test results to availability, performance, and experience KPIs</li>
+                            <li>Recent customer-impacting outage or performance regression</li>
+                            <li>Executive focus on experience SLAs or digital reliability metrics</li>
+                            <li>Renewal or replacement cycle for major testing/performance tooling</li>
+                            <li>{`Onboarding &amp;Initial Guidance Issues`}</li>
+                            <li>{`Terminology &amp; Mental Model Mismatches `}</li>
+                            <li>AI Chat Interaction and Workflow Problems</li>
+                            <li>{`Chat UI- Integration Friction `}</li>
+                            <li>Test Creation and Management</li>
+                            <li>Test Execution and Configuration difficulties</li>
+                            <li>{`Results visibility and Analysis limitation `}</li>
+                            <li>History Management and Privacy</li>
+                          </ul>
+                        </div>
+                      </details>
+                    </div>
                   </div>
                 </div>
-
-                <!-- Information architecture -->
                 <div class="step">
                   <div class="step-label">
-                    <h4>Information architecture</h4>
+                    <h4>Ideation</h4>
                     <span class="disc-tag research">Research</span>
                   </div>
                   <div>
-                    <p class="step-text">There are many different entities in this project — suites, test
-                      scenarios, environments, policies. It was important to define a solid information
-                      architecture. The research method was interviews with internal stakeholders.</p>
-                    <figure class="figure">
-                      <img src="images/ats-ideation.png" alt="Information architecture map for AI Test Studio" loading="lazy" />
-                      <figcaption>Information architecture — mapping suites, scenarios, environments &amp; policies</figcaption>
-                    </figure>
+                    <p class="step-text">First idea how to help testers was to involve AI chat to theirs testing flow. This helps junior testers start using BlazeMeter and Perfecto. Also we wanted to offer single source of true and solve another problem which was having tests in different places. We wanted to created simple modern AI oriented testing application which will be oriented for junior testers or on people who can’t write testing scripts.</p>
                   </div>
                 </div>
-
-                <!-- User flows -->
                 <div class="step">
                   <div class="step-label">
                     <h4>User flows</h4>
                     <span class="disc-tag research">Research</span>
                   </div>
                   <div>
-                    <p class="step-text">User flows capture the main paths through the application. We chose two
-                      primary flows: the new user and the existing user.</p>
+                    <p class="step-text">In one of the first meeting we defined together first user flow for new user and sketched on the board which screens we might need. I continued with defining more detailed user flows after that until we all agreed on the application flow. I defined two main flows. One for new user and one for existing user.</p>
                     <div class="gallery gallery-scroll">
                       <figure class="figure"><img src="images/ats-flow-sketch.png" alt="Early flow sketch" loading="lazy" /><figcaption>Early sketch</figcaption></figure>
                       <figure class="figure"><img src="images/ats-userflows-1.png" alt="User flow — new user" loading="lazy" /><figcaption>User flow · new user</figcaption></figure>
@@ -417,94 +633,121 @@
                     </div>
                   </div>
                 </div>
+                <div class="step">
+                  <div class="step-label">
+                    <h4>Information architecture</h4>
+                    <span class="disc-tag research">Research</span>
+                  </div>
+                  <div>
+                    <p class="step-text">There are many different entities in this projects like: suites, test scenarios, environments, policies. It was important to define solid information architecture. Research method was interviews with internal stakeholders.</p>
+                    <figure class="figure"><img src="images/ats-ia.png" alt="Information architecture" loading="lazy" /><figcaption>Information architecture</figcaption></figure>
+                  </div>
+                </div>
+              </div>
 
-                <!-- Wireframes -->
+              <div class="case-body">
+                <h3 class="case-section">Analysis</h3>
                 <div class="step">
                   <div class="step-label">
                     <h4>Wireframes</h4>
                     <span class="disc-tag analysis">Analysis</span>
                   </div>
                   <div>
-                    <p class="step-text">Wireframes are quick sketches to understand what each screen should
-                      contain and how the flow looks. There were a lot of iterations before the team agreed on
-                      the basic flow.</p>
+                    <p class="step-text">After I had good understanding what product we need to build, I started to sketch first wireframes. The wireframes were connected to complete flow of new user in application. From sign in to sign out. I validated with stakeholders if flow make sense and I incorporated theirs comments.</p>
                     <div class="gallery gallery-scroll">
                       <figure class="figure"><img src="images/ats-wf-signin.png" alt="Wireframe — sign in" loading="lazy" /><figcaption>Sign in</figcaption></figure>
                       <figure class="figure"><img src="images/ats-wf-home.png" alt="Wireframe — home page" loading="lazy" /><figcaption>Home page</figcaption></figure>
                       <figure class="figure"><img src="images/ats-wf-appdetail.png" alt="Wireframe — application detail" loading="lazy" /><figcaption>Application detail</figcaption></figure>
-                      <figure class="figure"><img src="images/ats-wf-suiteexec.png" alt="Wireframe — suite execution detail" loading="lazy" /><figcaption>Suite execution detail</figcaption></figure>
-                      <figure class="figure"><img src="images/ats-wf-suiteconfig.png" alt="Wireframe — suite configuration detail" loading="lazy" /><figcaption>Suite configuration detail</figcaption></figure>
+                      <figure class="figure"><img src="images/ats-wf-suiteexec.png" alt="Wireframe — suite execution" loading="lazy" /><figcaption>Suite execution detail</figcaption></figure>
+                      <figure class="figure"><img src="images/ats-wf-suiteconfig.png" alt="Wireframe — suite configuration" loading="lazy" /><figcaption>Suite configuration detail</figcaption></figure>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                <!-- Design system -->
+              <div class="case-body">
+                <h3 class="case-section">UI design</h3>
                 <div class="step">
                   <div class="step-label">
                     <h4>Design system</h4>
                     <span class="disc-tag ui-design">UI design</span>
                   </div>
                   <div>
-                    <p class="step-text">We chose the <strong>Force Design System</strong> — a well‑prepared
-                      system containing all the necessary elements: colour variables, typography, spacing and
-                      UI components. (This very portfolio is built with Force DS tokens.)</p>
+                    <p class="step-text">We agreed on using “Force design system”. It was also recommended by Perforce to start using this design system for all new products. It’s well prepared design system which contains all necessary elements like colour variables, typography, spacing and all UI components.</p>
+                    <figure class="figure"><img src="images/ats-design-system.png" alt="Force design system" loading="lazy" /><figcaption>Force Design System</figcaption></figure>
                   </div>
                 </div>
-
-                <!-- High fidelity -->
                 <div class="step">
                   <div class="step-label">
-                    <h4>High‑fidelity prototype</h4>
+                    <h4>High‑fidelity clickable prototype</h4>
                     <span class="disc-tag ui-design">UI design</span>
                   </div>
                   <div>
-                    <p class="step-text">All screens were designed in Figma and presented as a clickable
-                      prototype, giving stakeholders the impression of a real application.</p>
+                    <p class="step-text">I designed all screens in Figma and presented as clickable prototype which gave to stakeholders impression of real application. I also frequently used Figma make to get suggestions. I also later used Claude as good and quick solution for presenting clickable prototypes. We started iterate over application design only in high fidelity prototype and stakeholders could see how application will look like. We started to share this prototype internally with another people who fit to our personas and we gathered another feedback which was incorporated.</p>
                     <div class="gallery gallery-scroll">
-                      <figure class="figure"><img src="images/ats-hifi-login.png" alt="High fidelity — login" loading="lazy" /><figcaption>Login</figcaption></figure>
-                      <figure class="figure"><img src="images/ats-hifi-dashboard.png" alt="High fidelity — application dashboard" loading="lazy" /><figcaption>Application dashboard</figcaption></figure>
-                      <figure class="figure"><img src="images/ats-hifi-nav.png" alt="High fidelity — conversational UI" loading="lazy" /><figcaption>Conversational UI</figcaption></figure>
-                      <figure class="figure"><img src="images/ats-hifi-suiteconfig.png" alt="High fidelity — suite configuration" loading="lazy" /><figcaption>Suite configuration</figcaption></figure>
-                      <figure class="figure"><img src="images/ats-hifi-suitefailed.png" alt="High fidelity — suite execution failed" loading="lazy" /><figcaption>Suite execution · failed</figcaption></figure>
+                      <figure class="figure"><img src="images/ats-hifi-login.png" alt="Login" loading="lazy" /><figcaption>Login</figcaption></figure>
+                      <figure class="figure"><img src="images/ats-hifi-dashboard.png" alt="Application dashboard" loading="lazy" /><figcaption>Application dashboard</figcaption></figure>
+                      <figure class="figure"><img src="images/ats-hifi-nav.png" alt="Conversational UI" loading="lazy" /><figcaption>Conversational UI</figcaption></figure>
+                      <figure class="figure"><img src="images/ats-hifi-suiteconfig.png" alt="Suite configuration" loading="lazy" /><figcaption>Suite configuration</figcaption></figure>
+                      <figure class="figure"><img src="images/ats-hifi-suitefailed.png" alt="Suite execution failed" loading="lazy" /><figcaption>Suite execution · failed</figcaption></figure>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                <!-- AI in process -->
-                <div class="step">
-                  <div class="step-label">
-                    <h4>AI in the design process</h4>
-                    <span class="disc-tag ui-design">UI design</span>
-                  </div>
-                  <div>
-                    <p class="step-text">Figma Make is a great tool for ideation and quick prototyping. Figma
-                      Make — and later Claude — became an important part of the design process.</p>
-                  </div>
-                </div>
-
-                <!-- User testing -->
+              <div class="case-body">
+                <h3 class="case-section">Validate solution</h3>
                 <div class="step">
                   <div class="step-label">
                     <h4>User testing</h4>
                     <span class="disc-tag research">Research</span>
                   </div>
                   <div>
-                    <p class="step-text">The product is continuously tested with internal participants. We
-                      established a Slack channel for gathering internal feedback on the application.</p>
+                    <p class="step-text"><strong>The goal</strong> — to conduct usability tests for the MVP of AI Test Studio with the DPP participants as well as internal participants. We wanted to understand the UX workflows and paint points and how the participants interact with the chat flow.</p>
+                    <p class="step-text"><strong>Test script</strong> — we didn’t create any particular user testing script, but we wanted to understand how the users understand the product. So we let them to explore the application and we observed their steps in the application.</p>
+                    <p class="step-text"><strong>Findings</strong> — we created document based on testing of each participants and than from these data we identified issues and consolidated them. Consolidated list of the issues that the users came across and were observed in the usability test:</p>
+                    <ul class="findings-list">
+                      <li>Onboarding &amp; Initial Guidance Issues</li>
+                      <li>Terminology &amp; Mental Model Mismatches</li>
+                      <li>AI Chat Interaction and Workflow Problems</li>
+                      <li>Chat UI / Integration Friction</li>
+                      <li>Test Creation and Management</li>
+                      <li>Test Execution and Configuration difficulties</li>
+                      <li>Results visibility and Analysis limitation</li>
+                      <li>History Management and Privacy</li>
+                    </ul>
                   </div>
                 </div>
-
-                  <!-- User testing -->
                 <div class="step">
                   <div class="step-label">
-                    <h4>User Test 1</h4>
+                    <h4>Usability issues workshop</h4>
                     <span class="disc-tag research">Research</span>
                   </div>
                   <div>
-                    <p class="step-text">Test 1</p>
+                    <p class="step-text">We conducted usability issues workshop. The goal was to prioritise usability issues.</p>
+                    <figure class="figure"><img src="images/ats-usability-workshop.png" alt="Usability issues workshop" loading="lazy" /><figcaption>Usability issues workshop</figcaption></figure>
                   </div>
                 </div>
+              </div>
 
+              <div class="case-body">
+                <h3 class="case-section">My learnings</h3>
+                <div class="step">
+                  <div class="step-label">
+                    <h4>Changing direction</h4>
+                  </div>
+                  <div>
+                    <p class="step-text">We found out during user testing, that some users were lost in classic flow. There are different terms like suites, policies, environments. These brings cognitive load for some users and AI chat can help with this. We decided to focus on AI part of the application which should help users with this obstacle.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-label">
+                    <h4>AI</h4>
+                  </div>
+                  <div>
+                    <p class="step-text">I learned how to design AI chat. It was my first product which was AI based. To design AI product requires completely new skills set in my opinion.</p>
+                  </div>
+                </div>
               </div>
             </article>
             <!-- ===== End project 1 ===== -->
