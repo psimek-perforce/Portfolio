@@ -71,6 +71,8 @@
     .proj-tabs a.active .idx { background: var(--brand-bg-rest); color: #fff; }
     .proj-tabs a.disabled { color: var(--fg-3); cursor: default; pointer-events: none; }
     .proj-tabs a.disabled .idx { background: transparent; border: 1px dashed var(--border-2); color: var(--fg-3); }
+    /* Tabbed projects: only the active project is shown */
+    article.case[hidden] { display: none; }
 
     /* ---- Responsiveness: stop grid tracks from blowing out the viewport ---- */
     .case { margin-bottom: 0; }
@@ -100,6 +102,68 @@
     .disc-tag.research { background: #add8f7; color: #00508a; }          /* Status / blue */
     .disc-tag.analysis { background: #ffd4ba; color: #c14f0a; }          /* Status / warning */
     .disc-tag.ui-design { background: #f3fcf3; color: #117911; border-color: #cdeccd; } /* Status / success */
+
+    /* ---- Password-protected region ---- */
+    .protected-region { position: relative; }
+    .protected-region .case-body > .case-meta { margin-top: 0; } /* meta now leads the body */
+    /* Two-part case: open preview sits under the hero; locked part follows seamlessly */
+    .case-body > .case-meta { margin-top: 0; }
+    .case-body + .protected-region .lock-skeleton { padding-top: 0; }
+    .case-body + .protected-region .case-body { padding-top: 0; }
+    .case-body + .case-body { padding-top: 0; } /* open preview → inlined content, seamless */
+
+    /* Locked: blur the content, clip to a teaser height, and block interaction */
+    .protected-region.is-locked { max-height: 560px; overflow: hidden; }
+    .protected-region.is-locked .locked-content {
+      filter: blur(7px);
+      -webkit-filter: blur(7px);
+      pointer-events: none;
+      user-select: none;
+    }
+    /* Overlay with the password card; fades the blurred teaser into the page */
+    .lock-overlay {
+      position: absolute; inset: 0; z-index: 5;
+      display: grid; place-items: center; padding: var(--space-400);
+      background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.7) 45%, var(--bg-1) 100%);
+    }
+    .lock-card {
+      width: 100%; max-width: 380px;
+      background: var(--bg-1);
+      border: 1px solid var(--border-1);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: var(--space-500, 40px) var(--space-400);
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: var(--space-150);
+    }
+    .lock-icon {
+      width: 44px; height: 44px; border-radius: 50%;
+      display: grid; place-items: center; margin-bottom: var(--space-100);
+      background: rgba(173,119,212,0.12); color: var(--brand-bg-rest);
+    }
+    .lock-title { font-size: var(--fs-500); font-weight: var(--fw-semibold); color: var(--fg-1); }
+    .lock-sub { color: var(--fg-2); margin-bottom: var(--space-200); }
+    .lock-input {
+      width: 100%; height: 44px; padding: 0 var(--space-200);
+      font-family: inherit; font-size: var(--fs-400);
+      border: 1px solid var(--border-2); border-radius: var(--radius-md);
+      background: var(--bg-1); color: var(--fg-1);
+    }
+    .lock-input:focus { outline: none; border-color: var(--brand-bg-rest); box-shadow: 0 0 0 3px rgba(173,119,212,0.18); }
+    .lock-btn { width: 100%; justify-content: center; height: 44px; }
+    .lock-error { color: #c0392b; font-size: var(--fs-300); margin-top: var(--space-50); }
+    .lock-card.shake { animation: lock-shake .35s ease; }
+    @keyframes lock-shake {
+      0%,100% { transform: translateX(0); }
+      20%,60% { transform: translateX(-6px); }
+      40%,80% { transform: translateX(6px); }
+    }
+    /* Skeleton shown (blurred) behind the lock card while content is encrypted */
+    .lock-skeleton { padding: var(--space-600); display: flex; flex-direction: column; gap: var(--space-300); }
+    .lock-skeleton .sk { background: var(--bg-3); border-radius: var(--radius-sm); }
+    .lock-skeleton .sk-line { height: 16px; }
+    .lock-skeleton .sk-block { height: 220px; border-radius: var(--radius-md); }
+    .protected-region:not(.is-locked) .lock-skeleton { display: none; }
 
     /* ---- Clickable case images ---- */
     #ai-test-studio .figure img { cursor: zoom-in; transition: filter .15s ease; }
@@ -220,11 +284,8 @@
 
         <!-- ---------- Project tabs (add more projects here) ---------- -->
         <nav class="proj-tabs" aria-label="Projects">
-          <a href="#ai-test-studio" class="active"><span class="idx">1</span>AI Test Studio</a>
-          <!-- Add the next project tab here as:
-          <a href="#project-slug"><span class="idx">2</span>Project name</a>
-          -->
-          <a class="disabled" aria-disabled="true"><span class="idx">+</span>More coming soon</a>
+          <a href="#ai-test-studio" class="active">AI Test Studio</a>
+          <a href="#blazemeter-test-data-pro">BlazeMeter Test Data Pro</a>
         </nav>
 
         <!-- ---------- Project content ---------- -->
@@ -241,17 +302,16 @@
                   unifies functional, performance, UX, accessibility and API testing into a single workflow.
                   It embodies the next evolution of Perforce’s AI‑driven “shift‑left” testing vision.
                 </p>
+              </div>
+
+              <!-- OPEN preview (public): meta + Overview -->
+              <div class="case-body">
                 <dl class="case-meta">
                   <div><dt>Role</dt><dd>UX researcher, UX/UI designer</dd></div>
                   <div><dt>Duration</dt><dd>One year</dd></div>
                   <div><dt>Team</dt><dd>PO, engineers &amp; designers — CZ · IN · USA</dd></div>
                   <div><dt>Method</dt><dd>Scrum, continuous testing</dd></div>
                 </dl>
-              </div>
-
-              <div class="case-body">
-
-                <!-- Context -->
                 <div class="step">
                   <div class="step-label">
                     <h4>Overview</h4>
@@ -266,7 +326,10 @@
                       closely with many rounds of feedback and iteration under Scrum.</p>
                   </div>
                 </div>
+              </div>
 
+              <!-- Case study content (open) -->
+              <div class="case-body">
                 <!-- Problem -->
                 <div class="step">
                   <div class="step-label">
@@ -431,9 +494,35 @@
                   </div>
                 </div>
 
+                  <!-- User testing -->
+                <div class="step">
+                  <div class="step-label">
+                    <h4>User Test 1</h4>
+                    <span class="disc-tag research">Research</span>
+                  </div>
+                  <div>
+                    <p class="step-text">Test 1</p>
+                  </div>
+                </div>
+
               </div>
             </article>
             <!-- ===== End project 1 ===== -->
+
+            <!-- ===== Project 2: BlazeMeter Test Data Pro ===== -->
+            <article class="case" id="blazemeter-test-data-pro">
+              <div class="case-hero">
+                <img class="perforce-logo" src="images/perforce-logo.svg" alt="Perforce" />
+                <h3 class="title-1">BlazeMeter Test Data Pro</h3>
+                <p class="lead">
+                  A BlazeMeter feature that helps testers generate and maintain realistic test data —
+                  without writing it by hand or copying sensitive records from production.
+                </p>
+              </div>
+
+              <!-- Content intentionally empty (placeholder) — header only. -->
+            </article>
+            <!-- ===== End project 2 ===== -->
 
         </div>
       </div>
@@ -569,17 +658,22 @@
       var lbImg = document.getElementById('lb-img');
       var lbCap = document.getElementById('lb-cap');
 
-      // Make every image in the AI Test Studio case study open in the lightbox
-      document.querySelectorAll('#ai-test-studio .figure img').forEach(function (img) {
-        img.addEventListener('click', function () {
-          lbImg.src = img.currentSrc || img.src;
-          lbImg.alt = img.alt || '';
-          var fig = img.closest('figure');
-          var cap = fig && fig.querySelector('figcaption');
-          lbCap.textContent = cap ? cap.textContent.trim() : (img.alt || '');
-          if (typeof dlg.showModal === 'function') dlg.showModal();
+      // Bind any not-yet-bound case images (works for injected content too)
+      window.initLightbox = function (root) {
+        (root || document).querySelectorAll('.figure img').forEach(function (img) {
+          if (img.dataset.lbBound) return;
+          img.dataset.lbBound = '1';
+          img.addEventListener('click', function () {
+            lbImg.src = img.currentSrc || img.src;
+            lbImg.alt = img.alt || '';
+            var fig = img.closest('figure');
+            var cap = fig && fig.querySelector('figcaption');
+            lbCap.textContent = cap ? cap.textContent.trim() : (img.alt || '');
+            if (typeof dlg.showModal === 'function') dlg.showModal();
+          });
         });
-      });
+      };
+      window.initLightbox(document);
 
       // Close on the × button, on backdrop click, and on Esc (Esc is built in)
       dlg.querySelector('.lb-close').addEventListener('click', function () { dlg.close(); });
@@ -588,6 +682,40 @@
       dlg.addEventListener('close', function () { lbImg.removeAttribute('src'); });
     })();
   </script>
+
+  <!-- ===================== Project tabs (show one project at a time) ===================== -->
+  <script>
+    (function () {
+      var tabs = Array.prototype.slice.call(document.querySelectorAll('.proj-tabs a[href^="#"]'));
+      var cases = Array.prototype.slice.call(document.querySelectorAll('article.case'));
+      if (!tabs.length || !cases.length) return;
+
+      function show(id) {
+        var match = false;
+        cases.forEach(function (c) {
+          var on = c.id === id;
+          c.hidden = !on;
+          if (on) match = true;
+        });
+        // Fall back to the first project if the id isn't a known project
+        if (!match) { id = cases[0].id; cases.forEach(function (c) { c.hidden = c.id !== id; }); }
+        tabs.forEach(function (t) { t.classList.toggle('active', t.getAttribute('href') === '#' + id); });
+        return id;
+      }
+
+      tabs.forEach(function (t) {
+        t.addEventListener('click', function (e) {
+          e.preventDefault();
+          var id = show(t.getAttribute('href').slice(1));
+          history.replaceState(null, '', '#' + id);
+        });
+      });
+
+      // Initial: respect the URL hash, else the first project
+      show(location.hash ? location.hash.slice(1) : cases[0].id);
+    })();
+  </script>
+
 
 </body>
 </html>
