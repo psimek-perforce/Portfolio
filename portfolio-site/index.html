@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;0,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=7" />
+  <link rel="stylesheet" href="styles.css?v=8" />
 
   <!-- v2-only: horizontal project tabs + responsiveness fixes. Reuses Force DS tokens. -->
   <style>
@@ -92,8 +92,13 @@
     .perforce-logo { display: block; height: 24px; width: auto; margin-bottom: var(--space-300); }
 
     /* ---- "Worked at" company logos (full-width row under the hero grid) ---- */
-    .worked-at { padding-left: var(--space-700); border-left: 1px solid var(--border-2); }
-    .worked-at-label { font-size: var(--fs-200); text-transform: uppercase; letter-spacing: .05em; color: var(--fg-3); margin: var(--space-200) 0 0; }
+    /* Mirrors a .stat: value (logos) on top, title (label) below, same gap */
+    .worked-at {
+      display: flex; flex-direction: column; gap: var(--space-200);
+      padding-left: var(--space-800); border-left: 1px solid var(--border-2);
+    }
+    /* Same styling as the stat labels (e.g. "Years in product & web") */
+    .worked-at-label { font-size: var(--fs-200); color: var(--fg-2); text-transform: uppercase; letter-spacing: .06em; margin: 0; }
     .worked-at-logos { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-400); }
     .worked-at-logos a { display: inline-flex; }
     .worked-at-logos img { height: 18px; width: auto; filter: grayscale(1); opacity: .55; transition: filter .2s ease, opacity .2s ease; }
@@ -283,7 +288,6 @@
       <div class="wrap">
         <div class="hero-grid">
           <div>
-            <p class="eyebrow">UX/UI Designer · Perforce Software</p>
             <h1 class="display">Designing AI‑driven testing tools people actually want to use.</h1>
             <p class="lead">
               I’m Petr Šimek, a UX/UI designer based in Prague. I take products from
