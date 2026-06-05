@@ -50,8 +50,11 @@
       border-bottom: 1px solid var(--border-1);
       margin-bottom: var(--space-600);
       overflow-x: auto;
+      scrollbar-width: none;          /* Firefox: hide scrollbar */
+      -ms-overflow-style: none;       /* old Edge/IE */
       background: var(--bg-2);   /* matches the work section bg */
     }
+    .proj-tabs::-webkit-scrollbar { display: none; }   /* Chrome/Safari: hide scrollbar */
     .proj-tabs a {
       display: inline-flex; align-items: center; gap: var(--space-100);
       padding: var(--space-200) var(--space-200);
