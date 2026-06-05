@@ -207,7 +207,7 @@ section { scroll-margin-top: 72px; }
   pointer-events: none;
 }
 .hero .wrap { position: relative; }
-.hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-800); align-items: center; }
+.hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-800); align-items: start; }
 .hero h1 { margin-block: var(--space-200) var(--space-300); }
 .hero .lead { max-width: 56ch; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-150); margin-top: var(--space-400); }
@@ -218,6 +218,7 @@ section { scroll-margin-top: 72px; }
 .hero-card {
   background: var(--bg-1); border: 1px solid var(--border-1); border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg); padding: var(--space-400);
+  margin-top: 40px; /* drop the card so its top lines up with the title's cap height */
 }
 .hero-card .row { display: flex; align-items: center; gap: var(--space-150); }
 .avatar {
@@ -232,6 +233,7 @@ section { scroll-margin-top: 72px; }
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; }
   .display { font-size: var(--fs-800); }
+  .hero-card { margin-top: 0; } /* no offset when stacked */
 }
 
 /* --------------------------------------------------------------------------
