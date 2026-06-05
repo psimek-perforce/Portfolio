@@ -291,14 +291,13 @@ section { scroll-margin-top: 72px; }
 .figure img { width: 100%; height: auto; }
 .figure figcaption { padding: var(--space-150) var(--space-200); font-size: var(--fs-200); color: var(--fg-2); border-top: 1px solid var(--border-1); background: var(--bg-1); }
 
-.gallery { display: grid; gap: var(--space-300); margin-top: var(--space-400); }
+.gallery { display: grid; gap: var(--space-200); margin-top: var(--space-400); }
 .gallery-2 { grid-template-columns: repeat(2, 1fr); }
 .gallery-scroll {
-  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 1fr);
-  gap: var(--space-300); overflow-x: auto; padding-bottom: var(--space-200);
+  display: flex; gap: var(--space-200); overflow-x: auto; padding-bottom: var(--space-200);
   scroll-snap-type: x mandatory;
 }
-.gallery-scroll .figure { scroll-snap-align: start; margin-top: 0; }
+.gallery-scroll .figure { flex: 0 0 300px; scroll-snap-align: start; margin-top: 0; }
 @media (max-width: 720px) { .gallery-2 { grid-template-columns: 1fr; } }
 
 /* Other projects grid */

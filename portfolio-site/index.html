@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;0,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=2" />
 
   <!-- v2-only: horizontal project tabs + responsiveness fixes. Reuses Force DS tokens. -->
   <style>
@@ -200,6 +200,9 @@
     .lock-skeleton .sk-line { height: 16px; }
     .lock-skeleton .sk-block { height: 220px; border-radius: var(--radius-md); }
     .protected-region:not(.is-locked) .lock-skeleton { display: none; }
+
+    /* ---- Thumbnails that fill their tile (e.g. User flows) ---- */
+    .gallery-fill .figure img { width: 100%; height: 300px; object-fit: cover; object-position: top center; display: block; }
 
     /* ---- Clickable case images ---- */
     #ai-test-studio .figure img { cursor: zoom-in; transition: filter .15s ease; }
@@ -666,7 +669,7 @@
                   </div>
                   <div>
                     <p class="step-text">In one of the first meetings we defined the first user flow for a new user together, sketching on the whiteboard which screens we might need. After that I kept refining the flows in more detail until we all agreed on the application flow. I defined two main flows: one for a new user and one for an existing user.</p>
-                    <div class="gallery gallery-scroll">
+                    <div class="gallery gallery-scroll gallery-fill">
                       <figure class="figure"><img src="images/ats-flow-sketch.png" alt="Early flow sketch" loading="lazy" /><figcaption>Early sketch</figcaption></figure>
                       <figure class="figure"><img src="images/ats-userflows-1.png" alt="User flow — new user" loading="lazy" /><figcaption>User flow · new user</figcaption></figure>
                       <figure class="figure"><img src="images/ats-userflows-2.png" alt="User flow — existing user" loading="lazy" /><figcaption>User flow · existing user</figcaption></figure>
