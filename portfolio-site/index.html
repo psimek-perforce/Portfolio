@@ -104,7 +104,15 @@
     .hero-card img.avatar { object-fit: cover; object-position: center 22%; cursor: zoom-in; }
 
     /* ---- Small Perforce logo in the project header ---- */
-    .perforce-logo { display: block; height: 24px; width: auto; margin-bottom: var(--space-300); }
+    /* Logo pinned to the top-right corner of the case-study card header (.case-hero).
+       These live inline (not in styles.css) so they apply even if styles.css is cached. */
+    .case-hero { position: relative; }
+    .case-hero h3 { padding-right: 132px; }   /* reserve room so the heading clears the logo */
+    .perforce-logo { position: absolute; top: var(--space-600); right: var(--space-600); height: 24px; width: auto; margin: 0; }
+    @media (max-width: 720px) {
+      .case-hero h3 { padding-right: 104px; }
+      .perforce-logo { top: var(--space-400); right: var(--space-400); height: 20px; }
+    }
 
     /* ---- "Worked at" company logos (full-width row under the hero grid) ---- */
     /* Mirrors a .stat: value (logos) on top, title (label) below, same gap */
