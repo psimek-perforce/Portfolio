@@ -214,7 +214,7 @@ section { scroll-margin-top: 72px; }
 .hero-meta { display: flex; flex-wrap: wrap; gap: var(--space-300); }
 /* Full-width row beneath the hero grid: stats, then "Worked at" logos beside them */
 .hero-footer {
-  display: flex; flex-wrap: wrap; align-items: flex-end;
+  display: flex; flex-wrap: wrap; align-items: flex-start;
   gap: var(--space-800); margin-top: var(--space-600);
 }
 .hero-meta .stat { display: flex; flex-direction: column; gap: var(--space-200); }
