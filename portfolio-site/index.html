@@ -86,7 +86,7 @@
     }
 
     /* ---- Profile photo in hero card (same 56px circle as the old initials) ---- */
-    .hero-card img.avatar { object-fit: cover; }
+    .hero-card img.avatar { object-fit: cover; object-position: center 22%; cursor: zoom-in; }
 
     /* ---- Small Perforce logo in the project header ---- */
     .perforce-logo { display: block; height: 24px; width: auto; margin-bottom: var(--space-300); }
@@ -960,6 +960,17 @@
         });
       };
       window.initLightbox(document);
+
+      // Hero profile photo → open the full photo in the lightbox
+      var av = document.querySelector('.hero-card img.avatar');
+      if (av) {
+        av.addEventListener('click', function () {
+          lbImg.src = av.currentSrc || av.src;
+          lbImg.alt = av.alt || '';
+          lbCap.textContent = av.alt || '';
+          if (typeof dlg.showModal === 'function') dlg.showModal();
+        });
+      }
 
       // Close on the × button, on backdrop click, and on Esc (Esc is built in)
       dlg.querySelector('.lb-close').addEventListener('click', function () { dlg.close(); });
