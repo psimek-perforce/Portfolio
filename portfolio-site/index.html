@@ -12,8 +12,10 @@
 
   <!-- v2-only: horizontal project tabs + responsiveness fixes. Reuses Force DS tokens. -->
   <style>
-    /* Backstop against any stray horizontal overflow */
-    html, body { max-width: 100%; overflow-x: hidden; }
+    /* Backstop against any stray horizontal overflow.
+       Use `clip` (not `hidden`): `hidden` makes html/body a scroll container,
+       which breaks `position: sticky` on the topbar. `clip` does not. */
+    html, body { max-width: 100%; overflow-x: clip; }
 
     /* ---- Hero video background ---- */
     .hero { position: relative; overflow: hidden; background: #0b0a12; }
@@ -41,8 +43,7 @@
 
     /* ---- Horizontal project tabs (Force DS pattern) ---- */
     .proj-tabs {
-      position: sticky;
-      top: 56px;                 /* sits under the topbar */
+      position: relative;        /* not sticky — only the topbar sticks */
       z-index: 20;
       display: flex;
       gap: var(--space-50);
