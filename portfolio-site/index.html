@@ -65,7 +65,18 @@
       transition: color .15s ease, border-color .15s ease;
     }
     .proj-tabs a:hover { color: var(--fg-1); }
-    .proj-tabs a.active { color: var(--brand-bg-rest); border-bottom-color: var(--brand-bg-rest); }
+    .proj-tabs a.active { color: var(--brand-bg-rest); }   /* underline now drawn by the sliding indicator */
+    /* Sliding active-tab indicator (JS sets width + translateX) */
+    .proj-tabs-indicator {
+      position: absolute; left: 0; bottom: -1px;
+      height: 2px; width: 0;
+      background: var(--brand-bg-rest); border-radius: 2px;
+      transform: translateX(0); pointer-events: none;
+    }
+    .proj-tabs-indicator.ready {
+      transition: transform .3s cubic-bezier(.4, 0, .2, 1), width .3s cubic-bezier(.4, 0, .2, 1);
+    }
+    @media (prefers-reduced-motion: reduce) { .proj-tabs-indicator.ready { transition: none; } }
     .proj-tabs a .idx {
       width: 22px; height: 22px; flex: none;
       display: grid; place-items: center;
@@ -354,6 +365,7 @@
         <nav class="proj-tabs" aria-label="Projects">
           <a href="#ai-test-studio" class="active">AI Test Studio</a>
           <a href="#blazemeter-test-data-pro">BlazeMeter Test Data Pro</a>
+          <span class="proj-tabs-indicator" aria-hidden="true"></span>
         </nav>
 
         <!-- ---------- Project content ---------- -->
@@ -1005,7 +1017,17 @@
     (function () {
       var tabs = Array.prototype.slice.call(document.querySelectorAll('.proj-tabs a[href^="#"]'));
       var cases = Array.prototype.slice.call(document.querySelectorAll('article.case'));
+      var indicator = document.querySelector('.proj-tabs-indicator');
       if (!tabs.length || !cases.length) return;
+
+      // Slide the underline indicator under the active tab
+      function moveIndicator() {
+        if (!indicator) return;
+        var active = document.querySelector('.proj-tabs a.active');
+        if (!active) return;
+        indicator.style.width = active.offsetWidth + 'px';
+        indicator.style.transform = 'translateX(' + active.offsetLeft + 'px)';
+      }
 
       function show(id) {
         var match = false;
@@ -1017,6 +1039,7 @@
         // Fall back to the first project if the id isn't a known project
         if (!match) { id = cases[0].id; cases.forEach(function (c) { c.hidden = c.id !== id; }); }
         tabs.forEach(function (t) { t.classList.toggle('active', t.getAttribute('href') === '#' + id); });
+        moveIndicator();
         return id;
       }
 
@@ -1030,6 +1053,16 @@
 
       // Initial: respect the URL hash, else the first project
       show(location.hash ? location.hash.slice(1) : cases[0].id);
+
+      // Place the indicator without animating, then enable transitions
+      requestAnimationFrame(function () {
+        moveIndicator();
+        if (indicator) indicator.classList.add('ready');
+      });
+      // Recompute when web fonts settle (label widths can change) and on resize
+      if (document.fonts && document.fonts.ready) { document.fonts.ready.then(moveIndicator); }
+      window.addEventListener('resize', moveIndicator);
+      window.addEventListener('load', moveIndicator);
     })();
   </script>
 
