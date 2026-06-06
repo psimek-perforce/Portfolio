@@ -124,6 +124,20 @@
       .perforce-logo { top: var(--space-400); right: var(--space-400); height: 20px; }
     }
 
+    /* ---- Meta information at the bottom of each case-hero (from Figma) ---- */
+    /* Muted "Type"/"Link" rows; the link uses the site brand colour. Inline so it
+       applies even if styles.css is cached. */
+    .case-hero-meta {
+      margin-top: var(--space-400);
+      display: flex; flex-wrap: wrap; gap: var(--space-100) var(--space-400);
+      font-size: var(--fs-200);
+    }
+    .case-hero-meta .cmi { display: flex; align-items: baseline; gap: var(--space-100); min-width: 0; }
+    .case-hero-meta .cmi-label { color: var(--fg-3); text-transform: uppercase; letter-spacing: .06em; }
+    .case-hero-meta .cmi-val { color: var(--fg-2); }
+    .case-hero-meta a { color: var(--brand-bg-rest); text-decoration: underline; text-underline-offset: 2px; word-break: break-word; }
+    .case-hero-meta a:hover { color: var(--brand-bg-hover); }
+
     /* ---- "Worked at" company logos (full-width row under the hero grid) ---- */
     /* Mirrors a .stat: value (logos) on top, title (label) below, same gap */
     .worked-at {
@@ -153,7 +167,6 @@
     .case-section {
       font-size: var(--fs-700); font-weight: var(--fw-bold); letter-spacing: -.01em;
       color: var(--fg-1); margin: 0 0 var(--space-200);
-      padding-bottom: var(--space-200); border-bottom: 1px solid var(--border-1);
     }
     .case-body + .case-body { padding-top: 0; }
     .proc-list { margin: 0; padding-left: 1.25em; display: grid; gap: var(--space-100); color: var(--fg-1); }
@@ -414,6 +427,9 @@
                 <img class="perforce-logo" src="images/perforce-logo.svg" alt="Perforce" />
                 <h3 class="title-1">AI Test Studio</h3>
                 <p class="lead">AI Test Studio is a new unified testing UI driving a fundamental shift in software testing — from fragmented, skill‑dependent processes to an AI‑driven, autonomous testing fabric that unifies functional, performance, UX, accessibility, and API testing into a single workflow. It embodies the next evolution of Perforce's AI‑driven “shift‑left” testing vision.</p>
+                <div class="case-hero-meta">
+                  <div class="cmi"><span class="cmi-label">Type</span><span class="cmi-val">Product case study</span></div>
+                </div>
               </div>
 
               <div class="case-body">
@@ -882,6 +898,10 @@
                   A BlazeMeter feature that helps testers generate and maintain realistic test data —
                   without writing it by hand or copying sensitive records from production.
                 </p>
+                <div class="case-hero-meta">
+                  <div class="cmi"><span class="cmi-label">Type</span><span class="cmi-val">Product feature</span></div>
+                  <div class="cmi"><span class="cmi-label">Link</span><a href="https://www.blazemeter.com/product/blazemeter/test-data" target="_blank" rel="noopener">test-data</a></div>
+                </div>
               </div>
 
               <!-- Content intentionally empty (placeholder) — header only. -->
@@ -897,6 +917,10 @@
                   A BlazeMeter capability for simulating APIs and back‑end services, so teams can keep
                   testing when the real dependencies are unavailable, unstable, or costly to call.
                 </p>
+                <div class="case-hero-meta">
+                  <div class="cmi"><span class="cmi-label">Type</span><span class="cmi-val">Product feature</span></div>
+                  <div class="cmi"><span class="cmi-label">Link</span><a href="https://www.blazemeter.com/product/blazemeter/service-virtualization" target="_blank" rel="noopener">service-virtualization</a></div>
+                </div>
               </div>
 
               <!-- Content intentionally empty (placeholder) — header only. -->
@@ -912,6 +936,9 @@
                   A guided setup experience that takes new BlazeMeter users from sign‑up to their first
                   running test in minutes — sensible defaults, less configuration, faster time to value.
                 </p>
+                <div class="case-hero-meta">
+                  <div class="cmi"><span class="cmi-label">Type</span><span class="cmi-val">Product style guide</span></div>
+                </div>
               </div>
 
               <!-- Content intentionally empty (placeholder) — header only. -->
