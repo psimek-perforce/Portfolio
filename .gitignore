@@ -1,0 +1,6 @@
+# Temporary verification files (throwaway copies used to check computed styles)
+__probe.html
+*.probe.html
+
+# macOS
+.DS_Store
