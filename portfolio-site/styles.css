@@ -491,6 +491,7 @@ article.case[hidden] { display: none; }
 
 /* ---- Discipline tags on each section (Force DS Tag component) ---- */
 .step-label { flex-direction: column; align-items: flex-start; gap: var(--space-150); }
+.step h4 .disc-tag { margin-left: var(--space-100); vertical-align: middle; }   /* tag now sits inline in the heading */
 .disc-tag {
   display: inline-flex; align-items: center; height: 20px; padding: 0 6px;
   border-radius: var(--radius-sm); border: 1px solid transparent;
