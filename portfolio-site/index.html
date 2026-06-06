@@ -164,10 +164,17 @@
     .disc-tag.ui-design { background: #f3fcf3; color: #117911; border-color: #cdeccd; } /* Status / success */
 
     /* ---- Case-study section dividers + process list + personas ---- */
+    /* Product/case headings are one level smaller than the global scale.
+       (.case-section and .step h4 are used only in product sections.) */
     .case-section {
-      font-size: var(--fs-700); font-weight: var(--fw-bold); letter-spacing: -.01em;
-      color: var(--fg-1); margin: 0 0 var(--space-200);
+      font-size: var(--fs-600); font-weight: var(--fw-bold); letter-spacing: -.01em;   /* 32 → 24 */
+      color: var(--fg-1);
+      /* Halve only the heading→content gap: the .case-body flex gap is 64px, so a
+         -24px bottom margin pulls the content up to ~40px (half of the original 80px),
+         leaving the gaps between content blocks unchanged. */
+      margin: 0 0 calc(-1 * var(--space-300));
     }
+    .case .step h4 { font-size: var(--fs-500); }   /* sub-labels: 24 → 20 */
     .case-body + .case-body { padding-top: 0; }
     .proc-list { margin: 0; padding-left: 1.25em; display: grid; gap: var(--space-100); color: var(--fg-1); }
     .proc-list li { line-height: var(--lh-400); }
@@ -425,7 +432,7 @@
             <article class="case" id="ai-test-studio">
               <div class="case-hero">
                 <img class="perforce-logo" src="images/perforce-logo.svg" alt="Perforce" />
-                <h3 class="title-1">AI Test Studio</h3>
+                <h3 class="title-2">AI Test Studio</h3>
                 <p class="lead">AI Test Studio is a new unified testing UI driving a fundamental shift in software testing — from fragmented, skill‑dependent processes to an AI‑driven, autonomous testing fabric that unifies functional, performance, UX, accessibility, and API testing into a single workflow. It embodies the next evolution of Perforce's AI‑driven “shift‑left” testing vision.</p>
                 <div class="case-hero-meta">
                   <div class="cmi"><span class="cmi-label">Type</span><span class="cmi-val">Product case study</span></div>
@@ -893,7 +900,7 @@
             <article class="case" id="blazemeter-test-data-pro">
               <div class="case-hero">
                 <img class="perforce-logo" src="images/perforce-logo.svg" alt="Perforce" />
-                <h3 class="title-1">BlazeMeter Test Data Pro</h3>
+                <h3 class="title-2">BlazeMeter Test Data Pro</h3>
                 <p class="lead">
                   A BlazeMeter feature that helps testers generate and maintain realistic test data —
                   without writing it by hand or copying sensitive records from production.
@@ -912,7 +919,7 @@
             <article class="case" id="blazemeter-virtual-services">
               <div class="case-hero">
                 <img class="perforce-logo" src="images/perforce-logo.svg" alt="Perforce" />
-                <h3 class="title-1">BlazeMeter Virtual Services</h3>
+                <h3 class="title-2">BlazeMeter Virtual Services</h3>
                 <p class="lead">
                   A BlazeMeter capability for simulating APIs and back‑end services, so teams can keep
                   testing when the real dependencies are unavailable, unstable, or costly to call.
@@ -931,7 +938,7 @@
             <article class="case" id="blaze-bootstrap">
               <div class="case-hero">
                 <img class="perforce-logo" src="images/perforce-logo.svg" alt="Perforce" />
-                <h3 class="title-1">Blaze Bootstrap</h3>
+                <h3 class="title-2">Blaze Bootstrap</h3>
                 <p class="lead">
                   A guided setup experience that takes new BlazeMeter users from sign‑up to their first
                   running test in minutes — sensible defaults, less configuration, faster time to value.
