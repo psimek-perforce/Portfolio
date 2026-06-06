@@ -37,8 +37,18 @@
     .hero::before { z-index: 1; }      /* keep the decorative brand glow above the video */
     .hero .wrap { position: relative; z-index: 2; }   /* content sits on top */
     @media (max-width: 900px) {
-      /* On mobile the content stacks full-width, so use a uniform readable scrim */
-      .hero-scrim { background: rgba(248,248,253,0.86); }
+      /* Mobile: drop the animated video, replace with a static gradient that
+         reuses the video's pastel palette (pink → lavender → light blue → near-white). */
+      .hero-video { display: none; }
+      .hero {
+        background: linear-gradient(135deg,
+          #f6cfdd 0%,
+          #e7c9ec 34%,
+          #cdd6f2 64%,
+          #f8f6fc 100%);
+      }
+      /* Light wash for text legibility (the gradient is already pale) */
+      .hero-scrim { background: rgba(248,248,253,0.45); }
     }
 
     /* ---- Horizontal project tabs (Force DS pattern) ---- */
