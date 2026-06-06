@@ -224,7 +224,7 @@ section { scroll-margin-top: 72px; }
 .hero-card {
   background: var(--bg-1); border: 1px solid var(--border-1); border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg); padding: var(--space-400);
-  margin-top: 40px; /* drop the card so its top lines up with the title's cap height */
+  margin-top: 28px; /* aligns the card top with the title's cap height (h1 cell top + h1 margin + Noto Sans cap offset) */
 }
 .hero-card .row { display: flex; align-items: center; gap: var(--space-150); }
 .avatar {
