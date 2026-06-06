@@ -292,7 +292,7 @@ section { scroll-margin-top: 72px; }
 
 /* Image figures */
 .figure {
-  margin-top: var(--space-400);
+  margin: var(--space-400) 0 0;   /* zero the UA default `figure` left/right margin (40px) */
   border: 1px solid var(--border-1); border-radius: var(--radius-lg);
   overflow: hidden; background: var(--bg-3);
 }
@@ -507,11 +507,13 @@ article.case[hidden] { display: none; }
 .case-section {
   font-size: var(--fs-600); font-weight: var(--fw-bold); letter-spacing: -.01em;   /* 32 → 24 */
   color: var(--fg-1);
+  display: flex; align-items: center; gap: var(--space-150);   /* room for the leading icon */
   /* Halve only the heading→content gap: the .case-body flex gap is 64px, so a
      -24px bottom margin pulls the content up to ~40px (half of the original 80px),
      leaving the gaps between content blocks unchanged. */
   margin: 0 0 calc(-1 * var(--space-300));
 }
+.case-section-icon { flex: none; width: 22px; height: 22px; color: var(--brand-bg-rest); }
 .case .step h4 { font-size: var(--fs-500); }   /* sub-labels: 24 → 20 */
 .case-body + .case-body { padding-top: 0; }
 .proc-list { margin: 0; padding-left: 1.25em; display: grid; gap: var(--space-100); color: var(--fg-1); }
