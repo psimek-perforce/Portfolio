@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;0,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=15" />
+  <link rel="stylesheet" href="styles.css?v=16" />
 </head>
 <body>
 
@@ -101,8 +101,20 @@
           <a href="#blazemeter-test-data-pro">BlazeMeter Test Data Pro</a>
           <a href="#blazemeter-virtual-services">BlazeMeter Virtual Services</a>
           <a href="#blaze-bootstrap">Blaze Bootstrap</a>
+          <button type="button" class="proj-tabs-others" aria-haspopup="true" aria-expanded="false" aria-controls="proj-others-menu">Others<svg class="proj-tabs-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
           <span class="proj-tabs-indicator" aria-hidden="true"></span>
         </nav>
+        <!-- "Others" dropdown menu (position:fixed so it escapes the tabs' overflow clipping) -->
+        <div class="proj-tabs-menu" id="proj-others-menu" role="menu" aria-label="Other projects" hidden>
+          <a href="#project-1" role="menuitem">Project 1</a>
+          <a href="#project-2" role="menuitem">Project 2</a>
+          <a href="#project-3" role="menuitem">Project 3</a>
+          <a href="#project-4" role="menuitem">Project 4</a>
+          <a href="#project-5" role="menuitem">Project 5</a>
+          <a href="#project-6" role="menuitem">Project 6</a>
+          <a href="#project-7" role="menuitem">Project 7</a>
+          <a href="#project-8" role="menuitem">Project 8</a>
+        </div>
 
         <!-- ---------- Project content ---------- -->
         <div>
@@ -618,6 +630,81 @@
             </article>
             <!-- ===== End project 4 ===== -->
 
+            <!-- ===== "Others" placeholder projects (1–8), shown via the Others dropdown ===== -->
+            <article class="case" id="project-1">
+              <div class="case-hero">
+                <h3 class="title-2">Project 1</h3>
+                <p class="lead">
+                  Placeholder description for this project — a short summary of the work would go here,
+                  covering the goal, my role, and the outcome, at roughly a real project blurb's length.
+                </p>
+              </div>
+            </article>
+            <article class="case" id="project-2">
+              <div class="case-hero">
+                <h3 class="title-2">Project 2</h3>
+                <p class="lead">
+                  Placeholder description for this project — a short summary of the work would go here,
+                  covering the goal, my role, and the outcome, at roughly a real project blurb's length.
+                </p>
+              </div>
+            </article>
+            <article class="case" id="project-3">
+              <div class="case-hero">
+                <h3 class="title-2">Project 3</h3>
+                <p class="lead">
+                  Placeholder description for this project — a short summary of the work would go here,
+                  covering the goal, my role, and the outcome, at roughly a real project blurb's length.
+                </p>
+              </div>
+            </article>
+            <article class="case" id="project-4">
+              <div class="case-hero">
+                <h3 class="title-2">Project 4</h3>
+                <p class="lead">
+                  Placeholder description for this project — a short summary of the work would go here,
+                  covering the goal, my role, and the outcome, at roughly a real project blurb's length.
+                </p>
+              </div>
+            </article>
+            <article class="case" id="project-5">
+              <div class="case-hero">
+                <h3 class="title-2">Project 5</h3>
+                <p class="lead">
+                  Placeholder description for this project — a short summary of the work would go here,
+                  covering the goal, my role, and the outcome, at roughly a real project blurb's length.
+                </p>
+              </div>
+            </article>
+            <article class="case" id="project-6">
+              <div class="case-hero">
+                <h3 class="title-2">Project 6</h3>
+                <p class="lead">
+                  Placeholder description for this project — a short summary of the work would go here,
+                  covering the goal, my role, and the outcome, at roughly a real project blurb's length.
+                </p>
+              </div>
+            </article>
+            <article class="case" id="project-7">
+              <div class="case-hero">
+                <h3 class="title-2">Project 7</h3>
+                <p class="lead">
+                  Placeholder description for this project — a short summary of the work would go here,
+                  covering the goal, my role, and the outcome, at roughly a real project blurb's length.
+                </p>
+              </div>
+            </article>
+            <article class="case" id="project-8">
+              <div class="case-hero">
+                <h3 class="title-2">Project 8</h3>
+                <p class="lead">
+                  Placeholder description for this project — a short summary of the work would go here,
+                  covering the goal, my role, and the outcome, at roughly a real project blurb's length.
+                </p>
+              </div>
+            </article>
+            <!-- ===== End "Others" placeholders ===== -->
+
         </div>
       </div>
     </section>
@@ -785,12 +872,20 @@
       var tabs = Array.prototype.slice.call(document.querySelectorAll('.proj-tabs a[href^="#"]'));
       var cases = Array.prototype.slice.call(document.querySelectorAll('article.case'));
       var indicator = document.querySelector('.proj-tabs-indicator');
+      var others = document.querySelector('.proj-tabs-others');
+      var menu = document.getElementById('proj-others-menu');
+      var menuLinks = menu ? Array.prototype.slice.call(menu.querySelectorAll('a[href^="#"]')) : [];
       if (!tabs.length || !cases.length) return;
 
-      // Slide the underline indicator under the active tab
+      function isMenuId(id) {
+        return menuLinks.some(function (a) { return a.getAttribute('href') === '#' + id; });
+      }
+
+      // Slide the underline indicator under the active tab — or under the "Others"
+      // trigger when a dropdown project is the active one.
       function moveIndicator() {
         if (!indicator) return;
-        var active = document.querySelector('.proj-tabs a.active');
+        var active = document.querySelector('.proj-tabs a.active') || document.querySelector('.proj-tabs-others.active');
         if (!active) return;
         indicator.style.width = active.offsetWidth + 'px';
         indicator.style.transform = 'translateX(' + active.offsetLeft + 'px)';
@@ -806,17 +901,58 @@
         // Fall back to the first project if the id isn't a known project
         if (!match) { id = cases[0].id; cases.forEach(function (c) { c.hidden = c.id !== id; }); }
         tabs.forEach(function (t) { t.classList.toggle('active', t.getAttribute('href') === '#' + id); });
+        if (others) others.classList.toggle('active', isMenuId(id));   // light up "Others" for dropdown projects
+        menuLinks.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + id); });
         moveIndicator();
         return id;
+      }
+
+      // ---- "Others" dropdown open/close (fixed-positioned under the trigger) ----
+      function openMenu() {
+        if (!menu || !others) return;
+        menu.hidden = false;
+        var r = others.getBoundingClientRect();
+        var left = r.right - menu.offsetWidth;   // right-align the menu to the trigger
+        if (left < 8) left = 8;
+        menu.style.top = (r.bottom + 6) + 'px';
+        menu.style.left = left + 'px';
+        others.setAttribute('aria-expanded', 'true');
+      }
+      function closeMenu() {
+        if (!menu || !others) return;
+        menu.hidden = true;
+        others.setAttribute('aria-expanded', 'false');
       }
 
       tabs.forEach(function (t) {
         t.addEventListener('click', function (e) {
           e.preventDefault();
+          closeMenu();
           var id = show(t.getAttribute('href').slice(1));
           history.replaceState(null, '', '#' + id);
         });
       });
+
+      if (others) {
+        others.addEventListener('click', function (e) {
+          e.preventDefault();
+          if (menu.hidden) openMenu(); else closeMenu();
+        });
+      }
+      menuLinks.forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          var id = show(a.getAttribute('href').slice(1));
+          history.replaceState(null, '', '#' + id);
+          closeMenu();
+        });
+      });
+      // Dismiss the menu on outside click, Escape, or scroll
+      document.addEventListener('click', function (e) {
+        if (menu && !menu.hidden && !menu.contains(e.target) && others && !others.contains(e.target)) closeMenu();
+      });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+      window.addEventListener('scroll', closeMenu, true);
 
       // Initial: respect the URL hash, else the first project
       show(location.hash ? location.hash.slice(1) : cases[0].id);
@@ -828,7 +964,7 @@
       });
       // Recompute when web fonts settle (label widths can change) and on resize
       if (document.fonts && document.fonts.ready) { document.fonts.ready.then(moveIndicator); }
-      window.addEventListener('resize', moveIndicator);
+      window.addEventListener('resize', function () { closeMenu(); moveIndicator(); });
       window.addEventListener('load', moveIndicator);
     })();
   </script>

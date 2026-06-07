@@ -436,6 +436,39 @@ html, body { max-width: 100%; overflow-x: clip; }
 .proj-tabs a.active .idx { background: var(--brand-bg-rest); color: #fff; }
 .proj-tabs a.disabled { color: var(--fg-3); cursor: default; pointer-events: none; }
 .proj-tabs a.disabled .idx { background: transparent; border: 1px dashed var(--border-2); color: var(--fg-3); }
+
+/* "Others" dropdown trigger — styled to match a tab */
+.proj-tabs-others {
+  display: inline-flex; align-items: center; gap: var(--space-50);
+  padding: var(--space-200) var(--space-200);
+  font: inherit; font-weight: var(--fw-semibold); color: var(--fg-2);
+  background: none; border: none; border-bottom: 2px solid transparent;
+  margin-bottom: -1px; white-space: nowrap; cursor: pointer;
+  transition: color .15s ease;
+}
+.proj-tabs-others:hover { color: var(--fg-1); }
+.proj-tabs-others.active { color: var(--brand-bg-rest); }   /* active when an Others project is shown */
+.proj-tabs-caret { width: 16px; height: 16px; flex: none; transition: transform .2s ease; }
+.proj-tabs-others[aria-expanded="true"] .proj-tabs-caret { transform: rotate(180deg); }
+
+/* "Others" dropdown menu — position:fixed (JS-positioned) so it isn't clipped by the tabs' overflow */
+.proj-tabs-menu {
+  position: fixed; z-index: 100;
+  min-width: 200px; max-height: 60vh; overflow-y: auto;
+  background: var(--bg-1); border: 1px solid var(--border-1);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+  padding: var(--space-100);
+}
+.proj-tabs-menu[hidden] { display: none; }
+.proj-tabs-menu a {
+  display: block; padding: var(--space-100) var(--space-150);
+  border-radius: var(--radius-md);
+  color: var(--fg-1); font-size: var(--fs-300); font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+.proj-tabs-menu a:hover { background: var(--bg-3); }
+.proj-tabs-menu a.active { color: var(--brand-bg-rest); background: rgba(173,119,212,.08); }
+
 /* Tabbed projects: only the active project is shown */
 article.case[hidden] { display: none; }
 
