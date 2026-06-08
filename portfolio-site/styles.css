@@ -179,6 +179,7 @@ h1, h2, h3, h4, p { margin: 0; }
 }
 .badge-brand { background: rgba(173,119,212,.08); color: var(--brand-bg-rest); border-color: rgba(173,119,212,.18); }
 .badge-blue  { background: var(--status-blue-bg-2); color: var(--status-blue-fg); border-color: transparent; }
+.badge-brand-solid { background: var(--brand-bg-rest); color: #fff; border-color: transparent; }
 .tags { display: flex; flex-wrap: wrap; gap: var(--space-100); }
 
 /* --------------------------------------------------------------------------
@@ -500,7 +501,7 @@ article.case[hidden] { display: none; }
 /* Muted "Type"/"Link" rows; the link uses the site brand colour. */
 .case-hero-meta {
   margin-top: var(--space-400);
-  display: flex; flex-wrap: wrap; gap: var(--space-100) var(--space-400);
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-100) var(--space-400);
   font-size: var(--fs-200);
 }
 .case-hero-meta .cmi { display: flex; align-items: baseline; gap: var(--space-100); min-width: 0; }
@@ -508,6 +509,7 @@ article.case[hidden] { display: none; }
 .case-hero-meta .cmi-val { color: var(--fg-2); }
 .case-hero-meta a { color: var(--brand-bg-rest); text-decoration: underline; text-underline-offset: 2px; word-break: break-word; }
 .case-hero-meta a:hover { color: var(--brand-bg-hover); }
+.case-hero-meta .badge { align-self: center; }
 
 /* ---- "Worked at" company logos (full-width row under the hero grid) ---- */
 /* Mirrors a .stat: value (logos) on top, title (label) below, same gap */
