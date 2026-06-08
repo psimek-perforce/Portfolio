@@ -718,6 +718,10 @@ article.case[hidden] { display: none; }
 }
 .op-grid .figure img:hover { filter: brightness(1.03); }
 @media (max-width: 560px) { .op-grid { grid-template-columns: 1fr; } }
+/* Other projects: tighten the company-heading → thumbnail gap to 16px */
+#other-projects .case-body { gap: var(--space-200); }
+#other-projects .case-section { margin-bottom: 0; }
+#other-projects .op-grid { margin-top: 0; }
 /* Real company logos in place of section icons (heights tuned per mark) */
 .case-section-logo { flex: none; width: auto; display: block; }
 .case-section-logo.is-broadcom { height: 16px; }
