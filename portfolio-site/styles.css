@@ -703,3 +703,20 @@ article.case[hidden] { display: none; }
     .hero-card { background: rgba(255, 255, 255, 0.82); }
   }
 }
+
+/* ---- "Other projects" thumbnail grid (Broadcom / CA Technologies) ---- */
+.op-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-300); margin-top: var(--space-400);
+}
+.op-grid .figure { margin: 0; }
+.op-grid .figure img {
+  width: 100%; height: 200px; object-fit: cover; object-position: top center;
+  display: block; cursor: zoom-in; transition: filter .15s ease;
+}
+.op-grid .figure img:hover { filter: brightness(1.03); }
+@media (max-width: 560px) { .op-grid { grid-template-columns: 1fr; } }
+/* Real company logos in place of section icons (heights tuned per mark) */
+.case-section-logo { flex: none; width: auto; display: block; }
+.case-section-logo.is-broadcom { height: 16px; }
+.case-section-logo.is-ca { height: 24px; }
