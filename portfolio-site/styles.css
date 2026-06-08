@@ -720,3 +720,4 @@ article.case[hidden] { display: none; }
 .case-section-logo { flex: none; width: auto; display: block; }
 .case-section-logo.is-broadcom { height: 16px; }
 .case-section-logo.is-ca { height: 24px; }
+.case-section-logo.is-lmc { height: 26px; }
