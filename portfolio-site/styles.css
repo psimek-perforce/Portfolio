@@ -552,7 +552,19 @@ article.case[hidden] { display: none; }
 .case-section-icon { flex: none; width: 22px; height: 22px; color: var(--brand-bg-rest); }
 .case .step h4 { font-size: var(--fs-500); }   /* sub-labels: 24 → 20 */
 .case-body + .case-body { padding-top: 0; }
-.proc-list { margin: 0; padding-left: 1.25em; display: grid; gap: var(--space-100); color: var(--fg-1); }
+/* Design process: text steps on the left, explanatory diagram on the right */
+.proc-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: var(--space-600); align-items: stretch; }
+/* Image is taken out of flow so the LIST defines the row height; the diagram
+   then fills (and never exceeds) that height, fitted inside its frame. */
+.proc-split .figure { margin: 0; position: relative; }
+.proc-split .figure img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+@media (max-width: 820px) {
+  .proc-split { grid-template-columns: 1fr; }
+  .proc-split .figure { position: static; }
+  .proc-split .figure img { position: static; height: auto; }
+}
+
+.proc-list { margin: 0; padding-left: 1.25em; display: grid; gap: var(--space-100); color: var(--fg-1); align-content: start; }
 .proc-list li { line-height: var(--lh-400); }
 .proc-list li .disc-tag { margin-left: var(--space-100); vertical-align: middle; }
 .persona-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--space-300); margin-top: var(--space-300); align-items: start; }
