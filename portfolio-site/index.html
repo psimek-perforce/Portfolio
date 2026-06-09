@@ -181,30 +181,50 @@
               <div class="case-body">
                 <h3 class="case-section"><svg class="case-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" x2="6" y1="3" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>Design process</h3>
                 <div class="proc-split">
-                  <ol class="proc-list">
-                    <li>Define problem <span class="disc-tag research">Research</span></li>
-                    <li>Initial research <span class="disc-tag research">Research</span></li>
-                    <li>Understand business goals <span class="disc-tag research">Research</span></li>
-                    <li>Understand user needs <span class="disc-tag research">Research</span></li>
-                    <li>Define personas <span class="disc-tag research">Research</span></li>
-                    <li>Ideation <span class="disc-tag research">Research</span></li>
-                    <li>Sketch user flows <span class="disc-tag research">Research</span></li>
-                    <li>Define information architecture <span class="disc-tag research">Research</span></li>
-                    <li>Sketch wireframes <span class="disc-tag analysis">Analysis</span></li>
-                    <li>Choose design system <span class="disc-tag ui-design">UI design</span></li>
-                    <li>Design high fidelity clickable prototype <span class="disc-tag ui-design">UI design</span></li>
-                    <li>User testing <span class="disc-tag research">Research</span></li>
-                    <li>Usability issues workshop <span class="disc-tag research">Research</span></li>
-                  </ol>
+                  <div class="proc-groups">
+                    <div class="proc-group">
+                      <h4 class="proc-group-title"><svg class="proc-group-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><a href="#section-research">Research</a></h4>
+                      <ol class="proc-list" start="1">
+                        <li>Define problem</li>
+                        <li>Initial research</li>
+                        <li>Understand business goals</li>
+                        <li>Understand user needs</li>
+                        <li>Define personas</li>
+                        <li>Ideation</li>
+                        <li>Sketch user flows</li>
+                        <li>Define information architecture</li>
+                      </ol>
+                    </div>
+                    <div class="proc-group">
+                      <h4 class="proc-group-title"><svg class="proc-group-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" x2="6" y1="20" y2="16"/><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/></svg><a href="#section-analysis">Analysis</a></h4>
+                      <ol class="proc-list" start="9">
+                        <li>Sketch wireframes</li>
+                      </ol>
+                    </div>
+                    <div class="proc-group">
+                      <h4 class="proc-group-title"><svg class="proc-group-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg><a href="#section-ui-design">UI design</a></h4>
+                      <ol class="proc-list" start="10">
+                        <li>Choose design system</li>
+                        <li>Design high fidelity clickable prototype</li>
+                      </ol>
+                    </div>
+                    <div class="proc-group">
+                      <h4 class="proc-group-title"><svg class="proc-group-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><a href="#section-validate">Validate solution</a></h4>
+                      <ol class="proc-list" start="12">
+                        <li>User testing</li>
+                        <li>Usability issues workshop</li>
+                      </ol>
+                    </div>
+                  </div>
                   <figure class="figure"><img src="images/ats-process.png" alt="Design process" loading="lazy" /></figure>
                 </div>
               </div>
 
               <div class="case-body">
-                <h3 class="case-section"><svg class="case-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>Research</h3>
+                <h3 class="case-section" id="section-research"><svg class="case-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>Research</h3>
                 <div class="step">
                   <div class="step-label">
-                    <h4>The problem<span class="disc-tag research">Research</span></h4>
+                    <h4 id="step-the-problem">The problem<span class="disc-tag research">Research</span></h4>
                   </div>
                   <div>
                     <p class="step-text">Perforce offers several quality‑assurance products. The problem is that they are complex: they can be hard to use for junior testers, or for people who don't know how to write tests at all. There can also be multiple variants of the same test across these applications. This leads to losing potential customers.</p>
@@ -212,7 +232,7 @@
                 </div>
                 <div class="step">
                   <div class="step-label">
-                    <h4>Initial research<span class="disc-tag research">Research</span></h4>
+                    <h4 id="step-initial-research">Initial research<span class="disc-tag research">Research</span></h4>
                   </div>
                   <div>
                     <p class="step-text"><strong>First Meetings</strong><br />We had several meetings with stakeholders where we discussed the problem, ideas, and our vision.</p>
@@ -224,7 +244,7 @@
                 </div>
                 <div class="step">
                   <div class="step-label">
-                    <h4>Business goals<span class="disc-tag research">Research</span></h4>
+                    <h4 id="step-business-goals">Business goals<span class="disc-tag research">Research</span></h4>
                   </div>
                   <div>
                     <p class="step-text">The main business goal was to remove the technical barrier of writing test scripts and involve more users in testing their own applications. AI Test Studio connects existing Perforce applications such as BlazeMeter and Perfecto, so it's expected that BlazeMeter customers will start using Perfecto, and vice versa.</p>
@@ -232,7 +252,7 @@
                 </div>
                 <div class="step">
                   <div class="step-label">
-                    <h4>User needs<span class="disc-tag research">Research</span></h4>
+                    <h4 id="step-user-needs">User needs<span class="disc-tag research">Research</span></h4>
                   </div>
                   <div>
                     <p class="step-text">After interviewing potential users, I defined the main user needs: the ability to create tests without knowing how to write them, to maintain all tests in one place, and to run both functional and performance tests from a single test definition.</p>
@@ -240,7 +260,7 @@
                 </div>
                 <div class="step">
                   <div class="step-label">
-                    <h4>Personas<span class="disc-tag research">Research</span></h4>
+                    <h4 id="step-personas">Personas<span class="disc-tag research">Research</span></h4>
                   </div>
                   <div>
                     <p class="step-text">After interviewing potential users, I defined the following personas:</p>
@@ -452,7 +472,7 @@
                 </div>
                 <div class="step">
                   <div class="step-label">
-                    <h4>Ideation<span class="disc-tag research">Research</span></h4>
+                    <h4 id="step-ideation">Ideation<span class="disc-tag research">Research</span></h4>
                   </div>
                   <div>
                     <p class="step-text">The first idea for helping testers was to bring an AI chat into their testing flow. This makes it easier for junior testers to start using BlazeMeter and Perfecto. We also wanted to offer a single source of truth and solve another problem — tests being scattered across different places. The aim was to create a simple, modern, AI‑oriented testing application aimed at junior testers and people who can't write test scripts.</p>
@@ -460,7 +480,7 @@
                 </div>
                 <div class="step">
                   <div class="step-label">
-                    <h4>User flows<span class="disc-tag research">Research</span></h4>
+                    <h4 id="step-user-flows">User flows<span class="disc-tag research">Research</span></h4>
                   </div>
                   <div>
                     <p class="step-text">In one of the first meetings we defined the first user flow for a new user together, sketching on the whiteboard which screens we might need. After that I kept refining the flows in more detail until we all agreed on the application flow. I defined two main flows: one for a new user and one for an existing user.</p>
@@ -473,7 +493,7 @@
                 </div>
                 <div class="step">
                   <div class="step-label">
-                    <h4>Information architecture<span class="disc-tag research">Research</span></h4>
+                    <h4 id="step-information-architecture">Information architecture<span class="disc-tag research">Research</span></h4>
                   </div>
                   <div>
                     <p class="step-text">This project has many different entities — suites, test scenarios, environments, and policies — so it was important to define a solid information architecture. The research method here was interviews with internal stakeholders.</p>
@@ -483,10 +503,10 @@
               </div>
 
               <div class="case-body">
-                <h3 class="case-section"><svg class="case-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" x2="6" y1="20" y2="16"/><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/></svg>Analysis</h3>
+                <h3 class="case-section" id="section-analysis"><svg class="case-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" x2="6" y1="20" y2="16"/><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/></svg>Analysis</h3>
                 <div class="step">
                   <div class="step-label">
-                    <h4>Wireframes<span class="disc-tag analysis">Analysis</span></h4>
+                    <h4 id="step-wireframes">Wireframes<span class="disc-tag analysis">Analysis</span></h4>
                   </div>
                   <div>
                     <p class="step-text">Once I had a good understanding of the product we needed to build, I started sketching the first wireframes. They covered the complete flow of a new user through the application, from sign in to sign out. I validated with stakeholders whether the flow made sense, and incorporated their comments.</p>
@@ -502,10 +522,10 @@
               </div>
 
               <div class="case-body">
-                <h3 class="case-section"><svg class="case-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>UI design</h3>
+                <h3 class="case-section" id="section-ui-design"><svg class="case-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>UI design</h3>
                 <div class="step">
                   <div class="step-label">
-                    <h4>Design system<span class="disc-tag ui-design">UI design</span></h4>
+                    <h4 id="step-design-system">Design system<span class="disc-tag ui-design">UI design</span></h4>
                   </div>
                   <div>
                     <p class="step-text">We agreed on using the Force Design System. Perforce also recommended adopting it for all new products. It's a well‑prepared design system that contains all the necessary elements — color variables, typography, spacing, and a full set of UI components.</p>
@@ -514,7 +534,7 @@
                 </div>
                 <div class="step">
                   <div class="step-label">
-                    <h4>High‑fidelity clickable prototype<span class="disc-tag ui-design">UI design</span></h4>
+                    <h4 id="step-hifi-prototype">High‑fidelity clickable prototype<span class="disc-tag ui-design">UI design</span></h4>
                   </div>
                   <div>
                     <p class="step-text">I designed all the screens in Figma and presented them as a clickable prototype, which gave stakeholders the impression of a real application. I frequently used Figma Make to get suggestions, and later used Claude as a fast, effective way to present clickable prototypes. We iterated on the application design directly in the high‑fidelity prototype, so stakeholders could see how the app would look. We also shared the prototype internally with other people who matched our personas, and incorporated the feedback we gathered.</p>
@@ -530,10 +550,10 @@
               </div>
 
               <div class="case-body">
-                <h3 class="case-section"><svg class="case-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Validate solution</h3>
+                <h3 class="case-section" id="section-validate"><svg class="case-section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>Validate solution</h3>
                 <div class="step">
                   <div class="step-label">
-                    <h4>User testing<span class="disc-tag research">Research</span></h4>
+                    <h4 id="step-user-testing">User testing<span class="disc-tag research">Research</span></h4>
                   </div>
                   <div>
                     <p class="step-text"><strong>The goal</strong> — to run usability tests on the MVP of AI Test Studio with DPP participants as well as internal participants. We wanted to understand the UX workflows, the pain points, and how participants interacted with the chat flow.</p>
@@ -553,7 +573,7 @@
                 </div>
                 <div class="step">
                   <div class="step-label">
-                    <h4>Usability issues workshop<span class="disc-tag research">Research</span></h4>
+                    <h4 id="step-usability-workshop">Usability issues workshop<span class="disc-tag research">Research</span></h4>
                   </div>
                   <div>
                     <p class="step-text">We ran a usability‑issues workshop to prioritize the issues we'd found.</p>
