@@ -6,22 +6,21 @@ living in [`portfolio-site/`](portfolio-site/) and is deployed via GitHub Pages.
 ## Run locally
 
 The site is fully static, so any local web server works. Using Python's built-in
-server (no install needed on macOS):
+server (no install needed on macOS). Serve from the **project root** so the local
+URL matches the deployed path (`/portfolio-site/...`).
 
 ### Start
 
 ```bash
-cd portfolio-site
+# from the repo root (/Users/petrsimek/Portfolio)
 python3 -m http.server 8000
 ```
 
-Then open <http://localhost:8000/> in your browser. Serving from inside
-`portfolio-site/` puts `index.html` at the root, so no extra path is needed.
+Then open <http://localhost:8000/portfolio-site/index.html> in your browser.
 
 To run it in the background instead:
 
 ```bash
-cd portfolio-site
 python3 -m http.server 8000 &
 ```
 
