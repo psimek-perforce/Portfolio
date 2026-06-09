@@ -76,9 +76,9 @@
         <!-- Full-width row under the grid: stats, then "Worked at" logos beside them -->
         <div class="hero-footer">
           <div class="hero-meta">
-            <div class="stat"><div class="num">13+</div><div class="lbl">Years in product &amp; web</div></div>
-            <div class="stat"><div class="num">4+</div><div class="lbl">Years at Perforce</div></div>
-            <div class="stat"><div class="num">10+</div><div class="lbl">Products shipped</div></div>
+            <div class="stat"><div class="num" data-count="13" data-suffix="+">13+</div><div class="lbl">Years in product &amp; web</div></div>
+            <div class="stat"><div class="num" data-count="4" data-suffix="+">4+</div><div class="lbl">Years at Perforce</div></div>
+            <div class="stat"><div class="num" data-count="10" data-suffix="+">10+</div><div class="lbl">Products shipped</div></div>
           </div>
           <div class="worked-at">
             <div class="worked-at-logos">
@@ -1155,6 +1155,50 @@
       if (document.fonts && document.fonts.ready) { document.fonts.ready.then(moveIndicator); }
       window.addEventListener('resize', function () { closeMenu(); moveIndicator(); });
       window.addEventListener('load', moveIndicator);
+    })();
+  </script>
+
+  <!-- ===================== Hero stat count-up ===================== -->
+  <script>
+    (function () {
+      var nums = Array.prototype.slice.call(document.querySelectorAll('.hero-meta .num[data-count]'));
+      if (!nums.length) return;
+
+      // Reduced-motion users: leave the final values in place, no animation.
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var DURATION = 1700;
+      function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+      function animate(el) {
+        var target = parseInt(el.getAttribute('data-count'), 10);
+        var suffix = el.getAttribute('data-suffix') || '';
+        var start = null;
+        function frame(now) {
+          if (start === null) start = now;
+          var t = Math.min((now - start) / DURATION, 1);
+          el.textContent = Math.round(easeOutCubic(t) * target) + suffix;
+          if (t < 1) requestAnimationFrame(frame);
+        }
+        el.textContent = '0' + suffix;
+        requestAnimationFrame(frame);
+      }
+
+      function run() { nums.forEach(animate); }
+
+      var wrap = document.querySelector('.hero-meta');
+      if ('IntersectionObserver' in window) {
+        // Replay each time the stats re-enter view (e.g. scrolling back to the top).
+        // Fires only on the not-visible → visible transition, so it won't loop while in view.
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { run(); }
+          });
+        }, { threshold: 0.5 });
+        io.observe(wrap);
+      } else {
+        run();   // very old browsers: just animate on load
+      }
     })();
   </script>
 
