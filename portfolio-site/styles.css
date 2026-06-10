@@ -557,7 +557,9 @@ article.case[hidden] { display: none; }
 .case .step h4 { font-size: var(--fs-500); }   /* sub-labels: 24 → 20 */
 .case-body + .case-body { padding-top: 0; }
 /* Design process: text steps on the left, explanatory diagram on the right */
-.proc-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: var(--space-600); align-items: stretch; }
+/* List column matches the .step label column (280px + 48px gap) so the diagram
+   lines up in width with the paragraph blocks in the sections below. */
+.proc-split { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: var(--space-600); align-items: stretch; }
 /* Image is taken out of flow so the LIST defines the row height; the diagram
    then fills (and never exceeds) that height, fitted inside its frame. */
 .proc-split .figure { margin: 0; position: relative; }
