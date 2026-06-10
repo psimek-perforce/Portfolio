@@ -225,8 +225,7 @@ section { scroll-margin-top: 72px; }
   position: relative; overflow: hidden;
   background: var(--bg-2);
   border-bottom: 1px solid var(--border-1);
-  padding-block: var(--space-1200) var(--space-800);
-  /* Top bar (56px) + hero fill the viewport; content centered vertically. */
+  /* Top bar (56px) + hero fill the viewport; content truly centered vertically. */
   min-height: calc(100vh - 56px);
   display: grid; align-content: center;
 }
@@ -246,7 +245,7 @@ section { scroll-margin-top: 72px; }
 /* Full-width row beneath the hero grid: stats, then "Worked at" logos beside them */
 .hero-footer {
   display: flex; flex-wrap: wrap; align-items: flex-end;
-  gap: var(--space-800); margin-top: var(--space-600);
+  gap: var(--space-800); margin-top: var(--space-1200);
 }
 .hero-meta .stat { display: flex; flex-direction: column; gap: var(--space-200); }
 .hero-meta .stat .num { font-size: var(--fs-700); font-weight: var(--fw-bold); letter-spacing: -.01em; line-height: 1; }
