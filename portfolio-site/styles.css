@@ -738,12 +738,17 @@ article.case[hidden] { display: none; }
   display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: var(--space-300); margin-top: var(--space-400);
 }
-.op-grid .figure { margin: 0; }
+.op-grid .figure { margin: 0; display: flex; flex-direction: column; }
 .op-grid .figure img {
   width: 100%; height: 200px; object-fit: cover; object-position: top center;
   display: block; cursor: zoom-in; transition: filter .15s ease;
 }
 .op-grid .figure img:hover { filter: brightness(1.03); }
+/* Thumbnail caption: project name (figcaption) + role/link meta block below */
+.op-grid .figure figcaption { color: var(--fg-1); font-weight: var(--fw-semibold); font-size: var(--fs-300); padding-bottom: var(--space-50); }
+.op-grid .op-meta { background: var(--bg-1); padding: 0 var(--space-200) var(--space-150); display: flex; flex-direction: column; gap: 2px; font-size: var(--fs-200); flex: 1 1 auto; }
+.op-grid .op-role { color: var(--fg-2); }
+.op-grid .op-link { align-self: start; }
 @media (max-width: 560px) { .op-grid { grid-template-columns: 1fr; } }
 /* Other projects: tighten the company-heading → thumbnail gap to 16px */
 #other-projects .case-body { gap: var(--space-200); }
