@@ -146,7 +146,30 @@ h1, h2, h3, h4, p { margin: 0; }
 .nav a.btn-primary:hover { color: var(--fg-inverted-1); background: var(--brand-bg-hover); }
 .nav a.btn-secondary { color: var(--fg-1); }
 .nav a.btn-secondary:hover { color: var(--fg-1); background: var(--bg-3); }
-@media (max-width: 720px) { .nav .nav-link { display: none; } }
+/* Hamburger toggle — hidden on desktop, shown on mobile */
+.nav-toggle {
+  display: none; width: 40px; height: 40px;
+  align-items: center; justify-content: center;
+  border: 1px solid var(--border-1); background: var(--bg-1);
+  border-radius: var(--radius-md); color: var(--fg-3); cursor: pointer;
+}
+.nav-toggle:hover { background: var(--bg-3); color: var(--fg-2); }
+.nav-toggle-icon { width: 22px; height: 22px; }
+@media (max-width: 720px) {
+  .nav-toggle { display: inline-flex; }
+  /* Collapse the inline nav into a dropdown panel below the bar */
+  .nav {
+    display: none;
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: var(--space-50);
+    padding: var(--space-150);
+    background: var(--bg-1);
+    border-bottom: 1px solid var(--border-1);
+    box-shadow: var(--shadow-md);
+  }
+  .nav.open { display: flex; }
+  .nav a { padding: var(--space-200); font-size: var(--fs-400); }
+}
 
 /* --------------------------------------------------------------------------
    Buttons (Force DS)

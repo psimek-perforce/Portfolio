@@ -21,12 +21,15 @@
         <span class="brand-mark">P</span>
         <span class="brand-name">Petr&nbsp;Šimek <span>· UX/UI Designer</span></span>
       </a>
-      <nav class="nav">
+      <nav class="nav" id="site-nav">
         <a class="nav-link" href="#top">Home</a>
         <a class="nav-link" href="#projects">Projects</a>
         <a class="nav-link" href="#about">About me</a>
         <a class="nav-link" href="#contact">Let's talk</a>
       </nav>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+        <svg class="nav-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
     </div>
   </header>
 
@@ -1230,6 +1233,30 @@
       } else {
         run();   // very old browsers: just animate on load
       }
+    })();
+  </script>
+
+  <!-- ===================== Mobile nav (hamburger) ===================== -->
+  <script>
+    (function () {
+      var btn = document.querySelector('.nav-toggle');
+      var nav = document.getElementById('site-nav');
+      if (!btn || !nav) return;
+
+      function open()  { nav.classList.add('open');    btn.setAttribute('aria-expanded', 'true'); }
+      function close() { nav.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
+
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        nav.classList.contains('open') ? close() : open();
+      });
+      // Close after choosing a destination, on outside click, on Escape, and when resizing to desktop.
+      nav.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+      document.addEventListener('click', function (e) {
+        if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) close();
+      });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+      window.addEventListener('resize', function () { if (window.innerWidth > 720) close(); });
     })();
   </script>
 
