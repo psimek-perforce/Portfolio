@@ -783,6 +783,7 @@ article.case[hidden] { display: none; }
 #other-projects .op-grid { margin-top: 0; }
 /* Real company logos in place of section icons (heights tuned per mark) */
 .case-section-logo { flex: none; width: auto; display: block; }
+.case-section-logo.is-perforce { height: 18px; }
 .case-section-logo.is-broadcom { height: 16px; }
 .case-section-logo.is-ca { height: 24px; }
 .case-section-logo.is-lmc { height: 26px; }
