@@ -180,6 +180,10 @@ h1, h2, h3, h4, p { margin: 0; }
 .badge-brand { background: rgba(173,119,212,.08); color: var(--brand-bg-rest); border-color: rgba(173,119,212,.18); }
 .badge-blue  { background: var(--status-blue-bg-2); color: var(--status-blue-fg); border-color: transparent; }
 .badge-brand-solid { background: var(--brand-bg-rest); color: #fff; border-color: transparent; }
+
+/* Reusable link style: brand colour, no underline (not yet applied anywhere) */
+.link { color: var(--brand-bg-rest); text-decoration: none; }
+.link:hover, .link:focus-visible { color: var(--brand-bg-hover); }
 .tags { display: flex; flex-wrap: wrap; gap: var(--space-100); }
 
 /* --------------------------------------------------------------------------
