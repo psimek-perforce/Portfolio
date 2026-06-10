@@ -226,6 +226,9 @@ section { scroll-margin-top: 72px; }
   background: var(--bg-2);
   border-bottom: 1px solid var(--border-1);
   padding-block: var(--space-1200) var(--space-800);
+  /* Top bar (56px) + hero fill the viewport; content centered vertically. */
+  min-height: calc(100vh - 56px);
+  display: grid; align-content: center;
 }
 .hero::before {
   content: ""; position: absolute; inset: 0;
