@@ -1260,6 +1260,21 @@
     })();
   </script>
 
+  <!-- ===================== "Home" / brand → scroll to absolute top ===================== -->
+  <script>
+    (function () {
+      // #top is on <main>, which sits 56px below the page top (under the sticky bar).
+      // Scroll all the way to 0 instead of jumping to the element.
+      document.querySelectorAll('a[href="#top"]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          if (history.replaceState) history.replaceState(null, '', location.pathname + location.search);
+        });
+      });
+    })();
+  </script>
+
 
 </body>
 </html>
