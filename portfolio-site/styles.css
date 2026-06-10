@@ -123,6 +123,16 @@ h1, h2, h3, h4, p { margin: 0; }
   background: rgba(248,248,253,.85);
   backdrop-filter: saturate(160%) blur(12px);
   border-bottom: 1px solid var(--border-1);
+  transition: background .25s ease, border-color .25s ease, backdrop-filter .25s ease;
+}
+/* Transparent at the very top of the page — desktop only (mobile keeps the frosted bar) */
+@media (min-width: 721px) {
+  .topbar.at-top {
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border-bottom-color: transparent;
+  }
 }
 .topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: var(--space-300); }
 .brand { display: flex; align-items: center; gap: var(--space-150); font-weight: var(--fw-bold); }
@@ -228,6 +238,15 @@ section { scroll-margin-top: 72px; }
   /* Top bar (56px) + hero fill the viewport; content truly centered vertically. */
   min-height: calc(100vh - 56px);
   display: grid; align-content: center;
+}
+/* Desktop: hero extends up under the (transparent-at-top) bar so its background
+   shows through. padding-top keeps the centered content within the visible band. */
+@media (min-width: 721px) {
+  .hero {
+    margin-top: -56px;
+    min-height: 100vh;
+    padding-top: 56px;
+  }
 }
 .hero::before {
   content: ""; position: absolute; inset: 0;

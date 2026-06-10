@@ -1283,6 +1283,18 @@
     })();
   </script>
 
+  <!-- ===================== Transparent top bar at page top ===================== -->
+  <script>
+    (function () {
+      var bar = document.querySelector('.topbar');
+      if (!bar) return;
+      // Transparent only while at the very top; the desktop-only CSS handles the look.
+      function update() { bar.classList.toggle('at-top', window.scrollY <= 0); }
+      update();
+      window.addEventListener('scroll', update, { passive: true });
+    })();
+  </script>
+
 
 </body>
 </html>
