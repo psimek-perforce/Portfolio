@@ -235,9 +235,11 @@ section { scroll-margin-top: 72px; }
   position: relative; overflow: hidden;
   background: var(--bg-2);
   border-bottom: 1px solid var(--border-1);
-  /* Top bar (56px) + hero fill the viewport; content truly centered vertically. */
+  /* Top bar (56px) + hero fill the viewport. Flex column so the footer (stats +
+     "Worked at") pins to the bottom while the heading/card stay centered above. */
   min-height: calc(100vh - 56px);
-  display: grid; align-content: center;
+  display: flex; flex-direction: column;
+  padding-bottom: var(--space-600);
 }
 /* Desktop: hero extends up under the (transparent-at-top) bar so its background
    shows through. padding-top keeps the centered content within the visible band. */
@@ -257,18 +259,19 @@ section { scroll-margin-top: 72px; }
     radial-gradient(600px 300px at 10% 120%, rgba(173,216,247,.30), transparent 60%);
   pointer-events: none;
 }
-.hero .wrap { position: relative; }
-.hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-800); align-items: start; }
+.hero .wrap { position: relative; flex: 1 1 auto; display: flex; flex-direction: column; }
+/* Grid grows to fill the space above the footer, with its content centered there. */
+.hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-800); align-items: start; flex: 1 1 auto; align-content: center; }
 .hero h1 { margin-block: var(--space-300) var(--space-300); }
 .hero .lead { max-width: 56ch; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-150); margin-top: var(--space-800); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-150); margin-top: var(--space-400); }
 .hero-meta { display: flex; flex-wrap: wrap; gap: var(--space-300); }
 /* Full-width row beneath the hero grid: stats, then "Worked at" logos beside them.
    Items spread to fill the container from left to right. */
 .hero-footer {
   display: flex; flex-wrap: wrap; align-items: flex-end;
   justify-content: space-between;
-  gap: var(--space-600) var(--space-800); margin-top: var(--space-1200);
+  gap: var(--space-600) var(--space-800); margin-top: var(--space-600);
 }
 /* Stats group grows and spaces its three stats out to help fill the width */
 .hero-footer .hero-meta { flex: 1 1 auto; justify-content: space-between; }
