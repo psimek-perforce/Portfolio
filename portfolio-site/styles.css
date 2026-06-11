@@ -760,6 +760,23 @@ article.case[hidden] { display: none; }
   transition: background .15s ease;
 }
 .lightbox .lb-close:hover { background: rgba(255, 255, 255, 0.25); }
+.lightbox .lb-nav {
+  position: fixed; top: 50%; transform: translateY(-50%);
+  width: 48px; height: 48px; border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.12); color: #fff;
+  font-size: 30px; line-height: 1; cursor: pointer;
+  display: grid; place-items: center;
+  transition: background .15s ease;
+}
+.lightbox .lb-nav:hover { background: rgba(255, 255, 255, 0.25); }
+.lightbox .lb-nav[hidden] { display: none; }
+.lightbox .lb-prev { left: 20px; }
+.lightbox .lb-next { right: 20px; }
+@media (max-width: 560px) {
+  .lightbox .lb-prev { left: 8px; }
+  .lightbox .lb-next { right: 8px; }
+}
 
 /* ---- Glass profile card (desktop only; mobile keeps the solid card) ---- */
 /* Mobile breakpoint is max-width:900px, so desktop = min-width:901px. */
