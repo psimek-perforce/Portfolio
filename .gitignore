@@ -5,6 +5,13 @@ __probe.html
 # macOS
 .DS_Store
 
+# Deploy bundle (built locally for manual upload to the web host)
+simekpetr-deploy.zip
+*-deploy.zip
+# ...and the folder it extracts to
+simekpetr-deploy/
+*-deploy/
+
 # --- Password protection sources -------------------------------------------
 # LOCKED sections (enabled:true): keep the plaintext OUT of the repo, so the
 # protected content only ships as the AES-256-GCM ciphertext in protect-content.js.
