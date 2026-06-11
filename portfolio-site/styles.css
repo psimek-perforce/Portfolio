@@ -259,7 +259,7 @@ section { scroll-margin-top: 72px; }
 }
 .hero .wrap { position: relative; }
 .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-800); align-items: start; }
-.hero h1 { margin-block: var(--space-200) var(--space-300); }
+.hero h1 { margin-block: var(--space-300) var(--space-300); }
 .hero .lead { max-width: 56ch; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-150); margin-top: var(--space-800); }
 .hero-meta { display: flex; flex-wrap: wrap; gap: var(--space-300); }
