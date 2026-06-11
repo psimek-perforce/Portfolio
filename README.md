@@ -93,3 +93,81 @@ shows openly, and a password card covers the rest until unlocked.
 
 > ⚠️ Never commit `ai-test-studio.source.html`. It's listed in `.gitignore`; do
 > not force-add it, or the protected content would be public in the repo history.
+
+### Protect another section
+
+The section **id** is the thread that ties everything together — it must be
+identical in every place below. Example using `blazemeter-test-data-pro`:
+
+**1. Split the article in `index.html`.** Decide what stays open (a teaser,
+typically the `case-hero`) and what gets locked. Remove the locked `.case-body`
+blocks from the article and replace them with a protected-region wrapper:
+
+```html
+<article class="case" id="blazemeter-test-data-pro">
+  <div class="case-hero"> … </div>   <!-- stays OPEN -->
+
+  <!-- LOCKED part -->
+  <div class="protected-region" data-protected
+       data-section="blazemeter-test-data-pro"
+       data-open-src="blazemeter-test-data-pro.source.html">
+    <div class="locked-content">
+      <div class="protected-mount"></div>
+      <div class="lock-skeleton" aria-hidden="true">
+        <div class="sk sk-line" style="width:38%"></div>
+        <div class="sk sk-line" style="width:72%"></div>
+        <div class="sk sk-line" style="width:64%"></div>
+        <div class="sk sk-block"></div>
+        <div class="sk sk-line" style="width:46%"></div>
+        <div class="sk sk-line" style="width:68%"></div>
+      </div>
+    </div>
+  </div>
+</article>
+```
+
+**2. Create the source file.** Put the removed `.case-body` HTML into
+`blazemeter-test-data-pro.source.html` (filename = `<id>.source.html`). This is
+exactly what gets decrypted and injected into `.protected-mount`.
+
+**3. Register it in `protect-config.js`:**
+
+```js
+window.ProtectConfig = {
+  sections: {
+    "ai-test-studio":           { enabled: true },
+    "blazemeter-test-data-pro": { enabled: true }   // true = locked
+  }
+};
+```
+
+**4. Keep the plaintext private.** Add the new source file to `.gitignore`
+(next to the AI Test Studio line) so it's never committed:
+
+```
+portfolio-site/blazemeter-test-data-pro.source.html
+```
+
+**5. (Re)encrypt.** This scans **all** `*.source.html` files and regenerates
+`protect-content.js` with one entry per section:
+
+```bash
+cd portfolio-site
+node encrypt-content.cjs "YOUR-SHARED-PASSWORD"
+```
+
+Use the **same password** as the other sections — all sections share one
+password, but each unlocks independently.
+
+#### Things to keep in mind
+
+- **Same id everywhere:** `data-section`, the `<id>.source.html` filename, the
+  `protect-config.js` key, and the resulting `ProtectedPayloads` key must all
+  match.
+- **Self-contained anchors:** if the locked content has internal links (e.g. the
+  `#section-research` process links), make sure both the links *and* their target
+  ids live inside the source file — they won't resolve against `index.html`.
+- **`enabled: false`** instead shows that section openly by fetching its
+  `*.source.html` at runtime — in that mode the source file is public and **must**
+  be committed/deployed (do **not** gitignore it).
+- After encrypting, preview over `localhost` / `https` (not `file://`).
