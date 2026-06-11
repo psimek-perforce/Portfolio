@@ -263,11 +263,15 @@ section { scroll-margin-top: 72px; }
 .hero .lead { max-width: 56ch; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-150); margin-top: var(--space-800); }
 .hero-meta { display: flex; flex-wrap: wrap; gap: var(--space-300); }
-/* Full-width row beneath the hero grid: stats, then "Worked at" logos beside them */
+/* Full-width row beneath the hero grid: stats, then "Worked at" logos beside them.
+   Items spread to fill the container from left to right. */
 .hero-footer {
   display: flex; flex-wrap: wrap; align-items: flex-end;
-  gap: var(--space-800); margin-top: var(--space-1200);
+  justify-content: space-between;
+  gap: var(--space-600) var(--space-800); margin-top: var(--space-1200);
 }
+/* Stats group grows and spaces its three stats out to help fill the width */
+.hero-footer .hero-meta { flex: 1 1 auto; justify-content: space-between; }
 .hero-meta .stat { display: flex; flex-direction: column; gap: var(--space-200); }
 .hero-meta .stat .num { font-size: var(--fs-700); font-weight: var(--fw-bold); letter-spacing: -.01em; line-height: 1; }
 .hero-meta .stat .lbl { font-size: var(--fs-200); color: var(--fg-2); text-transform: uppercase; letter-spacing: .06em; }
@@ -285,7 +289,7 @@ section { scroll-margin-top: 72px; }
 }
 .hero-card dl { margin: var(--space-300) 0 0; display: grid; grid-template-columns: auto 1fr; gap: var(--space-150) var(--space-200); }
 .hero-card dt { color: var(--fg-2); font-size: var(--fs-200); text-transform: uppercase; letter-spacing: .05em; align-self: center; }
-.hero-card dd { margin: 0; font-weight: var(--fw-semibold); }
+.hero-card dd { margin: 0; font-weight: var(--fw-regular); }
 
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; }
@@ -565,11 +569,12 @@ article.case[hidden] { display: none; }
 /* Mirrors a .stat: value (logos) on top, title (label) below, same gap */
 .worked-at {
   display: flex; flex-direction: column; gap: var(--space-200);
-  padding-left: var(--space-800); border-left: 1px solid var(--border-2);
+  flex: 1 1 auto; /* grow so the logos can spread across the right side */
 }
 /* Same styling as the stat labels (e.g. "Years in product & web") */
 .worked-at-label { font-size: var(--fs-200); color: var(--fg-2); text-transform: uppercase; letter-spacing: .06em; margin: 0; }
-.worked-at-logos { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-400); }
+/* Logos spread to fill the worked-at block, left to right */
+.worked-at-logos { display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: var(--space-300) var(--space-400); }
 .worked-at-logos a { display: inline-flex; }
 .worked-at-logos img { height: 18px; width: auto; filter: grayscale(1); opacity: .55; transition: filter .2s ease, opacity .2s ease; }
 .worked-at-logos a:hover img, .worked-at-logos img:hover { filter: none; opacity: 1; }
