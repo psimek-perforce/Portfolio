@@ -167,7 +167,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .muted   { color: var(--fg-2); }
 
 /* --------------------------------------------------------------------------
-   Top bar (Force DS pattern)
+   Top bar
    -------------------------------------------------------------------------- */
 .topbar {
   position: sticky; top: 0; z-index: 50;
@@ -235,7 +235,7 @@ h1, h2, h3, h4, p { margin: 0; }
 }
 
 /* --------------------------------------------------------------------------
-   Buttons (Force DS)
+   Buttons
    -------------------------------------------------------------------------- */
 .btn {
   display: inline-flex; align-items: center; gap: var(--space-100);
@@ -502,7 +502,7 @@ html, body { max-width: 100%; overflow-x: clip; }
   .hero-scrim { background: rgba(248,248,253,0.45); }
 }
 
-/* ---- Horizontal project tabs (Force DS pattern) ---- */
+/* ---- Horizontal project tabs ---- */
 .proj-tabs {
   position: relative;        /* not sticky — only the topbar sticks */
   z-index: 20;
@@ -635,7 +635,7 @@ article.case[hidden] { display: none; }
 .worked-at-logos img { height: 18px; width: auto; filter: grayscale(1); opacity: .55; transition: filter .2s ease, opacity .2s ease; }
 .worked-at-logos a:hover img, .worked-at-logos img:hover { filter: none; opacity: 1; }
 
-/* ---- Discipline tags on each section (Force DS Tag component) ---- */
+/* ---- Discipline tags on each section ---- */
 .step-label { flex-direction: column; align-items: flex-start; gap: var(--space-150); }
 .step h4 .disc-tag { margin-left: var(--space-100); vertical-align: middle; }   /* tag now sits inline in the heading */
 .disc-tag {
@@ -1041,8 +1041,11 @@ article.case[hidden] { display: none; }
 /* Lighter borders around thumbnails / figures */
 .figure { border: 1px solid var(--md-divider); border-radius: var(--md-shape-md); }
 .figure figcaption { border-top-color: var(--md-divider); }
+/* Persona (expandable) cards — lighter border to match */
+.persona { border-color: var(--md-divider); }
 
 /* ---- M3 primary tabs ---- */
+.proj-tabs { border-bottom-color: var(--md-divider); }   /* soft track line, matching other dividers */
 .proj-tabs a { border-radius: var(--md-shape-sm); font-weight: 500; letter-spacing: .1px; }
 .proj-tabs a.active { color: var(--md-primary); }
 .proj-tabs-indicator { background: var(--md-primary); height: 3px; border-radius: 3px 3px 0 0; }
