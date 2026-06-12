@@ -264,7 +264,7 @@ section { scroll-margin-top: 72px; }
 .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-800); align-items: start; flex: 1 1 auto; align-content: center; }
 .hero h1 { margin-block: var(--space-300) var(--space-300); }
 .hero .lead { max-width: 56ch; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-150); margin-top: var(--space-400); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-150); margin-top: var(--space-600); }
 .hero-meta { display: flex; flex-wrap: wrap; gap: var(--space-300); }
 /* Full-width row beneath the hero grid: stats, then "Worked at" logos beside them.
    Items spread to fill the container from left to right. */
