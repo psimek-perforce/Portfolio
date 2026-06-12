@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Petr Šimek — Style Guide</title>
+  <meta name="description" content="Material 3 design system style guide for the Petr Šimek portfolio: colours, typography and components." />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <meta name="theme-color" content="#7A4FB6" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500&amp;display=swap" rel="stylesheet" />
+  <!-- Reuse the project's real stylesheet so this guide reflects the live design system -->
+  <link rel="stylesheet" href="../styles.css?v=44" />
+  <style>
+    /* ---- Style-guide layout only (not part of the design system) ---- */
+    body.sg { background: var(--md-surface); color: var(--md-on-surface); }
+    .sg-wrap { max-width: 1080px; margin-inline: auto; padding: var(--space-800) var(--space-400) var(--space-1200); }
+    .sg-head { margin-bottom: var(--space-800); }
+    .sg-head h1 { font-size: var(--fs-800); font-weight: 700; letter-spacing: -.5px; }
+    .sg-head p { color: var(--md-on-surface-variant); margin-top: var(--space-150); max-width: 60ch; }
+    .sg-section { margin-top: var(--space-1200); }
+    .sg-section > h2 {
+      font-size: var(--fs-600); font-weight: 500; letter-spacing: .1px;
+      padding-bottom: var(--space-150); margin-bottom: var(--space-400);
+      border-bottom: 1px solid var(--md-divider, #ddd);
+    }
+    .sg-section > h3 { font-size: var(--fs-400); font-weight: 500; color: var(--md-on-surface-variant);
+      text-transform: uppercase; letter-spacing: .08em; margin: var(--space-600) 0 var(--space-300); }
+    .sg-note { color: var(--md-on-surface-variant); font-size: var(--fs-300); margin-bottom: var(--space-300); }
+
+    /* Swatch grid */
+    .sg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: var(--space-300); }
+    .swatch { border: 1px solid var(--md-outline-variant); border-radius: var(--md-shape-md); overflow: hidden; background: var(--md-surface-container-lowest); }
+    .swatch .chip { height: 76px; }
+    .swatch .meta { padding: var(--space-150) var(--space-200); }
+    .swatch .name { font-size: var(--fs-300); font-weight: 500; }
+    .swatch .val { font-size: var(--fs-200); color: var(--md-on-surface-variant); font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+
+    /* Spacing / shape / elevation demo rows */
+    .sg-row { display: flex; flex-wrap: wrap; gap: var(--space-400); align-items: flex-end; }
+    .sg-cell { display: flex; flex-direction: column; gap: var(--space-100); align-items: center; font-size: var(--fs-200); color: var(--md-on-surface-variant); }
+    .sg-cell .box { background: var(--md-primary); border-radius: 4px; }
+    .sg-cell .shapebox { width: 72px; height: 72px; background: var(--md-primary-container); border: 1px solid var(--md-outline-variant); }
+    .sg-cell .elevbox { width: 110px; height: 72px; background: var(--md-surface-container-lowest); border-radius: var(--md-shape-md); }
+
+    .sg-stack { display: flex; flex-direction: column; gap: var(--space-200); }
+    .sg-cluster { display: flex; flex-wrap: wrap; gap: var(--space-200); align-items: center; }
+    .sg-type-row { display: flex; align-items: baseline; gap: var(--space-300); flex-wrap: wrap; padding-block: var(--space-150); border-bottom: 1px solid var(--md-divider, #eee); }
+    .sg-type-row .tag { flex: 0 0 120px; font-size: var(--fs-200); color: var(--md-on-surface-variant); font-family: ui-monospace, Menlo, monospace; }
+    .sg-card-demo { max-width: 360px; }
+    .sg-onbar { background: var(--md-surface-container); padding: var(--space-300); border-radius: var(--md-shape-md); }
+  </style>
+</head>
+<body class="sg">
+  <div class="sg-wrap">
+
+    <header class="sg-head">
+      <h1>Style Guide</h1>
+      <p>Material&nbsp;3 design language for the Petr&nbsp;Šimek portfolio — colour roles, the type
+        scale, and the component library. Values are read live from <code>styles.css</code>, so this
+        page always reflects the real tokens.</p>
+    </header>
+
+    <!-- ============================ COLOURS ============================ -->
+    <section class="sg-section">
+      <h2>Colours</h2>
+      <p class="sg-note">Material&nbsp;3 system colour roles (light scheme), with the key colour seeded from the brand purple.</p>
+
+      <h3>Primary</h3>
+      <div class="sg-grid" data-tokens="--md-primary,--md-on-primary,--md-primary-container,--md-on-primary-container"></div>
+      <h3>Secondary</h3>
+      <div class="sg-grid" data-tokens="--md-secondary,--md-on-secondary,--md-secondary-container,--md-on-secondary-container"></div>
+      <h3>Tertiary</h3>
+      <div class="sg-grid" data-tokens="--md-tertiary,--md-tertiary-container,--md-on-tertiary-container"></div>
+      <h3>Error</h3>
+      <div class="sg-grid" data-tokens="--md-error,--md-error-container,--md-on-error-container"></div>
+      <h3>Surfaces</h3>
+      <div class="sg-grid" data-tokens="--md-surface,--md-surface-dim,--md-surface-container-lowest,--md-surface-container-low,--md-surface-container,--md-surface-container-high,--md-surface-container-highest,--md-surface-variant,--md-inverse-surface,--md-inverse-on-surface"></div>
+      <h3>Text &amp; outlines</h3>
+      <div class="sg-grid" data-tokens="--md-on-surface,--md-on-surface-variant,--md-outline,--md-outline-variant"></div>
+    </section>
+
+    <!-- ============================ TYPOGRAPHY ============================ -->
+    <section class="sg-section">
+      <h2>Typography</h2>
+      <p class="sg-note">Roboto. Display &amp; headlines use Regular/Bold; titles &amp; labels use Medium (500).</p>
+      <div class="sg-stack">
+        <div class="sg-type-row"><span class="tag">.display</span><span class="display">Display — Aa</span></div>
+        <div class="sg-type-row"><span class="tag">.title-1</span><span class="title-1">Headline large — Aa</span></div>
+        <div class="sg-type-row"><span class="tag">.title-2</span><span class="title-2">Headline / Title — Aa</span></div>
+        <div class="sg-type-row"><span class="tag">.title-3</span><span class="title-3">Title — Aa</span></div>
+        <div class="sg-type-row"><span class="tag">.lead</span><span class="lead">Lead paragraph — the quick brown fox.</span></div>
+        <div class="sg-type-row"><span class="tag">.body</span><span class="body">Body text — the quick brown fox jumps over the lazy dog.</span></div>
+        <div class="sg-type-row"><span class="tag">.eyebrow</span><span class="eyebrow">Eyebrow label</span></div>
+        <div class="sg-type-row"><span class="tag">.muted</span><span class="muted">Muted secondary text</span></div>
+      </div>
+    </section>
+
+    <!-- ============================ SPACING ============================ -->
+    <section class="sg-section">
+      <h2>Spacing</h2>
+      <p class="sg-note">8&nbsp;dp-based scale (<code>--space-*</code>).</p>
+      <div class="sg-row" id="sg-space"></div>
+    </section>
+
+    <!-- ============================ SHAPE ============================ -->
+    <section class="sg-section">
+      <h2>Shape</h2>
+      <p class="sg-note">Corner radii (<code>--md-shape-*</code>).</p>
+      <div class="sg-row" id="sg-shape"></div>
+    </section>
+
+    <!-- ============================ ELEVATION ============================ -->
+    <section class="sg-section">
+      <h2>Elevation</h2>
+      <p class="sg-note">Softened M3 tonal shadows (<code>--md-elevation-*</code>).</p>
+      <div class="sg-row" id="sg-elev"></div>
+    </section>
+
+    <!-- ============================ COMPONENTS ============================ -->
+    <section class="sg-section">
+      <h2>Components</h2>
+
+      <h3>Buttons</h3>
+      <div class="sg-cluster">
+        <a class="btn btn-primary" href="#">Filled</a>
+        <a class="btn btn-secondary" href="#">Outlined</a>
+        <a class="btn btn-ghost" href="#">Text</a>
+        <a class="btn btn-primary btn-lg" href="#">Filled · large</a>
+        <a class="btn btn-secondary btn-lg" href="#">Outlined · large</a>
+      </div>
+
+      <h3>Chips &amp; badges</h3>
+      <div class="sg-cluster">
+        <span class="badge">Default</span>
+        <span class="badge badge-brand">Brand tonal</span>
+        <span class="badge badge-brand-solid">Brand container</span>
+        <span class="badge badge-blue">Blue / secondary</span>
+      </div>
+      <div class="sg-cluster" style="margin-top: var(--space-200)">
+        <span class="disc-tag research">Research</span>
+        <span class="disc-tag analysis">Analysis</span>
+        <span class="disc-tag ui-design">UI design</span>
+      </div>
+
+      <h3>Links</h3>
+      <p class="body">Inline <a class="link" href="#">brand link</a> within body text.</p>
+
+      <h3>Cards</h3>
+      <div class="sg-cluster" style="align-items: stretch">
+        <article class="case sg-card-demo">
+          <div class="case-hero">
+            <span class="badge badge-brand-solid">Product case study</span>
+            <h3 class="title-2" style="margin-top: var(--space-200)">Elevated card</h3>
+            <p class="lead">Used for the featured case studies.</p>
+          </div>
+          <div class="case-body" style="gap: var(--space-300)">
+            <p class="body muted">Card body content.</p>
+          </div>
+        </article>
+        <div class="panel sg-card-demo">
+          <h3 class="title-3" style="margin-bottom: var(--space-150)">Filled panel</h3>
+          <p class="body muted">Tonal surface panel — used in the About section.</p>
+        </div>
+      </div>
+      <div class="proj-grid" style="margin-top: var(--space-400)">
+        <article class="proj-card">
+          <div class="proj-shot"><img src="../images/op-pf-p4-plan.png" alt="Example thumbnail" /></div>
+          <div class="proj-info">
+            <h4>Outlined card</h4>
+            <p class="muted">Other-projects style card with image + caption.</p>
+          </div>
+        </article>
+        <figure class="figure" style="margin:0">
+          <img src="../images/ats-process.png" alt="Example figure" />
+          <figcaption>Figure with caption (lighter border)</figcaption>
+        </figure>
+      </div>
+
+      <h3>Tabs</h3>
+      <nav class="proj-tabs" aria-label="Example tabs" style="background: var(--bg-2)">
+        <a href="#" class="active">Active tab</a>
+        <a href="#">Second tab</a>
+        <a href="#">Third tab</a>
+        <span class="proj-tabs-indicator" style="left:0; width:96px"></span>
+      </nav>
+
+      <h3>Form field</h3>
+      <div class="sg-onbar" style="max-width:360px">
+        <input class="lock-input" type="text" placeholder="Outlined text field" aria-label="Example field" />
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    (function () {
+      var cs = getComputedStyle(document.documentElement);
+      var val = function (t) { return cs.getPropertyValue(t).trim(); };
+
+      // ---- Colour swatches ----
+      document.querySelectorAll('.sg-grid[data-tokens]').forEach(function (grid) {
+        grid.getAttribute('data-tokens').split(',').forEach(function (tok) {
+          tok = tok.trim();
+          var el = document.createElement('div');
+          el.className = 'swatch';
+          el.innerHTML =
+            '<div class="chip" style="background:' + 'var(' + tok + ')"></div>' +
+            '<div class="meta"><div class="name">' + tok + '</div>' +
+            '<div class="val">' + (val(tok) || '—') + '</div></div>';
+          grid.appendChild(el);
+        });
+      });
+
+      // ---- Spacing ----
+      ['--space-50','--space-100','--space-150','--space-200','--space-300','--space-400','--space-600','--space-800','--space-1200']
+        .forEach(function (t) {
+          var v = val(t);
+          var c = document.createElement('div'); c.className = 'sg-cell';
+          c.innerHTML = '<div class="box" style="width:' + v + ';height:24px"></div>' +
+                        '<span>' + t.replace('--space-','') + ' · ' + v + '</span>';
+          document.getElementById('sg-space').appendChild(c);
+        });
+
+      // ---- Shape ----
+      ['--md-shape-xs','--md-shape-sm','--md-shape-md','--md-shape-lg','--md-shape-xl','--md-shape-full']
+        .forEach(function (t) {
+          var v = val(t);
+          var c = document.createElement('div'); c.className = 'sg-cell';
+          c.innerHTML = '<div class="shapebox" style="border-radius:' + v + '"></div>' +
+                        '<span>' + t.replace('--md-shape-','') + ' · ' + v + '</span>';
+          document.getElementById('sg-shape').appendChild(c);
+        });
+
+      // ---- Elevation ----
+      [1,2,3,4,5].forEach(function (n) {
+        var t = '--md-elevation-' + n;
+        var c = document.createElement('div'); c.className = 'sg-cell';
+        c.innerHTML = '<div class="elevbox" style="box-shadow:' + val(t) + '"></div>' +
+                      '<span>level ' + n + '</span>';
+        document.getElementById('sg-elev').appendChild(c);
+      });
+    })();
+  </script>
+</body>
+</html>
