@@ -1077,3 +1077,14 @@ article.case[hidden] { display: none; }
 .tl-item { border-top-color: var(--md-divider); }
 .figure figcaption { border-top-color: var(--md-divider); }
 .case-section { border-color: var(--md-divider); }
+
+/* ---- Contact section: rich brand-purple gradient (white text stays readable) ----
+   Vivid-purple light blooms from BOTH bottom corners (left + right) over a darker
+   top, so the heading area stays deep for contrast and the light is symmetric. */
+.contact {
+  background:
+    radial-gradient(1000px 520px at 0% 125%, #B273E6, transparent 58%),
+    radial-gradient(1000px 520px at 100% 125%, #B273E6, transparent 58%),
+    radial-gradient(1100px 480px at 50% -20%, rgba(255,255,255,.14), transparent 60%),
+    linear-gradient(180deg, #6F3DA3 0%, #9656D6 100%);
+}
