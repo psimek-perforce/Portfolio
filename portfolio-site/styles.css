@@ -22,7 +22,7 @@
   --md-error-container: #FFDAD6;
   --md-on-error-container: #410002;
 
-  --md-surface: #FEF7FF;             /* base surface (slightly purple-tinted white) */
+  --md-surface: #ffffff;             /* page background — pure white, matching main */
   --md-surface-dim: #DED8E1;
   --md-surface-container-lowest: #FFFFFF;
   --md-surface-container-low: #F7F2FA;
@@ -38,9 +38,9 @@
   --md-inverse-on-surface: #F5EFF7;
 
   /* State-layer opacities (M3 interaction states) */
-  --md-state-hover: 0.08;
-  --md-state-focus: 0.12;
-  --md-state-pressed: 0.10;
+  --md-state-hover: 0.045;
+  --md-state-focus: 0.10;
+  --md-state-pressed: 0.07;
 
   /* M3 elevation (tonal shadow, levels 1–5) — softened to a decent, subtle look */
   --md-elevation-1: 0 1px 2px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.05);
@@ -70,8 +70,8 @@
   --fg-3: var(--md-outline);
   --fg-inverted-1: var(--md-on-primary);
   --bg-1: var(--md-surface);
-  --bg-2: var(--md-surface-container-low);
-  --bg-3: var(--md-surface-container);
+  --bg-2: #f8f8fd;                   /* light section background, matching main */
+  --bg-3: #f3f3f8;                   /* light tonal background, matching main */
   --border-1: var(--md-outline-variant);
   --border-2: var(--md-outline);
 
@@ -957,7 +957,7 @@ article.case[hidden] { display: none; }
    ========================================================================== */
 
 /* ---- M3 type scale (Roboto; display/headline = Regular, title/label = Medium) ---- */
-.display  { font-weight: 400; letter-spacing: -.25px; line-height: 1.12; }
+.display  { font-weight: 700; letter-spacing: -.25px; line-height: 1.12; }
 .title-1  { font-weight: 400; letter-spacing: 0;      line-height: 1.16; }
 .title-2  { font-weight: 500; letter-spacing: 0;      line-height: 1.25; }
 .title-3  { font-weight: 500; letter-spacing: .15px;  line-height: 1.33; }
@@ -992,7 +992,7 @@ article.case[hidden] { display: none; }
 .btn-primary:hover { background: var(--md-primary); box-shadow: var(--md-elevation-1); }
 .btn-primary:active { background: var(--md-primary); box-shadow: none; }
 /* Outlined button */
-.btn-secondary { background: transparent; color: var(--md-primary); border: 1px solid var(--md-outline); }
+.btn-secondary { background: transparent; color: var(--md-primary); border: 1px solid var(--md-primary); }
 .btn-secondary:hover { background: transparent; }
 /* Text button */
 .btn-ghost { background: transparent; color: var(--md-primary); padding: 0 12px; }
@@ -1016,13 +1016,14 @@ article.case[hidden] { display: none; }
 
 /* ---- M3 chips (assist/suggestion) replacing badges & discipline tags ---- */
 .badge {
-  height: 32px; padding: 0 var(--space-150); border-radius: var(--md-shape-sm);
-  font-size: 14px; font-weight: 500; letter-spacing: .1px;
+  height: 24px; padding: 0 var(--space-100); border-radius: var(--md-shape-sm);
+  font-size: var(--fs-200); font-weight: 500; letter-spacing: .1px;
   background: transparent; color: var(--md-on-surface-variant);
   border: 1px solid var(--md-outline-variant);
 }
 .badge-brand { background: var(--md-secondary-container); color: var(--md-on-secondary-container); border-color: transparent; }
-.badge-brand-solid { background: var(--md-primary); color: var(--md-on-primary); border-color: transparent; }
+/* Subtle tonal chip (not a solid button) */
+.badge-brand-solid { background: var(--md-primary-container); color: var(--md-on-primary-container); border-color: transparent; }
 .badge-blue { background: var(--md-secondary-container); color: var(--md-on-secondary-container); border-color: transparent; }
 .disc-tag { border-radius: var(--md-shape-sm); font-weight: 500; }
 
@@ -1033,11 +1034,13 @@ article.case[hidden] { display: none; }
 /* Panels = filled cards (no shadow, tonal surface).
    The hero profile card keeps its original translucent "glass" look (see the
    901px block above) — intentionally not given an opaque M3 surface here. */
-.panel { border: none; border-radius: var(--md-shape-md); background: var(--md-surface-container); }
+.panel { border: none; border-radius: var(--md-shape-md); background: var(--bg-2); }
 /* Other-projects / outlined cards */
-.proj-card { border: 1px solid var(--md-outline-variant); border-radius: var(--md-shape-md); box-shadow: none; }
+.proj-card { border: 1px solid var(--md-divider); border-radius: var(--md-shape-md); box-shadow: none; }
 .proj-card:hover { box-shadow: var(--md-elevation-1); transform: none; }
-.figure { border: 1px solid var(--md-outline-variant); border-radius: var(--md-shape-md); }
+/* Lighter borders around thumbnails / figures */
+.figure { border: 1px solid var(--md-divider); border-radius: var(--md-shape-md); }
+.figure figcaption { border-top-color: var(--md-divider); }
 
 /* ---- M3 primary tabs ---- */
 .proj-tabs a { border-radius: var(--md-shape-sm); font-weight: 500; letter-spacing: .1px; }
