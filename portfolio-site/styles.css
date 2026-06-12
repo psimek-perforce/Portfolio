@@ -42,12 +42,12 @@
   --md-state-focus: 0.12;
   --md-state-pressed: 0.10;
 
-  /* M3 elevation (tonal shadow, levels 1–5) */
-  --md-elevation-1: 0 1px 2px rgba(0,0,0,.30), 0 1px 3px 1px rgba(0,0,0,.15);
-  --md-elevation-2: 0 1px 2px rgba(0,0,0,.30), 0 2px 6px 2px rgba(0,0,0,.15);
-  --md-elevation-3: 0 1px 3px rgba(0,0,0,.30), 0 4px 8px 3px rgba(0,0,0,.15);
-  --md-elevation-4: 0 2px 3px rgba(0,0,0,.30), 0 6px 10px 4px rgba(0,0,0,.15);
-  --md-elevation-5: 0 4px 4px rgba(0,0,0,.30), 0 8px 12px 6px rgba(0,0,0,.15);
+  /* M3 elevation (tonal shadow, levels 1–5) — softened to a decent, subtle look */
+  --md-elevation-1: 0 1px 2px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.05);
+  --md-elevation-2: 0 1px 2px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.06);
+  --md-elevation-3: 0 1px 3px rgba(0,0,0,.08), 0 4px 10px rgba(0,0,0,.07);
+  --md-elevation-4: 0 2px 4px rgba(0,0,0,.08), 0 6px 14px rgba(0,0,0,.08);
+  --md-elevation-5: 0 4px 6px rgba(0,0,0,.08), 0 10px 22px rgba(0,0,0,.10);
 
   /* M3 shape scale */
   --md-shape-xs: 4px;
@@ -1028,8 +1028,8 @@ article.case[hidden] { display: none; }
 
 /* ---- M3 cards ---- */
 /* Featured case = elevated card */
-.case { border: none; border-radius: var(--md-shape-md); box-shadow: var(--md-elevation-1); background: var(--md-surface-container-low); }
-.case-hero { background: var(--md-surface-container-low); border-bottom: 1px solid var(--md-outline-variant); }
+.case { border: none; border-radius: var(--md-shape-md); box-shadow: var(--md-elevation-1); background: var(--md-surface-container-lowest); }
+.case-hero { background: var(--md-surface-container-lowest); border-bottom: 1px solid var(--md-outline-variant); }
 /* Panels = filled cards (no shadow, tonal surface).
    The hero profile card keeps its original translucent "glass" look (see the
    901px block above) — intentionally not given an opaque M3 surface here. */
@@ -1058,5 +1058,16 @@ article.case[hidden] { display: none; }
 }
 
 /* ---- M3 filled dialogs (lightbox / lock card) ---- */
-.lock-card { border: none; border-radius: var(--md-shape-xl); background: var(--md-surface-container-high); box-shadow: var(--md-elevation-3); }
+.lock-card { border: none; border-radius: var(--md-shape-xl); background: var(--md-surface); box-shadow: var(--md-elevation-3); }
 .lightbox img { border-radius: var(--md-shape-md); }
+
+/* ---- Softer dividers between sections / rows (lower-opacity outline) ---- */
+:root { --md-divider: color-mix(in srgb, var(--md-outline-variant) 50%, transparent); }
+/* Hero has no bottom border — the section below it supplies the single soft
+   divider (avoids two 1px lines stacking into a more prominent line). */
+.hero { border-bottom: none; }
+.work { border-top-color: var(--md-divider); border-bottom-color: var(--md-divider); }
+.case-hero { border-bottom-color: var(--md-divider); }
+.tl-item { border-top-color: var(--md-divider); }
+.figure figcaption { border-top-color: var(--md-divider); }
+.case-section { border-color: var(--md-divider); }
