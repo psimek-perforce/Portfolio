@@ -649,6 +649,9 @@
         if (index < 0) { group = [img]; index = 0; }
         render();
         if (typeof dlg.showModal === 'function') dlg.showModal();
+        // Lock background scroll while open (html is the scroll container here)
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
       }
 
       // Bind any not-yet-bound case images (works for injected content too)
@@ -679,8 +682,12 @@
       // Close on the × button, on backdrop click, and on Esc (Esc is built in)
       dlg.querySelector('.lb-close').addEventListener('click', function () { dlg.close(); });
       dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
-      // Free the video/memory after closing
-      dlg.addEventListener('close', function () { lbImg.removeAttribute('src'); });
+      // Free the video/memory after closing and restore background scroll
+      dlg.addEventListener('close', function () {
+        lbImg.removeAttribute('src');
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+      });
     })();
   </script>
 
