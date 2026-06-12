@@ -7,10 +7,10 @@
      Material Design 3 — light scheme, purple key colour seeded from the
      original brand (#AD77D4). M3 "sys" colour roles:
      ====================================================================== */
-  --md-primary: #7A4FB6;
+  --md-primary: #9656D6;             /* brand purple (key colour) */
   --md-on-primary: #FFFFFF;
-  --md-primary-container: #EEDCFF;
-  --md-on-primary-container: #2C0A52;
+  --md-primary-container: #ECDCFB;   /* light tonal container (≈ tone 92) */
+  --md-on-primary-container: #2C0A52;/* text on the light container (≈ tone 12) */
   --md-secondary: #635B70;
   --md-on-secondary: #FFFFFF;
   --md-secondary-container: #E9DEF8;
@@ -62,8 +62,8 @@
      up Material colours / shape / elevation without touching every rule.
      ---------------------------------------------------------------------- */
   --brand-bg-rest: var(--md-primary);
-  --brand-bg-hover: #6B4099;          /* primary, darker for legacy hover fills */
-  --brand-bg-active: #5A3382;
+  --brand-bg-hover: #854BC0;          /* primary, ~12% darker — hover */
+  --brand-bg-active: #6F3DA3;         /* primary, ~24% darker — active/pressed */
 
   --fg-1: var(--md-on-surface);
   --fg-2: var(--md-on-surface-variant);
@@ -317,7 +317,7 @@ section { scroll-margin-top: 72px; }
 .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-800); align-items: start; flex: 1 1 auto; align-content: center; }
 .hero h1 { margin-block: var(--space-300) var(--space-300); }
 .hero .lead { max-width: 56ch; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-150); margin-top: var(--space-600); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-150); margin-top: var(--space-400); }
 .hero-meta { display: flex; flex-wrap: wrap; gap: var(--space-300); }
 /* Full-width row beneath the hero grid: stats, then "Worked at" logos beside them.
    Items spread to fill the container from left to right. */
@@ -979,10 +979,10 @@ article.case[hidden] { display: none; }
 .nav-toggle:focus-visible::after, .contact-links a:focus-visible::after { opacity: var(--md-state-focus); }
 .btn:active::after { opacity: var(--md-state-pressed); }
 
-/* ---- M3 buttons: full-pill shape, 40dp, label-large (14/500) ---- */
+/* ---- M3 buttons: 40dp, label-large (14/500) — gently rounded (not pill) ---- */
 .btn {
   height: 40px; padding: 0 24px; gap: var(--space-100);
-  border-radius: var(--md-shape-full);
+  border-radius: var(--md-shape-sm);
   font-size: 14px; font-weight: 500; letter-spacing: .1px;
   border: none; transition: box-shadow .15s ease, background .15s ease;
 }
