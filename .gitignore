@@ -4,3 +4,10 @@ __probe.html
 
 # macOS
 .DS_Store
+
+# Deploy bundle (built locally for manual upload to the web host)
+simekpetr-deploy.zip
+*-deploy.zip
+# ...and the folder it extracts to
+simekpetr-deploy/
+*-deploy/

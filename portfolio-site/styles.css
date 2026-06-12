@@ -1,7 +1,5 @@
 /* ==========================================================================
    Petr Šimek — Portfolio
-   Built with tokens from the Force Design System (Perforce)
-   Variables extracted from Figma file "Portfolio"
    ========================================================================== */
 
 :root {
@@ -235,9 +233,11 @@ section { scroll-margin-top: 72px; }
   position: relative; overflow: hidden;
   background: var(--bg-2);
   border-bottom: 1px solid var(--border-1);
-  /* Top bar (56px) + hero fill the viewport; content truly centered vertically. */
+  /* Top bar (56px) + hero fill the viewport. Flex column so the footer (stats +
+     "Worked at") pins to the bottom while the heading/card stay centered above. */
   min-height: calc(100vh - 56px);
-  display: grid; align-content: center;
+  display: flex; flex-direction: column;
+  padding-bottom: var(--space-600);
 }
 /* Desktop: hero extends up under the (transparent-at-top) bar so its background
    shows through. padding-top keeps the centered content within the visible band. */
@@ -246,6 +246,8 @@ section { scroll-margin-top: 72px; }
     margin-top: -56px;
     min-height: 100vh;
     padding-top: 56px;
+    /* Bottom padding raises the centered content a little above true center. */
+    padding-bottom: var(--space-800);
   }
 }
 .hero::before {
@@ -255,17 +257,22 @@ section { scroll-margin-top: 72px; }
     radial-gradient(600px 300px at 10% 120%, rgba(173,216,247,.30), transparent 60%);
   pointer-events: none;
 }
-.hero .wrap { position: relative; }
-.hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-800); align-items: start; }
-.hero h1 { margin-block: var(--space-200) var(--space-300); }
+.hero .wrap { position: relative; flex: 1 1 auto; display: flex; flex-direction: column; }
+/* Grid grows to fill the space above the footer, with its content centered there. */
+.hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-800); align-items: start; flex: 1 1 auto; align-content: center; }
+.hero h1 { margin-block: var(--space-300) var(--space-300); }
 .hero .lead { max-width: 56ch; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-150); margin-top: var(--space-400); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-150); margin-top: var(--space-600); }
 .hero-meta { display: flex; flex-wrap: wrap; gap: var(--space-300); }
-/* Full-width row beneath the hero grid: stats, then "Worked at" logos beside them */
+/* Full-width row beneath the hero grid: stats, then "Worked at" logos beside them.
+   Items spread to fill the container from left to right. */
 .hero-footer {
   display: flex; flex-wrap: wrap; align-items: flex-end;
-  gap: var(--space-800); margin-top: var(--space-1200);
+  justify-content: space-between;
+  gap: var(--space-600) var(--space-800); margin-top: var(--space-600);
 }
+/* Stats group grows and spaces its three stats out to help fill the width */
+.hero-footer .hero-meta { flex: 1 1 auto; justify-content: space-between; }
 .hero-meta .stat { display: flex; flex-direction: column; gap: var(--space-200); }
 .hero-meta .stat .num { font-size: var(--fs-700); font-weight: var(--fw-bold); letter-spacing: -.01em; line-height: 1; }
 .hero-meta .stat .lbl { font-size: var(--fs-200); color: var(--fg-2); text-transform: uppercase; letter-spacing: .06em; }
@@ -283,7 +290,7 @@ section { scroll-margin-top: 72px; }
 }
 .hero-card dl { margin: var(--space-300) 0 0; display: grid; grid-template-columns: auto 1fr; gap: var(--space-150) var(--space-200); }
 .hero-card dt { color: var(--fg-2); font-size: var(--fs-200); text-transform: uppercase; letter-spacing: .05em; align-self: center; }
-.hero-card dd { margin: 0; font-weight: var(--fw-semibold); }
+.hero-card dd { margin: 0; font-weight: var(--fw-regular); }
 
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; }
@@ -563,11 +570,12 @@ article.case[hidden] { display: none; }
 /* Mirrors a .stat: value (logos) on top, title (label) below, same gap */
 .worked-at {
   display: flex; flex-direction: column; gap: var(--space-200);
-  padding-left: var(--space-800); border-left: 1px solid var(--border-2);
+  flex: 1 1 auto; /* grow so the logos can spread across the right side */
 }
 /* Same styling as the stat labels (e.g. "Years in product & web") */
 .worked-at-label { font-size: var(--fs-200); color: var(--fg-2); text-transform: uppercase; letter-spacing: .06em; margin: 0; }
-.worked-at-logos { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-400); }
+/* Logos spread to fill the worked-at block, left to right */
+.worked-at-logos { display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: var(--space-300) var(--space-400); }
 .worked-at-logos a { display: inline-flex; }
 .worked-at-logos img { height: 18px; width: auto; filter: grayscale(1); opacity: .55; transition: filter .2s ease, opacity .2s ease; }
 .worked-at-logos a:hover img, .worked-at-logos img:hover { filter: none; opacity: 1; }
@@ -653,76 +661,12 @@ article.case[hidden] { display: none; }
 .persona-list li { font-size: var(--fs-300); line-height: var(--lh-300); color: var(--fg-2); }
 .findings-list { margin: var(--space-100) 0 0; padding-left: 1.15em; display: grid; gap: 4px; }
 .findings-list li { line-height: var(--lh-300); color: var(--fg-1); }
-
-/* ---- Password-protected region ---- */
-.protected-region { position: relative; }
-.protected-region .case-body > .case-meta { margin-top: 0; } /* meta now leads the body */
-/* Two-part case: open preview sits under the hero; locked part follows seamlessly */
-.case-body > .case-meta { margin-top: 0; }
-.case-body + .protected-region .lock-skeleton { padding-top: 0; }
-.case-body + .protected-region .case-body { padding-top: 0; }
-.case-body + .case-body { padding-top: 0; } /* open preview → inlined content, seamless */
-
-/* Locked: blur the content, clip to a teaser height, and block interaction */
-.protected-region.is-locked { max-height: 560px; overflow: hidden; }
-.protected-region.is-locked .locked-content {
-  filter: blur(7px);
-  -webkit-filter: blur(7px);
-  pointer-events: none;
-  user-select: none;
-}
-/* Overlay with the password card; fades the blurred teaser into the page */
-.lock-overlay {
-  position: absolute; inset: 0; z-index: 5;
-  display: grid; place-items: center; padding: var(--space-400);
-  background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.7) 45%, var(--bg-1) 100%);
-}
-.lock-card {
-  width: 100%; max-width: 380px;
-  background: var(--bg-1);
-  border: 1px solid var(--border-1);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  padding: var(--space-500, 40px) var(--space-400);
-  text-align: center;
-  display: flex; flex-direction: column; align-items: center; gap: var(--space-150);
-}
-.lock-icon {
-  width: 44px; height: 44px; border-radius: 50%;
-  display: grid; place-items: center; margin-bottom: var(--space-100);
-  background: rgba(173,119,212,0.12); color: var(--brand-bg-rest);
-}
-.lock-title { font-size: var(--fs-500); font-weight: var(--fw-semibold); color: var(--fg-1); }
-.lock-sub { color: var(--fg-2); margin-bottom: var(--space-200); }
-.lock-input {
-  width: 100%; height: 44px; padding: 0 var(--space-200);
-  font-family: inherit; font-size: var(--fs-400);
-  border: 1px solid var(--border-2); border-radius: var(--radius-md);
-  background: var(--bg-1); color: var(--fg-1);
-}
-.lock-input:focus { outline: none; border-color: var(--brand-bg-rest); box-shadow: 0 0 0 3px rgba(173,119,212,0.18); }
-.lock-btn { width: 100%; justify-content: center; height: 44px; }
-.lock-error { color: #c0392b; font-size: var(--fs-300); margin-top: var(--space-50); }
-.lock-card.shake { animation: lock-shake .35s ease; }
-@keyframes lock-shake {
-  0%,100% { transform: translateX(0); }
-  20%,60% { transform: translateX(-6px); }
-  40%,80% { transform: translateX(6px); }
-}
-/* Skeleton shown (blurred) behind the lock card while content is encrypted */
-.lock-skeleton { padding: var(--space-600); display: flex; flex-direction: column; gap: var(--space-300); }
-.lock-skeleton .sk { background: var(--bg-3); border-radius: var(--radius-sm); }
-.lock-skeleton .sk-line { height: 16px; }
-.lock-skeleton .sk-block { height: 220px; border-radius: var(--radius-md); }
-.protected-region:not(.is-locked) .lock-skeleton { display: none; }
-
 /* ---- Thumbnails that fill their tile (e.g. User flows) ---- */
 .gallery-fill .figure img { width: 100%; height: 300px; object-fit: cover; object-position: top center; display: block; }
 
 /* ---- Clickable case images ---- */
 #ai-test-studio .figure img { cursor: zoom-in; transition: filter .15s ease; }
 #ai-test-studio .figure img:hover { filter: brightness(1.03); }
-
 /* ---- Lightbox dialog ---- */
 .lightbox {
   border: 0; padding: 0; margin: auto;
