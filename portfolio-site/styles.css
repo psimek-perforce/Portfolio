@@ -779,6 +779,9 @@ article.case[hidden] { display: none; }
 .lock-input:focus { outline: none; border-color: var(--brand-bg-rest); box-shadow: 0 0 0 3px rgba(173,119,212,0.18); }
 .lock-btn { width: 100%; justify-content: center; height: 44px; }
 .lock-error { color: #c0392b; font-size: var(--fs-300); margin-top: var(--space-50); }
+.lock-note { font-size: var(--fs-200); color: var(--fg-3); margin-top: var(--space-200); line-height: 1.5; }
+.lock-note a { color: var(--brand-bg-rest); text-decoration: underline; text-underline-offset: 2px; }
+.lock-note a:hover { color: var(--brand-bg-hover); }
 .lock-card.shake { animation: lock-shake .35s ease; }
 @keyframes lock-shake {
   0%,100% { transform: translateX(0); }

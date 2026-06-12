@@ -103,6 +103,7 @@
           '<input class="lock-input" type="password" placeholder="Password" aria-label="Password" required />' +
           '<button class="btn btn-primary lock-btn" type="submit">Unlock</button>' +
           '<p class="lock-error" role="alert" hidden>Incorrect password. Try again.</p>' +
+          '<p class="lock-note">Don\'t have the password? <a href="#contact">Get in touch</a> and I\'ll send it to you on request, so you can explore the full case study.</p>' +
         '</form>';
       region.appendChild(overlay);
 
