@@ -3,49 +3,104 @@
    ========================================================================== */
 
 :root {
-  /* --- Color: Brand --- */
-  --brand-bg-rest: #AD77D4;          /* Brand/Background/1/Rest */
-  --brand-bg-hover: #9b5fc6;
-  --brand-bg-active: #844fab;
+  /* ======================================================================
+     Material Design 3 — light scheme, purple key colour seeded from the
+     original brand (#AD77D4). M3 "sys" colour roles:
+     ====================================================================== */
+  --md-primary: #7A4FB6;
+  --md-on-primary: #FFFFFF;
+  --md-primary-container: #EEDCFF;
+  --md-on-primary-container: #2C0A52;
+  --md-secondary: #635B70;
+  --md-on-secondary: #FFFFFF;
+  --md-secondary-container: #E9DEF8;
+  --md-on-secondary-container: #1F182B;
+  --md-tertiary: #7E5260;
+  --md-tertiary-container: #FFD9E3;
+  --md-on-tertiary-container: #31101D;
+  --md-error: #BA1A1A;
+  --md-error-container: #FFDAD6;
+  --md-on-error-container: #410002;
 
-  /* --- Color: Neutral --- */
-  --fg-1: #1f1f25;                   /* Neutral/Foreground/1/Rest */
-  --fg-2: #5a5a66;
-  --fg-3: #8a8a96;
-  --fg-inverted-1: #ffffff;          /* Neutral/Foreground/Inverted/1/Rest */
-  --bg-1: #ffffff;
-  --bg-2: #f8f8fd;                   /* Neutral/Background/2/Rest */
-  --bg-3: #f3f3f8;                   /* Neutral/Background/3/Rest */
-  --border-1: #e4e4ee;
-  --border-2: #d2d2de;
+  --md-surface: #ffffff;             /* page background — pure white, matching main */
+  --md-surface-dim: #DED8E1;
+  --md-surface-container-lowest: #FFFFFF;
+  --md-surface-container-low: #F7F2FA;
+  --md-surface-container: #F2ECF4;
+  --md-surface-container-high: #ECE6EE;
+  --md-surface-container-highest: #E6E0E9;
+  --md-surface-variant: #E7E0EB;
+  --md-on-surface: #1D1B20;
+  --md-on-surface-variant: #49454E;
+  --md-outline: #7A757F;
+  --md-outline-variant: #CBC4CF;
+  --md-inverse-surface: #322F35;
+  --md-inverse-on-surface: #F5EFF7;
 
-  /* --- Color: Status --- */
-  --status-blue-bg-2: #add8f7;       /* Status/Generic/Blue/Background/2/Rest */
-  --status-blue-fg: #0b5fa3;
+  /* State-layer opacities (M3 interaction states) */
+  --md-state-hover: 0.045;
+  --md-state-focus: 0.10;
+  --md-state-pressed: 0.07;
 
-  /* --- Typography --- */
-  --font-base: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --fw-regular: 400;                 /* Weight/fontWeightRegular */
-  --fw-semibold: 600;                /* Weight/fontWeightSemibold */
-  --fw-bold: 700;                    /* Weight/fontWeightBold */
+  /* M3 elevation (tonal shadow, levels 1–5) — softened to a decent, subtle look */
+  --md-elevation-1: 0 1px 2px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.05);
+  --md-elevation-2: 0 1px 2px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.06);
+  --md-elevation-3: 0 1px 3px rgba(0,0,0,.08), 0 4px 10px rgba(0,0,0,.07);
+  --md-elevation-4: 0 2px 4px rgba(0,0,0,.08), 0 6px 14px rgba(0,0,0,.08);
+  --md-elevation-5: 0 4px 6px rgba(0,0,0,.08), 0 10px 22px rgba(0,0,0,.10);
+
+  /* M3 shape scale */
+  --md-shape-xs: 4px;
+  --md-shape-sm: 8px;
+  --md-shape-md: 12px;
+  --md-shape-lg: 16px;
+  --md-shape-xl: 28px;
+  --md-shape-full: 999px;
+
+  /* ----------------------------------------------------------------------
+     Legacy token names mapped onto the M3 roles, so the whole site picks
+     up Material colours / shape / elevation without touching every rule.
+     ---------------------------------------------------------------------- */
+  --brand-bg-rest: var(--md-primary);
+  --brand-bg-hover: #6B4099;          /* primary, darker for legacy hover fills */
+  --brand-bg-active: #5A3382;
+
+  --fg-1: var(--md-on-surface);
+  --fg-2: var(--md-on-surface-variant);
+  --fg-3: var(--md-outline);
+  --fg-inverted-1: var(--md-on-primary);
+  --bg-1: var(--md-surface);
+  --bg-2: #f8f8fd;                   /* light section background, matching main */
+  --bg-3: #f3f3f8;                   /* light tonal background, matching main */
+  --border-1: var(--md-outline-variant);
+  --border-2: var(--md-outline);
+
+  --status-blue-bg-2: var(--md-secondary-container);
+  --status-blue-fg: var(--md-on-secondary-container);
+
+  /* --- Typography: Roboto + Material 3 type scale --- */
+  --font-base: "Roboto", "Roboto Flex", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --fw-regular: 400;
+  --fw-semibold: 500;                /* M3 uses Medium (500), not Semibold, for emphasis */
+  --fw-bold: 500;                    /* M3 titles/labels are Medium; headlines stay Regular */
 
   --fs-200: 12px;
-  --fs-300: 14px;                    /* Font-size/300 — Body 1 */
+  --fs-300: 14px;
   --fs-400: 16px;
-  --fs-500: 20px;
-  --fs-600: 24px;                    /* Font-size/600 — Title 3 */
-  --fs-700: 32px;
-  --fs-800: 44px;
-  --fs-900: 60px;
+  --fs-500: 22px;                    /* title-large */
+  --fs-600: 24px;                    /* headline-small */
+  --fs-700: 32px;                    /* headline-large */
+  --fs-800: 45px;                    /* display-medium */
+  --fs-900: 57px;                    /* display-large */
 
-  --lh-300: 20px;                    /* Line-height/300 */
-  --lh-400: 22px;                    /* Line-height/400 */
-  --lh-600: 32px;                    /* Line-height/600 */
+  --lh-300: 20px;
+  --lh-400: 24px;
+  --lh-600: 32px;
 
-  /* --- Spacing (Force token scale) --- */
+  /* --- Spacing (unchanged 8dp-based scale) --- */
   --space-50: 4px;
-  --space-100: 8px;                  /* token('space.100') */
-  --space-150: 12px;                 /* token('space.150') / Horizontal/M */
+  --space-100: 8px;
+  --space-150: 12px;
   --space-200: 16px;
   --space-300: 24px;
   --space-400: 32px;
@@ -53,16 +108,16 @@
   --space-800: 64px;
   --space-1200: 96px;
 
-  /* --- Radius --- */
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 12px;
-  --radius-xl: 20px;
+  /* --- Radius mapped to the M3 shape scale --- */
+  --radius-sm: var(--md-shape-sm);
+  --radius-md: var(--md-shape-md);
+  --radius-lg: var(--md-shape-lg);
+  --radius-xl: var(--md-shape-xl);
 
-  /* --- Elevation --- */
-  --shadow-sm: 0 0 0 1px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.06);
-  --shadow-md: 0 0 0 1px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.08);
-  --shadow-lg: 0 0 0 1px rgba(0,0,0,.08), 0 12px 32px rgba(0,0,0,.12);
+  /* --- Elevation mapped to M3 levels 1–3 --- */
+  --shadow-sm: var(--md-elevation-1);
+  --shadow-md: var(--md-elevation-2);
+  --shadow-lg: var(--md-elevation-3);
 
   --maxw: 1200px;
 }
@@ -112,7 +167,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .muted   { color: var(--fg-2); }
 
 /* --------------------------------------------------------------------------
-   Top bar (Force DS pattern)
+   Top bar
    -------------------------------------------------------------------------- */
 .topbar {
   position: sticky; top: 0; z-index: 50;
@@ -180,7 +235,7 @@ h1, h2, h3, h4, p { margin: 0; }
 }
 
 /* --------------------------------------------------------------------------
-   Buttons (Force DS)
+   Buttons
    -------------------------------------------------------------------------- */
 .btn {
   display: inline-flex; align-items: center; gap: var(--space-100);
@@ -447,7 +502,7 @@ html, body { max-width: 100%; overflow-x: clip; }
   .hero-scrim { background: rgba(248,248,253,0.45); }
 }
 
-/* ---- Horizontal project tabs (Force DS pattern) ---- */
+/* ---- Horizontal project tabs ---- */
 .proj-tabs {
   position: relative;        /* not sticky — only the topbar sticks */
   z-index: 20;
@@ -580,7 +635,7 @@ article.case[hidden] { display: none; }
 .worked-at-logos img { height: 18px; width: auto; filter: grayscale(1); opacity: .55; transition: filter .2s ease, opacity .2s ease; }
 .worked-at-logos a:hover img, .worked-at-logos img:hover { filter: none; opacity: 1; }
 
-/* ---- Discipline tags on each section (Force DS Tag component) ---- */
+/* ---- Discipline tags on each section ---- */
 .step-label { flex-direction: column; align-items: flex-start; gap: var(--space-150); }
 .step h4 .disc-tag { margin-left: var(--space-100); vertical-align: middle; }   /* tag now sits inline in the heading */
 .disc-tag {
@@ -893,3 +948,132 @@ article.case[hidden] { display: none; }
 .case-section-logo.is-broadcom { height: 16px; }
 .case-section-logo.is-ca { height: 24px; }
 .case-section-logo.is-lmc { height: 26px; }
+
+/* ==========================================================================
+   MATERIAL 3 COMPONENT LAYER
+   Anatomy + interaction overrides on top of the token remap above. Kept at
+   the very end so it wins over earlier rules. Implements M3 buttons (pill +
+   state layers), top app bar, cards, chips, tabs, text fields and type scale.
+   ========================================================================== */
+
+/* ---- M3 type scale (Roboto; display/headline = Regular, title/label = Medium) ---- */
+.display  { font-weight: 700; letter-spacing: -.25px; line-height: 1.12; }
+.title-1  { font-weight: 400; letter-spacing: 0;      line-height: 1.16; }
+.title-2  { font-weight: 500; letter-spacing: 0;      line-height: 1.25; }
+.title-3  { font-weight: 500; letter-spacing: .15px;  line-height: 1.33; }
+.lead     { font-weight: 400; letter-spacing: 0;      line-height: 1.45; }
+.eyebrow  { font-weight: 500; letter-spacing: .1px; }
+
+/* ---- State-layer helper: an overlay tinted with the element's text colour ---- */
+.btn, .nav a, .proj-tabs a, .nav-toggle, .contact-links a, .op-link {
+  position: relative; isolation: isolate;
+}
+.btn::after, .nav a::after, .proj-tabs a::after, .nav-toggle::after, .contact-links a::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  background: currentColor; opacity: 0; transition: opacity .15s ease;
+  pointer-events: none; z-index: -1;
+}
+.btn:hover::after, .nav a:hover::after, .proj-tabs a:hover::after,
+.nav-toggle:hover::after, .contact-links a:hover::after { opacity: var(--md-state-hover); }
+.btn:focus-visible::after, .nav a:focus-visible::after, .proj-tabs a:focus-visible::after,
+.nav-toggle:focus-visible::after, .contact-links a:focus-visible::after { opacity: var(--md-state-focus); }
+.btn:active::after { opacity: var(--md-state-pressed); }
+
+/* ---- M3 buttons: full-pill shape, 40dp, label-large (14/500) ---- */
+.btn {
+  height: 40px; padding: 0 24px; gap: var(--space-100);
+  border-radius: var(--md-shape-full);
+  font-size: 14px; font-weight: 500; letter-spacing: .1px;
+  border: none; transition: box-shadow .15s ease, background .15s ease;
+}
+.btn-lg { height: 48px; padding: 0 28px; font-size: 16px; }
+/* Filled button */
+.btn-primary { background: var(--md-primary); color: var(--md-on-primary); }
+.btn-primary:hover { background: var(--md-primary); box-shadow: var(--md-elevation-1); }
+.btn-primary:active { background: var(--md-primary); box-shadow: none; }
+/* Outlined button */
+.btn-secondary { background: transparent; color: var(--md-primary); border: 1px solid var(--md-primary); }
+.btn-secondary:hover { background: transparent; }
+/* Text button */
+.btn-ghost { background: transparent; color: var(--md-primary); padding: 0 12px; }
+.btn-ghost:hover { background: transparent; }
+
+/* ---- Top app bar (M3): solid surface, no frost; elevation appears on scroll ---- */
+.topbar {
+  background: var(--md-surface);
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+  border-bottom: none;
+  transition: background .2s ease, box-shadow .2s ease;
+}
+.topbar:not(.at-top) { background: var(--md-surface-container); box-shadow: var(--md-elevation-2); }
+/* On desktop the bar is flat/transparent only at the very top */
+@media (min-width: 721px) { .topbar.at-top { background: transparent; box-shadow: none; border-bottom: none; } }
+.brand-mark { border-radius: var(--md-shape-sm); background: var(--md-primary); }
+/* Nav items as M3 pill targets */
+.nav a { border-radius: var(--md-shape-full); font-weight: 500; }
+.nav a:hover { background: transparent; }   /* state layer handles the hover */
+.nav-toggle { border-radius: var(--md-shape-full); border-color: var(--md-outline-variant); }
+
+/* ---- M3 chips (assist/suggestion) replacing badges & discipline tags ---- */
+.badge {
+  height: 24px; padding: 0 var(--space-100); border-radius: var(--md-shape-sm);
+  font-size: var(--fs-200); font-weight: 500; letter-spacing: .1px;
+  background: transparent; color: var(--md-on-surface-variant);
+  border: 1px solid var(--md-outline-variant);
+}
+.badge-brand { background: var(--md-secondary-container); color: var(--md-on-secondary-container); border-color: transparent; }
+/* Subtle tonal chip (not a solid button) */
+.badge-brand-solid { background: var(--md-primary-container); color: var(--md-on-primary-container); border-color: transparent; }
+.badge-blue { background: var(--md-secondary-container); color: var(--md-on-secondary-container); border-color: transparent; }
+.disc-tag { border-radius: var(--md-shape-sm); font-weight: 500; }
+
+/* ---- M3 cards ---- */
+/* Featured case = elevated card */
+.case { border: none; border-radius: var(--md-shape-md); box-shadow: var(--md-elevation-1); background: var(--md-surface-container-lowest); }
+.case-hero { background: var(--md-surface-container-lowest); border-bottom: 1px solid var(--md-outline-variant); }
+/* Panels = filled cards (no shadow, tonal surface).
+   The hero profile card keeps its original translucent "glass" look (see the
+   901px block above) — intentionally not given an opaque M3 surface here. */
+.panel { border: none; border-radius: var(--md-shape-md); background: var(--bg-2); }
+/* Other-projects / outlined cards */
+.proj-card { border: 1px solid var(--md-divider); border-radius: var(--md-shape-md); box-shadow: none; }
+.proj-card:hover { box-shadow: var(--md-elevation-1); transform: none; }
+/* Lighter borders around thumbnails / figures */
+.figure { border: 1px solid var(--md-divider); border-radius: var(--md-shape-md); }
+.figure figcaption { border-top-color: var(--md-divider); }
+/* Persona (expandable) cards — lighter border to match */
+.persona { border-color: var(--md-divider); }
+
+/* ---- M3 primary tabs ---- */
+.proj-tabs { border-bottom-color: var(--md-divider); }   /* soft track line, matching other dividers */
+.proj-tabs a { border-radius: var(--md-shape-sm); font-weight: 500; letter-spacing: .1px; }
+.proj-tabs a.active { color: var(--md-primary); }
+.proj-tabs-indicator { background: var(--md-primary); height: 3px; border-radius: 3px 3px 0 0; }
+
+/* ---- M3 text fields (outlined) ---- */
+.lock-input {
+  border: 1px solid var(--md-outline); border-radius: var(--md-shape-xs);
+  background: transparent; color: var(--md-on-surface);
+}
+.lock-input:focus { border: 2px solid var(--md-primary); box-shadow: none; }
+
+/* ---- Soften the hero brand-glow toward a flatter M3 tonal surface ---- */
+.hero::before {
+  background:
+    radial-gradient(1000px 460px at 85% -10%, color-mix(in srgb, var(--md-primary) 14%, transparent), transparent 60%);
+}
+
+/* ---- M3 filled dialogs (lightbox / lock card) ---- */
+.lock-card { border: none; border-radius: var(--md-shape-xl); background: var(--md-surface); box-shadow: var(--md-elevation-3); }
+.lightbox img { border-radius: var(--md-shape-md); }
+
+/* ---- Softer dividers between sections / rows (lower-opacity outline) ---- */
+:root { --md-divider: color-mix(in srgb, var(--md-outline-variant) 50%, transparent); }
+/* Hero has no bottom border — the section below it supplies the single soft
+   divider (avoids two 1px lines stacking into a more prominent line). */
+.hero { border-bottom: none; }
+.work { border-top-color: var(--md-divider); border-bottom-color: var(--md-divider); }
+.case-hero { border-bottom-color: var(--md-divider); }
+.tl-item { border-top-color: var(--md-divider); }
+.figure figcaption { border-top-color: var(--md-divider); }
+.case-section { border-color: var(--md-divider); }
