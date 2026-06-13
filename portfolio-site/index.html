@@ -6,11 +6,11 @@
   <title>Petr Šimek — Projects</title>
   <meta name="description" content="Selected UX/UI work by Petr Šimek. Featured project: AI Test Studio — an AI-driven unified testing platform at Perforce." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta name="theme-color" content="#AD77D4" />
+  <meta name="theme-color" content="#9656D6" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;0,700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=29" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&amp;family=Roboto+Flex:opsz,wght@8..144,400;8..144,500&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=53" />
 </head>
 <body>
 
@@ -1032,7 +1032,7 @@
       <div class="wrap">
         <div class="contact-grid">
           <div>
-            <h2 class="title-1">Let’s build something usable.</h2>
+            <h2 class="title-1">Let’s build something usable</h2>
             <p class="lead">Open to UX/UI design work and collaboration. The fastest way to reach me is email.</p>
           </div>
           <div class="contact-links">
@@ -1100,6 +1100,9 @@
         if (index < 0) { group = [img]; index = 0; }
         render();
         if (typeof dlg.showModal === 'function') dlg.showModal();
+        // Lock background scroll while open (html is the scroll container here)
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
       }
 
       // Bind any not-yet-bound case images (works for injected content too)
@@ -1130,8 +1133,12 @@
       // Close on the × button, on backdrop click, and on Esc (Esc is built in)
       dlg.querySelector('.lb-close').addEventListener('click', function () { dlg.close(); });
       dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
-      // Free the video/memory after closing
-      dlg.addEventListener('close', function () { lbImg.removeAttribute('src'); });
+      // Free the video/memory after closing and restore background scroll
+      dlg.addEventListener('close', function () {
+        lbImg.removeAttribute('src');
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+      });
     })();
   </script>
 
