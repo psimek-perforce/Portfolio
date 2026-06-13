@@ -1,4 +1,4 @@
-# Portfolio
+# Portfolio Petr Simek
 
 Personal UX/UI portfolio of Petr Šimek. The site is a static HTML/CSS/JS page
 living in [`portfolio-site/`](portfolio-site/) and is deployed via GitHub Pages.
