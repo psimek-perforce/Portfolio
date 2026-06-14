@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- PLACEHOLDER: replace with the official cursive LMC logotype.
-     The "Worked at" row grayscales logos, so colour here is not critical. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 150">
-  <text x="12" y="104" font-family="'Snell Roundhand','Brush Script MT','Segoe Script',cursive"
-        font-size="120" font-style="italic" font-weight="700" fill="#143a7b">lmc</text>
-  <path d="M18 120 Q115 138 212 116" stroke="#29abe2" stroke-width="10" fill="none" stroke-linecap="round"/>
-</svg>
